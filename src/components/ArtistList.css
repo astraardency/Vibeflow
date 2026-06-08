@@ -1,0 +1,43 @@
+.artist-list-container {
+  margin-bottom: var(--spacing-xl);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
+  padding: 0 var(--spacing-md);
+  letter-spacing: -0.3px;
+}
+
+.artist-scroll {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  padding: 0 var(--spacing-md);
+  scroll-snap-type: x mandatory;
+}
+
+.artist-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 80px;
+  scroll-snap-align: start;
+}
+
+.artist-img {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-pill);
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.artist-name {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-color);
+}

@@ -1,0 +1,76 @@
+.magic-shuffle-container {
+  padding: 0 var(--spacing-md);
+  margin-bottom: 120px; /* Leave extra space below this for the bottom nav */
+}
+
+.magic-card {
+  background-color: var(--card-orange);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(245, 149, 74, 0.3);
+}
+
+/* Decorative circles */
+.magic-card::before {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 60px;
+  width: 80px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 100px 100px 0 0;
+}
+.magic-card::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 40px;
+  width: 100px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 100px 100px 0 0;
+}
+
+.magic-img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  z-index: 1;
+}
+
+.magic-info {
+  margin-left: var(--spacing-md);
+  flex: 1;
+  z-index: 1;
+  color: white;
+}
+
+.magic-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.magic-artist {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.magic-action {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--card-orange);
+  z-index: 1;
+  flex-shrink: 0;
+}
