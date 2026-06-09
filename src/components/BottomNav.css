@@ -5,7 +5,7 @@
   transform: translateX(-50%);
   width: calc(100% - 32px);
   max-width: 448px;
-  background-color: white;
+  background-color: var(--panel-bg);
   border-radius: var(--radius-pill);
   padding: 8px 24px;
   display: flex;
@@ -13,13 +13,14 @@
   align-items: center;
   box-shadow: 0 10px 40px rgba(0,0,0,0.1);
   z-index: 100;
+  border: 1px solid var(--border-color);
 }
 
 .nav-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #121212;
+  color: var(--text-color);
   cursor: pointer;
   padding: 8px;
   border-radius: var(--radius-pill);
@@ -27,8 +28,8 @@
 }
 
 .nav-item.active {
-  background-color: #000000;
-  color: white;
+  background-color: var(--text-color);
+  color: var(--bg-color);
   padding: 10px 20px;
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.css';
 import { Download, Sun, Moon } from 'lucide-react';
 
-const Header = ({ onAction, isDarkMode, setIsDarkMode }) => {
+const Header = ({ onAction, isDarkMode, setIsDarkMode, openProfile, openDownload }) => {
   return (
     <header className="header">
       <h1 className="header-title" onClick={() => onAction('Good Morning!')}>Good Morning</h1>
@@ -27,10 +27,10 @@ const Header = ({ onAction, isDarkMode, setIsDarkMode }) => {
         >
           {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
-        <button className="download-btn" onClick={() => onAction('Downloading offline library...')}>
+        <button className="download-btn" onClick={openDownload}>
           <Download size={24} strokeWidth={2.5} />
         </button>
-        <div className="profile-avatar" onClick={() => onAction('Opening Profile Settings...')}></div>
+        <div className="profile-avatar" onClick={openProfile}></div>
       </div>
     </header>
   );

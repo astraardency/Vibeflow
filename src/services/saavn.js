@@ -1,9 +1,7 @@
 const BASE_URL = 'https://saavn.sumit.co/api';
 
 /**
- * Searches for songs on JioSaavn
- * @param {string} query - The search term
- * @returns {Promise<Array>} List of formatted songs
+ * Decodes HTML entities from text strings
  */
 const decodeHTMLEntities = (text) => {
   if (!text) return '';
@@ -25,7 +23,7 @@ const decodeHTMLEntities = (text) => {
 };
 
 /**
- * Searches for songs on JioSaavn
+ * Searches for Tamil songs from the music library
  * @param {string} query - The search term
  * @param {number} limit - Number of results to return
  * @returns {Promise<Array>} List of formatted songs
@@ -40,14 +38,14 @@ export const searchSongs = async (query, limit = 40) => {
     }
     return [];
   } catch (error) {
-    console.error('Error searching songs on JioSaavn:', error);
+    console.error('Error searching songs:', error);
     return [];
   }
 };
 
 /**
  * Gets direct details of a song by ID
- * @param {string} id - The JioSaavn song ID
+ * @param {string} id - The song ID
  * @returns {Promise<Object|null>} Formatted song object
  */
 export const getSongDetails = async (id) => {
@@ -60,7 +58,7 @@ export const getSongDetails = async (id) => {
     }
     return null;
   } catch (error) {
-    console.error('Error fetching song details from JioSaavn:', error);
+    console.error('Error fetching song details:', error);
     return null;
   }
 };
@@ -100,4 +98,72 @@ const formatSongData = (song) => {
     duration: song.duration ? parseInt(song.duration) : 0,
     album: decodeHTMLEntities(song.album?.name || song.album || '')
   };
+};
+
+/**
+ * Searches for playlists from JioSaavn
+ * @param {string} query - The search query
+ * @param {number} limit - Number of results to return
+ * @returns {Promise<Array>} List of formatted playlist objects
+ */
+export const searchPlaylists = async (query, limit = 20) => {
+  try {
+    const response = await fetch(`${BASE_URL}/search/playlists?query=${encodeURIComponent(query)}&limit=${limit}`);
+    const data = await response.json();
+    
+    if (data.success && data.data && data.data.results) {
+      return data.data.results.map(playlist => {
+        let imgUrl = 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop';
+        if (playlist.image && Array.isArray(playlist.image) && playlist.image.length > 0) {
+          imgUrl = playlist.image[playlist.image.length - 1].url || playlist.image[playlist.image.length - 1].link || imgUrl;
+        } else if (typeof playlist.image === 'string') {
+          imgUrl = playlist.image;
+        }
+        return {
+          id: playlist.id,
+          title: decodeHTMLEntities(playlist.name || playlist.title || 'Untitled Playlist'),
+          img: imgUrl,
+          songCount: playlist.songCount || playlist.shares || '0',
+          description: decodeHTMLEntities(playlist.description || '')
+        };
+      });
+    }
+    return [];
+  } catch (error) {
+    console.error('Error searching playlists:', error);
+    return [];
+  }
+};
+
+/**
+ * Gets details of a playlist including songs by ID
+ * @param {string} id - The playlist ID
+ * @returns {Promise<Object|null>} Formatted playlist details with songs
+ */
+export const getPlaylistDetails = async (id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/playlists?id=${id}`);
+    const data = await response.json();
+    
+    if (data.success && data.data) {
+      const playlist = data.data;
+      let imgUrl = 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop';
+      if (playlist.image && Array.isArray(playlist.image) && playlist.image.length > 0) {
+        imgUrl = playlist.image[playlist.image.length - 1].url || playlist.image[playlist.image.length - 1].link || imgUrl;
+      } else if (typeof playlist.image === 'string') {
+        imgUrl = playlist.image;
+      }
+      return {
+        id: playlist.id,
+        title: decodeHTMLEntities(playlist.name || playlist.title || 'Untitled Playlist'),
+        img: imgUrl,
+        description: decodeHTMLEntities(playlist.description || ''),
+        songs: playlist.songs ? playlist.songs.map(formatSongData) : []
+      };
+    }
+    return null;
+  } catch (error) {
+    console.error('Error fetching playlist details:', error);
+    return null;
+  }
 };

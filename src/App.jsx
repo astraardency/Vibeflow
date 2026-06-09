@@ -7,15 +7,17 @@ import SuggestedSongsList from './components/SuggestedSongsList'
 import GenresList from './components/GenresList'
 import MagicShuffle from './components/MagicShuffle'
 import BottomNav from './components/BottomNav'
-import { searchSongs } from './services/saavn'
+import { searchSongs, searchPlaylists, getPlaylistDetails } from './services/saavn'
 import defaultSongsRaw from './data/songs.js'
 const defaultSongs = defaultSongsRaw.filter(song => song.language?.toLowerCase() === 'tamil');
+import AccountSettings from './components/AccountSettings'
+import DownloadContainer from './components/DownloadContainer'
 import './App.css'
 import {
   Play, Pause, SkipForward, ArrowLeft, Heart,
   Search, Plus, Download, Radio, Headphones,
   Sparkles, Check, ChevronDown, ListMusic,
-  Home, PlusSquare, BarChart2, Sun, Moon
+  Home, PlusSquare, BarChart2, Sun, Moon, Maximize2, Minimize2
 } from 'lucide-react'
 
 function App() {
@@ -56,6 +58,9 @@ function App() {
   const [isSearchingPlaylistSongs, setIsSearchingPlaylistSongs] = useState(false)
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [newPlaylistName, setNewPlaylistName] = useState('')
+  const [newPlaylistImg, setNewPlaylistImg] = useState('')
+  const [isAccountSettingsOpen, setIsAccountSettingsOpen] = useState(false)
+  const [isDownloadOpen, setIsDownloadOpen] = useState(false)
   const [currentTrackIndex, setCurrentTrackIndex] = useState(-1)
   const [activePlaybackQueue, setActivePlaybackQueue] = useState(defaultSongs)
   const [isLikedSongsOpen, setIsLikedSongsOpen] = useState(false)
@@ -66,10 +71,14 @@ function App() {
   // Search States
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState([])
+  const [searchPlaylistsResults, setSearchPlaylistsResults] = useState([])
+  const [selectedSaavnPlaylist, setSelectedSaavnPlaylist] = useState(null)
+  const [isLoadingSaavnPlaylist, setIsLoadingSaavnPlaylist] = useState(false)
   const [isSearching, setIsSearching] = useState(false)
 
   // Player States
   const [currentTrack, setCurrentTrack] = useState(null)
+  const [isDesktopFullscreenOpen, setIsDesktopFullscreenOpen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoadingSong, setIsLoadingSong] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -100,14 +109,53 @@ function App() {
       root.style.setProperty('--bg-color', '#121215');
       root.style.setProperty('--text-color', '#ffffff');
       root.style.setProperty('--text-secondary', '#b0b0b0');
+      root.style.setProperty('--card-bg', '#1d1d23');
+      root.style.setProperty('--border-color', 'rgba(255, 255, 255, 0.08)');
+      root.style.setProperty('--panel-bg', '#16161a');
+      root.style.setProperty('--input-bg', '#222228');
+      root.style.setProperty('--input-border', '#2a2a32');
+      root.style.setProperty('--hover-bg', 'rgba(255, 255, 255, 0.06)');
+      root.style.setProperty('--bar-bg', '#2d2d35');
+      root.style.setProperty('--artist-sheet-bg', '#16161a');
+      root.style.setProperty('--player-bar-bg', 'rgba(22, 22, 26, 0.85)');
       localStorage.setItem('theme', 'dark');
     } else {
       root.style.setProperty('--bg-color', '#f7f7f9');
       root.style.setProperty('--text-color', '#121212');
       root.style.setProperty('--text-secondary', '#6b6b6b');
+      root.style.setProperty('--card-bg', '#ffffff');
+      root.style.setProperty('--border-color', '#eef0f3');
+      root.style.setProperty('--panel-bg', '#ffffff');
+      root.style.setProperty('--input-bg', '#ffffff');
+      root.style.setProperty('--input-border', '#e5e5e7');
+      root.style.setProperty('--hover-bg', '#f4f5f7');
+      root.style.setProperty('--bar-bg', '#e5e5e7');
+      root.style.setProperty('--artist-sheet-bg', '#ffffff');
+      root.style.setProperty('--player-bar-bg', 'rgba(255, 255, 255, 0.85)');
       localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
+
+  // Escape key to exit fullscreen player
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsDesktopFullscreenOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Update browser tab title to currently playing song
+  useEffect(() => {
+    if (currentTrack) {
+      const play = isPlaying ? '▶ ' : '⏸ ';
+      document.title = `${play}${currentTrack.title} • ${currentTrack.artist}`;
+    } else {
+      document.title = 'Melophile';
+    }
+  }, [currentTrack, isPlaying]);
 
   // Reset sub-views when tab changes
   useEffect(() => {
@@ -117,6 +165,7 @@ function App() {
     setIsLikedSongsOpen(false)
     setPlaylistSearchQuery('')
     setPlaylistSearchResults([])
+    setSelectedSaavnPlaylist(null)
   }, [activeTab])
 
   // Load default trending Tamil songs on search tab when empty
@@ -124,8 +173,12 @@ function App() {
     if (activeTab === 'search' && !searchQuery.trim()) {
       const loadTrending = async () => {
         setIsSearching(true)
-        const results = await searchSongs('latest Tamil songs')
-        setSearchResults(results)
+        const [songs, playlists] = await Promise.all([
+          searchSongs('latest Tamil songs'),
+          searchPlaylists('Tamil hits')
+        ])
+        setSearchResults(songs)
+        setSearchPlaylistsResults(playlists)
         setIsSearching(false)
       }
       loadTrending()
@@ -157,8 +210,8 @@ function App() {
           query = 'Ilaiyaraaja Tamil'
           limit = 950
         } else if (name.includes('deva')) {
-          query = 'Deva composer Tamil'
-          limit = 200
+          query = 'Deva Tamil hits'
+          limit = 500
         } else if (name.includes('dhina')) {
           query = 'Dhina composer Tamil'
           limit = 100
@@ -177,40 +230,48 @@ function App() {
         } else if (name.includes('santhosh') || name.includes('narayanan')) {
           query = 'Santhosh Narayanan Tamil'
           limit = 300
+        } else if (name.includes('srikanth')) {
+          query = 'Srikanth Deva Tamil'
+          limit = 100
         }
-        
+
         const results = await searchSongs(query, limit)
-        
-        // Filter out non-original versions and deduplicate by title
-        const filteredResults = [];
+
+        let filteredResults = [];
         const seenTitles = new Set();
-        
+
+        // For Deva, also post-filter to only songs where artist is actually Deva
+        const isDeva = name.includes('deva');
+
         results.forEach(song => {
           const titleLower = song.title.toLowerCase();
-          
-          const isNonOriginal = 
-            titleLower.includes('lofi') || 
-            titleLower.includes('lo-fi') || 
-            titleLower.includes('remix') || 
-            titleLower.includes('cover') || 
-            titleLower.includes('karaoke') || 
-            titleLower.includes('instrumental') || 
-            titleLower.includes('snippet') || 
-            titleLower.includes('teaser') || 
-            titleLower.includes('promo') || 
-            titleLower.includes('tribute') || 
-            titleLower.includes('unplugged') || 
-            titleLower.includes('acoustic') || 
-            titleLower.includes('reprise') || 
-            titleLower.includes('mashup') || 
-            titleLower.includes('dj') || 
-            titleLower.includes('mix') || 
+          const artistLower = (song.artist || '').toLowerCase();
+
+          // Skip if Deva filter active and song doesn't belong to Deva
+          if (isDeva && !artistLower.includes('deva')) return;
+
+          const isNonOriginal =
+            titleLower.includes('lofi') ||
+            titleLower.includes('lo-fi') ||
+            titleLower.includes('remix') ||
+            titleLower.includes('cover') ||
+            titleLower.includes('karaoke') ||
+            titleLower.includes('instrumental') ||
+            titleLower.includes('snippet') ||
+            titleLower.includes('teaser') ||
+            titleLower.includes('promo') ||
+            titleLower.includes('tribute') ||
+            titleLower.includes('unplugged') ||
+            titleLower.includes('acoustic') ||
+            titleLower.includes('reprise') ||
+            titleLower.includes('mashup') ||
+            titleLower.includes('dj') ||
+            titleLower.includes('mix') ||
             titleLower.includes('version') ||
             titleLower.includes('ringtone') ||
             titleLower.includes('bgm');
-            
+
           if (!isNonOriginal) {
-            // Deduplicate by normalized title
             const normalizedTitle = titleLower.replace(/\s*\(from\s+[^)]+\)/g, '').trim();
             if (!seenTitles.has(normalizedTitle)) {
               seenTitles.add(normalizedTitle);
@@ -218,6 +279,24 @@ function App() {
             }
           }
         });
+
+        // If Deva filter removed everything, fall back without artist filter
+        if (isDeva && filteredResults.length === 0) {
+          results.forEach(song => {
+            const titleLower = song.title.toLowerCase();
+            const isNonOriginal =
+              titleLower.includes('lofi') || titleLower.includes('lo-fi') ||
+              titleLower.includes('remix') || titleLower.includes('cover') ||
+              titleLower.includes('karaoke') || titleLower.includes('bgm');
+            if (!isNonOriginal) {
+              const normalizedTitle = titleLower.replace(/\s*\(from\s+[^)]+\)/g, '').trim();
+              if (!seenTitles.has(normalizedTitle)) {
+                seenTitles.add(normalizedTitle);
+                filteredResults.push(song);
+              }
+            }
+          });
+        }
 
         setArtistSongs(filteredResults)
         setIsLoadingArtistSongs(false)
@@ -356,12 +435,14 @@ function App() {
     const newPl = {
       id: Date.now().toString(),
       name: newPlaylistName.trim(),
+      img: newPlaylistImg.trim() || 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop',
       songs: []
     }
     const updated = [...playlists, newPl]
     setPlaylists(updated)
     localStorage.setItem('playlists', JSON.stringify(updated))
     setNewPlaylistName('')
+    setNewPlaylistImg('')
     setShowCreateModal(false)
     triggerToast(`Created playlist "${newPl.name}"!`)
   }
@@ -424,13 +505,35 @@ function App() {
 
   // Search action
   const handleSearch = async (e) => {
-    e.preventDefault()
+    if (e) e.preventDefault()
     if (!searchQuery.trim()) return
 
     setIsSearching(true)
-    const results = await searchSongs(searchQuery)
-    setSearchResults(results)
+    const [songs, playlists] = await Promise.all([
+      searchSongs(searchQuery),
+      searchPlaylists(searchQuery)
+    ])
+    setSearchResults(songs)
+    setSearchPlaylistsResults(playlists)
     setIsSearching(false)
+  }
+
+  // Load JioSaavn playlist details
+  const handlePlaylistCardClick = async (playlistId) => {
+    setIsLoadingSaavnPlaylist(true)
+    try {
+      const details = await getPlaylistDetails(playlistId)
+      if (details) {
+        setSelectedSaavnPlaylist(details)
+      } else {
+        triggerToast('Failed to load playlist details.')
+      }
+    } catch (error) {
+      console.error(error)
+      triggerToast('Error loading playlist details.')
+    } finally {
+      setIsLoadingSaavnPlaylist(false)
+    }
   }
 
   // Format progress slider value
@@ -467,7 +570,7 @@ function App() {
   const getUpcomingSongs = () => {
     if (!currentTrack || currentTrackIndex === -1) return []
     const currentList = getCurrentTracklist()
-    
+
     const upcoming = []
     for (let i = 1; i <= 5; i++) {
       const nextIndex = currentTrackIndex + i
@@ -481,7 +584,7 @@ function App() {
   const playNextSong = () => {
     const list = getCurrentTracklist()
     if (list.length === 0) return
-    
+
     let nextIndex = currentTrackIndex + 1
     if (nextIndex >= list.length || nextIndex === -1) {
       nextIndex = 0 // loop back
@@ -492,7 +595,7 @@ function App() {
   const playPreviousSong = () => {
     const list = getCurrentTracklist()
     if (list.length === 0) return
-    
+
     let prevIndex = currentTrackIndex - 1
     if (prevIndex < 0 || prevIndex >= list.length) {
       prevIndex = list.length - 1 // loop back
@@ -514,7 +617,7 @@ function App() {
   const getLikedSongsList = () => {
     const list = []
     const seen = new Set()
-    
+
     defaultSongs.forEach(song => {
       if (likedSongs.includes(song.title) && !seen.has(song.title)) {
         seen.add(song.title)
@@ -580,42 +683,47 @@ function App() {
       {/* A. DESKTOP LEFT SIDEBAR (Desktop only) */}
       <div className="desktop-sidebar">
         <div className="desktop-logo-container">
-          <Radio size={24} className="logo-icon" color="var(--card-orange)" />
-          <span className="desktop-logo-text">Melophile</span>
+          <Radio size={28} className="logo-icon" color="var(--card-orange)" />
+          <span className="desktop-logo-text"></span>
         </div>
 
         <div className="sidebar-menu">
           <button
-            className={`sidebar-menu-btn ${activeTab === 'home' ? 'active' : ''}`}
+            className="sidebar-menu-btn focusable"
+            tabIndex={0}
             onClick={() => setActiveTab('home')}
           >
             <Home size={18} />
             <span>Home</span>
           </button>
           <button
-            className={`sidebar-menu-btn ${activeTab === 'search' ? 'active' : ''}`}
+            className="sidebar-menu-btn focusable"
+            tabIndex={0}
             onClick={() => setActiveTab('search')}
           >
             <Search size={18} />
             <span>Search</span>
           </button>
           <button
-            className={`sidebar-menu-btn ${activeTab === 'create' ? 'active' : ''}`}
+            className="sidebar-menu-btn focusable"
+            tabIndex={0}
             onClick={() => setActiveTab('create')}
           >
             <PlusSquare size={18} />
             <span>Playlists</span>
           </button>
-           <button
-            className={`sidebar-menu-btn ${activeTab === 'library' ? 'active' : ''}`}
+          <button
+            className="sidebar-menu-btn focusable"
+            tabIndex={0}
             onClick={() => setActiveTab('library')}
           >
             <BarChart2 size={18} />
             <span>Vibe Stats</span>
           </button>
-          
+
           <button
-            className="sidebar-menu-btn theme-toggle-menu-btn"
+            className="sidebar-menu-btn theme-toggle-menu-btn focusable"
+            tabIndex={0}
             onClick={() => setIsDarkMode(!isDarkMode)}
             style={{ marginTop: 'auto' }}
           >
@@ -625,10 +733,38 @@ function App() {
         </div>
       </div>
 
+      {/* Remote navigation handler */}
+      {useEffect(() => {
+        const handleKey = (e) => {
+          const focusables = Array.from(document.querySelectorAll('.focusable'));
+          const active = document.activeElement;
+          const index = focusables.indexOf(active);
+          if (e.key === 'ArrowDown') {
+            const next = focusables[(index + 1) % focusables.length];
+            next?.focus();
+            e.preventDefault();
+          } else if (e.key === 'ArrowUp') {
+            const prev = focusables[(index - 1 + focusables.length) % focusables.length];
+            prev?.focus();
+            e.preventDefault();
+          } else if (e.key === 'Enter' && active?.click) {
+            active.click();
+          }
+        };
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+      }, [])}
+
       {/* B. MAIN SCROLL PANEL */}
       <div className="main-content-scroll hide-scrollbar">
         {/* Render Header on Home view */}
-        {activeTab === 'home' && !selectedArtist && <Header onAction={triggerToast} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />}
+        {activeTab === 'home' && !selectedArtist && <Header 
+          onAction={triggerToast} 
+          isDarkMode={isDarkMode} 
+          setIsDarkMode={setIsDarkMode} 
+          openProfile={() => setIsAccountSettingsOpen(true)}
+          openDownload={() => setIsDownloadOpen(true)}
+        />}
 
         {/* 1. HOME TAB */}
         {activeTab === 'home' && (
@@ -637,10 +773,10 @@ function App() {
             <div className="artist-detail-view">
               <div className="artist-detail-banner" style={{ backgroundImage: `url(${selectedArtist.img})` }}>
                 <div className="artist-banner-overlay"></div>
-                <button className="artist-back-btn" onClick={() => setSelectedArtist(null)}>
+                <button className="artist-back-btn focusable" tabIndex={0} onClick={() => setSelectedArtist(null)}>
                   <ArrowLeft size={22} color="white" />
                 </button>
-                <button className="artist-search-btn" onClick={() => setActiveTab('search')}>
+                <button className="artist-search-btn focusable" tabIndex={0} onClick={() => setActiveTab('search')}>
                   <Search size={22} color="white" />
                 </button>
                 <h1 className="artist-banner-name">{selectedArtist.name}</h1>
@@ -649,57 +785,92 @@ function App() {
               <div className="artist-songs-sheet">
                 <div className="drag-handle-bar"></div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-                  <h3 className="artist-sheet-title" style={{ margin: 0 }}>Songs</h3>
+                  <div>
+                    <h3 className="artist-sheet-title" style={{ margin: 0 }}>Songs</h3>
+                    {artistSongs.length > 0 && (
+                      <span style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: '500' }}>{artistSongs.length} tracks</span>
+                    )}
+                  </div>
                   {artistSongs.length > 0 && (
-                    <button 
+                    <button
                       onClick={() => shuffleQueue(artistSongs)}
+                      className="focusable"
+                      tabIndex={0}
                       style={{
-                        background: 'var(--card-orange)',
+                        background: 'linear-gradient(135deg, var(--card-orange) 0%, #ff6b9d 100%)',
                         border: 'none',
                         color: 'white',
-                        padding: '8px 16px',
+                        padding: '9px 18px',
                         borderRadius: '20px',
                         fontSize: '12px',
-                        fontWeight: '600',
+                        fontWeight: '700',
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '6px',
-                        boxShadow: '0 4px 10px rgba(245, 149, 74, 0.3)'
+                        boxShadow: '0 4px 14px rgba(245, 149, 74, 0.4)',
+                        letterSpacing: '0.3px'
                       }}
                     >
-                      Shuffle Play
+                      ▶ Shuffle Play
                     </button>
                   )}
                 </div>
 
                 <div className="artist-songs-list hide-scrollbar">
                   {isLoadingArtistSongs ? (
-                    <div className="loading-spinner">Loading songs...</div>
-                  ) : artistSongs.length === 0 ? (
-                    <div className="loading-spinner">No songs found.</div>
-                  ) : (
-                    artistSongs.map((song, index) => (
-                      <div
-                        key={song.id || index}
-                        className={`artist-song-row ${currentTrack?.title === song.title ? 'active-row' : ''}`}
-                        onClick={() => playSong(song, index, artistSongs)}
-                      >
-                        <img src={getSongImage(song)} alt={song.title} className="row-song-img" />
-                        <div className="row-song-details">
-                          <div className="row-song-title">{song.title}</div>
-                          <div className="row-song-artist">{song.artist || selectedArtist.name}</div>
-                        </div>
-                        <button className="row-like-btn" onClick={(e) => toggleLike(song.title, e)}>
-                          <Heart
-                            size={18}
-                            fill={likedSongs.includes(song.title) ? "#f3b1b1" : "none"}
-                            stroke={likedSongs.includes(song.title) ? "#f3b1b1" : "#b0b0b0"}
-                          />
-                        </button>
-                        <span className="row-duration">{song.duration ? formatTime(song.duration) : '4:15'}</span>
+                    <div className="artist-loading-state">
+                      <div className="artist-loading-bars">
+                        <span></span><span></span><span></span><span></span><span></span>
                       </div>
-                    ))
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '13px', marginTop: '12px' }}>Loading songs...</p>
+                    </div>
+                  ) : artistSongs.length === 0 ? (
+                    <div className="artist-loading-state">
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '14px' }}>No songs found for this artist.</p>
+                    </div>
+                  ) : (
+                    artistSongs.map((song, index) => {
+                      const isActive = currentTrack?.title === song.title;
+                      return (
+                        <div
+                          key={song.id || index}
+                          className={`artist-song-row focusable ${isActive ? 'active-row' : ''}`}
+                          tabIndex={0}
+                          onClick={() => playSong(song, index, artistSongs)}
+                        >
+                          <div className="row-index">
+                            {isActive && isPlaying ? (
+                              <div className="row-playing-bars">
+                                <span></span><span></span><span></span>
+                              </div>
+                            ) : (
+                              <span className="row-index-num">{index + 1}</span>
+                            )}
+                          </div>
+                          <img
+                            src={song.img || getSongImage(song)}
+                            alt={song.title}
+                            className="row-song-img"
+                            onError={(e) => {
+                              e.target.src = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=200&auto=format&fit=crop';
+                            }}
+                          />
+                          <div className="row-song-details">
+                            <div className="row-song-title" style={{ color: isActive ? 'var(--card-orange)' : 'var(--text-color)' }}>{song.title}</div>
+                            <div className="row-song-artist">{song.artist || selectedArtist.name}</div>
+                          </div>
+                          <button className="row-like-btn focusable" tabIndex={0} onClick={(e) => toggleLike(song.title, e)}>
+                            <Heart
+                              size={16}
+                              fill={likedSongs.includes(song.title) ? "#f3b1b1" : "none"}
+                              stroke={likedSongs.includes(song.title) ? "#f3b1b1" : "#b0b0b0"}
+                            />
+                          </button>
+                          <span className="row-duration">{song.duration ? formatTime(song.duration) : ''}</span>
+                        </div>
+                      );
+                    })
                   )}
                 </div>
               </div>
@@ -708,7 +879,7 @@ function App() {
             /* Playlist Detail View */
             <div className="playlist-container">
               <div className="playlist-header">
-                <button className="playlist-back-btn" onClick={() => setIsMelophileOpen(false)}>
+                <button className="playlist-back-btn focusable" tabIndex={0} onClick={() => setIsMelophileOpen(false)}>
                   <ArrowLeft size={22} />
                 </button>
                 <h3 className="playlist-header-title">Hello Melophile</h3>
@@ -722,8 +893,10 @@ function App() {
                     <h2 className="playlist-banner-title">Melophile's Vibe</h2>
                     <p className="playlist-banner-desc">Curated Tamil melodies and popular hits to explore.</p>
                   </div>
-                  <button 
+                  <button
                     onClick={() => shuffleQueue(defaultSongs.slice(0, 50))}
+                    className="focusable"
+                    tabIndex={0}
                     style={{
                       background: 'white',
                       border: 'none',
@@ -750,7 +923,8 @@ function App() {
                 {defaultSongs.slice(0, 50).map((song, idx) => (
                   <div
                     key={song.id || idx}
-                    className={`playlist-song-item ${currentTrack?.title === song.title ? 'active-track' : ''}`}
+                    className={`playlist-song-item focusable ${currentTrack?.title === song.title ? 'active-track' : ''}`}
+                    tabIndex={0}
                     onClick={() => playSong(song, idx, defaultSongs.slice(0, 50))}
                   >
                     <span className="playlist-song-idx">
@@ -772,7 +946,7 @@ function App() {
 
               <ArtistList onArtistSelect={(artist) => {
                 setSelectedArtist(artist)
-              }} />
+              }} currentArtist={selectedArtist} />
 
               <VibesList onAction={(msg) => {
                 triggerToast(msg)
@@ -803,65 +977,221 @@ function App() {
 
         {/* 2. SEARCH TAB */}
         {activeTab === 'search' && (
-          <div className="search-screen">
-            <div className="search-header-container">
-              <h2 className="search-title">Search</h2>
-              <div className="search-profile-avatar"></div>
-            </div>
-            <form onSubmit={handleSearch} className="search-form">
-              <div className="search-input-wrapper">
-                <Search size={20} className="search-box-icon" />
-                <input
-                  type="text"
-                  placeholder="What do you want to listen to?"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="search-input-redesign"
-                />
+          selectedSaavnPlaylist ? (
+            /* JioSaavn Playlist Detail View */
+            <div className="playlist-container">
+              <div className="playlist-header">
+                <button className="playlist-back-btn focusable" tabIndex={0} onClick={() => setSelectedSaavnPlaylist(null)}>
+                  <ArrowLeft size={22} />
+                </button>
+                <h3 className="playlist-header-title">Playlist</h3>
               </div>
-            </form>
 
-            {isSearching && (
-              <div className="loading-spinner">Searching library...</div>
-            )}
-
-            <div className="search-results-list hide-scrollbar">
-              {searchQuery.trim() === '' && !isSearching && searchResults.length === 0 ? (
-                <div className="search-placeholder-center">
-                  <div className="search-big-icon-circle">
-                    <Search size={64} strokeWidth={1} color="#a0a0a0" />
+              <div className="playlist-banner" style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url(${selectedSaavnPlaylist.img})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                padding: '30px 20px',
+                borderRadius: '16px',
+                marginBottom: '20px',
+                color: 'white'
+              }}>
+                <div className="playlist-banner-content" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%' }}>
+                  <div>
+                    <span className="playlist-badge">SAAVN MIX</span>
+                    <h2 className="playlist-banner-title">{selectedSaavnPlaylist.title}</h2>
+                    <p className="playlist-banner-desc" style={{ opacity: 0.9 }}>{selectedSaavnPlaylist.description || `${selectedSaavnPlaylist.songs.length} tracks`}</p>
                   </div>
-                  <p className="search-placeholder-text">Search for songs or artists</p>
-                </div>
-              ) : (
-                <>
-                  {searchQuery.trim() === '' && !isSearching && (
-                    <h3 className="section-title" style={{ margin: '0 0 var(--spacing-md) 0', fontSize: '18px' }}>Trending Tamil Songs</h3>
-                  )}
-                   {searchResults.map((song, index) => (
-                    <div
-                      key={song.id}
-                      className={`search-result-item ${currentTrack?.id === song.id ? 'active-track' : ''}`}
-                      onClick={() => playSong(song, index)}
+                  {selectedSaavnPlaylist.songs.length > 0 && (
+                    <button
+                      onClick={() => shuffleQueue(selectedSaavnPlaylist.songs)}
+                      className="focusable"
+                      tabIndex={0}
+                      style={{
+                        background: 'white',
+                        border: 'none',
+                        color: 'black',
+                        padding: '8px 16px',
+                        borderRadius: '20px',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+                      }}
                     >
-                      <img src={song.img} alt={song.title} className="search-result-img" />
-                      <div className="search-result-info">
-                        <div className="search-result-title">{song.title}</div>
-                        <div className="search-result-artist">{song.artist}</div>
+                      Shuffle Play
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <div className="playlist-tracklist-header" style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)', fontSize: '11px', fontWeight: '700', borderBottom: '1px solid var(--border-color)', marginBottom: '10px', padding: '10px 15px' }}>
+                <span># TITLE & ARTIST</span>
+                <span>ALBUM</span>
+              </div>
+
+              <div className="playlist-songs-list hide-scrollbar">
+                {selectedSaavnPlaylist.songs.map((song, idx) => {
+                  const isActive = currentTrack?.id === song.id;
+                  return (
+                    <div
+                      key={song.id || idx}
+                      className={`playlist-song-item focusable ${isActive ? 'active-track' : ''}`}
+                      tabIndex={0}
+                      onClick={() => playSong(song, idx, selectedSaavnPlaylist.songs)}
+                    >
+                      <span className="playlist-song-idx">
+                        {isActive && isPlaying ? "▶" : idx + 1}
+                      </span>
+                      <div className="playlist-song-info">
+                        <div className="playlist-song-title">{song.title}</div>
+                        <div className="playlist-song-artist">{song.artist}</div>
                       </div>
-                      <div className="search-play-icon">
-                        {currentTrack?.id === song.id && isPlaying ? (
-                          <Pause size={18} fill="currentColor" />
-                        ) : (
-                          <Play size={18} fill="currentColor" />
-                        )}
-                      </div>
+                      <div className="playlist-song-album">{song.album || 'Single'}</div>
                     </div>
-                  ))}
-                </>
+                  );
+                })}
+              </div>
+            </div>
+          ) : (
+            <div className="search-screen">
+              <div className="search-header-container">
+                <h2 className="search-title">Search</h2>
+                <div className="search-profile-avatar"></div>
+              </div>
+              <form onSubmit={handleSearch} className="search-form">
+                <div className="search-input-wrapper">
+                  <Search size={20} className="search-box-icon" />
+                  <input
+                    type="text"
+                    placeholder="What do you want to listen to?"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input-redesign focusable"
+                    tabIndex={0}
+                  />
+                </div>
+              </form>
+
+              {isSearching && (
+                <div className="loading-spinner">Searching library...</div>
+              )}
+
+              {isLoadingSaavnPlaylist && (
+                <div className="loading-spinner">Loading playlist...</div>
+              )}
+
+              {!isSearching && !isLoadingSaavnPlaylist && (
+                <div className="search-results-list hide-scrollbar">
+                  {searchQuery.trim() === '' && searchResults.length === 0 ? (
+                    <div className="search-placeholder-center">
+                      <div className="search-big-icon-circle">
+                        <Search size={64} strokeWidth={1} color="#a0a0a0" />
+                      </div>
+                      <p className="search-placeholder-text">Search for songs or playlists</p>
+                    </div>
+                  ) : (
+                    <>
+                      {/* Playlists Search Results Section */}
+                      {searchPlaylistsResults.length > 0 && (
+                        <div className="search-playlists-section" style={{ marginBottom: '24px' }}>
+                          <h3 className="section-title" style={{ margin: '0 0 var(--spacing-sm) 0', fontSize: '18px', color: 'var(--text-color)' }}>
+                            Playlists
+                          </h3>
+                          <div className="search-playlists-horizontal hide-scrollbar" style={{
+                            display: 'flex',
+                            gap: '16px',
+                            overflowX: 'auto',
+                            paddingBottom: '8px',
+                            scrollBehavior: 'smooth'
+                          }}>
+                            {searchPlaylistsResults.map((playlist) => (
+                              <div
+                                key={playlist.id}
+                                className="search-playlist-card focusable"
+                                tabIndex={0}
+                                onClick={() => handlePlaylistCardClick(playlist.id)}
+                                style={{
+                                  flex: '0 0 130px',
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  gap: '8px'
+                                }}
+                              >
+                                <div style={{ position: 'relative', width: '130px', height: '130px', borderRadius: '12px', overflow: 'hidden' }}>
+                                  <img
+                                    src={playlist.img}
+                                    alt={playlist.title}
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                    onError={(e) => {
+                                      e.target.src = 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop';
+                                    }}
+                                  />
+                                  <div style={{
+                                    position: 'absolute',
+                                    bottom: '0',
+                                    left: '0',
+                                    right: '0',
+                                    background: 'linear-gradient(transparent, rgba(0,0,0,0.6))',
+                                    padding: '6px',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center'
+                                  }}>
+                                    <span style={{ fontSize: '9px', color: 'white', fontWeight: '750', backgroundColor: 'rgba(0,0,0,0.5)', padding: '2px 6px', borderRadius: '4px' }}>
+                                      {playlist.songCount} songs
+                                    </span>
+                                  </div>
+                                </div>
+                                <div style={{
+                                  fontSize: '13px',
+                                  fontWeight: '700',
+                                  color: 'var(--text-color)',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  padding: '0 2px'
+                                }}>
+                                  {playlist.title}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Songs Search Results Section */}
+                      <h3 className="section-title" style={{ margin: '0 0 var(--spacing-sm) 0', fontSize: '18px', color: 'var(--text-color)' }}>
+                        {searchQuery.trim() === '' ? 'Trending Tamil Songs' : 'Songs'}
+                      </h3>
+                      {searchResults.map((song, index) => (
+                        <div
+                          key={song.id || index}
+                          className={`search-result-item focusable ${currentTrack?.id === song.id ? 'active-track' : ''}`}
+                          tabIndex={0}
+                          onClick={() => playSong(song, index, searchResults)}
+                        >
+                          <img src={song.img} alt={song.title} className="search-result-img" />
+                          <div className="search-result-info">
+                            <div className="search-result-title">{song.title}</div>
+                            <div className="search-result-artist">{song.artist}</div>
+                          </div>
+                          <div className="search-play-icon">
+                            {currentTrack?.id === song.id && isPlaying ? (
+                              <Pause size={18} fill="currentColor" />
+                            ) : (
+                              <Play size={18} fill="currentColor" />
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </div>
               )}
             </div>
-          </div>
+          )
         )}
 
         {/* 3. PLAYLISTS/CREATE TAB */}
@@ -870,7 +1200,7 @@ function App() {
             /* Liked Songs Container View */
             <div className="playlist-container">
               <div className="playlist-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-                <button className="playlist-back-btn" onClick={() => setIsLikedSongsOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-color)', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                <button className="playlist-back-btn focusable" tabIndex={0} onClick={() => setIsLikedSongsOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-color)', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                   <ArrowLeft size={22} />
                 </button>
                 <h3 className="playlist-header-title" style={{ fontSize: '18px', fontWeight: '600', color: 'var(--text-color)', margin: 0 }}>Liked Songs</h3>
@@ -886,8 +1216,10 @@ function App() {
                     <p className="playlist-banner-desc" style={{ color: 'rgba(255,255,255,0.9)', fontSize: '14px', margin: 0 }}>{likedSongs.length} liked tracks</p>
                   </div>
                   {getLikedSongsList().length > 0 && (
-                    <button 
+                    <button
                       onClick={() => shuffleQueue(getLikedSongsList())}
+                      className="focusable"
+                      tabIndex={0}
                       style={{
                         background: 'white',
                         border: 'none',
@@ -920,7 +1252,8 @@ function App() {
                   getLikedSongsList().map((song, idx) => (
                     <div
                       key={song.id || idx}
-                      className={`playlist-song-item ${currentTrack?.title === song.title ? 'active-track' : ''}`}
+                      className={`playlist-song-item focusable ${currentTrack?.title === song.title ? 'active-track' : ''}`}
+                      tabIndex={0}
                       onClick={() => playSong(song, idx, getLikedSongsList())}
                       style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 15px', borderRadius: '8px', cursor: 'pointer', marginBottom: '8px' }}
                     >
@@ -933,8 +1266,9 @@ function App() {
                           <div className="playlist-song-artist" style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>{song.artist}</div>
                         </div>
                       </div>
-                      <button 
-                        className="remove-song-btn" 
+                      <button
+                        className="remove-song-btn focusable"
+                        tabIndex={0}
                         onClick={(e) => {
                           e.stopPropagation()
                           toggleLike(song.title, e)
@@ -952,7 +1286,7 @@ function App() {
             /* Custom Playlist Detail View */
             <div className="playlist-container">
               <div className="playlist-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-                <button className="playlist-back-btn" onClick={() => {
+                <button className="playlist-back-btn focusable" tabIndex={0} onClick={() => {
                   setSelectedPlaylist(null)
                   setPlaylistSearchQuery('')
                   setPlaylistSearchResults([])
@@ -960,8 +1294,9 @@ function App() {
                   <ArrowLeft size={22} />
                 </button>
                 <h3 className="playlist-header-title" style={{ fontSize: '18px', fontWeight: '600', color: 'white', margin: 0 }}>{selectedPlaylist.name}</h3>
-                <button 
-                  className="playlist-delete-btn" 
+                <button
+                  className="playlist-delete-btn focusable"
+                  tabIndex={0}
                   onClick={() => handleDeletePlaylist(selectedPlaylist.id)}
                   style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer', fontSize: '14px', fontWeight: '500' }}
                 >
@@ -978,8 +1313,10 @@ function App() {
                     <p className="playlist-banner-desc" style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>{selectedPlaylist.songs.length} songs • Hand-picked vibe</p>
                   </div>
                   {selectedPlaylist.songs.length > 0 && (
-                    <button 
+                    <button
                       onClick={() => shuffleQueue(selectedPlaylist.songs)}
+                      className="focusable"
+                      tabIndex={0}
                       style={{
                         background: 'white',
                         border: 'none',
@@ -998,7 +1335,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="playlist-tracklist-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto', padding: '10px 15px', color: 'var(--text-secondary)', fontSize: '11px', fontWeight: '700', borderBottom: '1px solid #eef0f3', marginBottom: '10px' }}>
+              <div className="playlist-tracklist-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto', padding: '10px 15px', color: 'var(--text-secondary)', fontSize: '11px', fontWeight: '700', borderBottom: '1px solid var(--border-color)', marginBottom: '10px' }}>
                 <span>TITLE & ARTIST</span>
                 <span>ACTION</span>
               </div>
@@ -1012,7 +1349,8 @@ function App() {
                   selectedPlaylist.songs.map((song, idx) => (
                     <div
                       key={song.id || idx}
-                      className={`playlist-song-item ${currentTrack?.title === song.title ? 'active-track' : ''}`}
+                      className={`playlist-song-item focusable ${currentTrack?.title === song.title ? 'active-track' : ''}`}
+                      tabIndex={0}
                       onClick={() => playSong(song, idx, selectedPlaylist.songs)}
                       style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 15px', borderRadius: '8px', cursor: 'pointer', marginBottom: '8px' }}
                     >
@@ -1025,8 +1363,9 @@ function App() {
                           <div className="playlist-song-artist">{song.artist}</div>
                         </div>
                       </div>
-                      <button 
-                        className="remove-song-btn" 
+                      <button
+                        className="remove-song-btn focusable"
+                        tabIndex={0}
                         onClick={(e) => {
                           e.stopPropagation()
                           removeSongFromPlaylist(selectedPlaylist.id, song.id)
@@ -1040,7 +1379,7 @@ function App() {
                 )}
               </div>
 
-              {/* JioSaavn Add Songs Section */}
+              {/* Add Songs Section */}
               <div className="playlist-add-songs-section">
                 <h3 className="section-title">Add Songs</h3>
                 <form onSubmit={handlePlaylistSearch} className="search-form" style={{ marginBottom: '15px' }}>
@@ -1051,7 +1390,8 @@ function App() {
                       placeholder="Search for songs to add..."
                       value={playlistSearchQuery}
                       onChange={(e) => setPlaylistSearchQuery(e.target.value)}
-                      className="search-input-redesign"
+                      className="search-input-redesign focusable"
+                      tabIndex={0}
                     />
                   </div>
                 </form>
@@ -1064,7 +1404,7 @@ function App() {
                   {playlistSearchResults.map((song) => {
                     const isAdded = selectedPlaylist.songs.some(s => s.id === song.id || s.title === song.title)
                     return (
-                      <div key={song.id} className="search-result-item" style={{ display: 'flex', alignItems: 'center', padding: '8px 10px', borderRadius: '8px', marginBottom: '8px', background: 'white' }}>
+                      <div key={song.id} className="search-result-item focusable" tabIndex={0} style={{ display: 'flex', alignItems: 'center', padding: '8px 10px', borderRadius: '8px', marginBottom: '8px', background: 'var(--card-bg)' }}>
                         <img src={song.img} alt={song.title} className="search-result-img" style={{ width: '40px', height: '40px', borderRadius: '6px', objectFit: 'cover' }} />
                         <div className="search-result-info" style={{ flex: 1, marginLeft: '10px', overflow: 'hidden' }}>
                           <div className="search-result-title" style={{ fontSize: '14px', color: 'var(--text-color)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{song.title}</div>
@@ -1076,6 +1416,8 @@ function App() {
                               addSongToPlaylist(selectedPlaylist.id, song)
                             }
                           }}
+                          className="focusable"
+                          tabIndex={0}
                           style={{
                             background: isAdded ? 'transparent' : 'var(--card-orange)',
                             border: isAdded ? '1px solid rgba(0,0,0,0.1)' : 'none',
@@ -1098,21 +1440,44 @@ function App() {
           ) : (
             <div className="playlists-screen">
               <div className="playlists-header-container">
-                <h2 className="playlists-title">Playlists</h2>
+                <div>
+                  <h2 className="playlists-title">Your Library</h2>
+                  <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: '2px 0 0 0', fontWeight: '500' }}>Tamil music collection</p>
+                </div>
                 <div className="playlists-profile-avatar"></div>
               </div>
 
-              <button className="create-playlist-btn" onClick={() => setShowCreateModal(true)}>
-                <Plus size={20} />
-                <span>CREATE NEW PLAYLIST</span>
+              {/* Hero Create Button */}
+              <button className="create-playlist-btn focusable" tabIndex={0} onClick={() => setShowCreateModal(true)}>
+                <span>NEW PLAYLIST</span>
               </button>
+
+              {/* Stats Row */}
+              <div className="library-stats-row">
+                <div className="library-stat-pill">
+                  <span className="lib-stat-val">{playlists.length}</span>
+                  <span className="lib-stat-label">Playlists</span>
+                </div>
+                <div className="library-stat-divider"></div>
+                <div className="library-stat-pill">
+                  <span className="lib-stat-val">{likedSongs.length}</span>
+                  <span className="lib-stat-label">Liked</span>
+                </div>
+                <div className="library-stat-divider"></div>
+                <div className="library-stat-pill">
+                  <span className="lib-stat-val">{playlists.reduce((acc, p) => acc + p.songs.length, 0)}</span>
+                  <span className="lib-stat-label">Saved Songs</span>
+                </div>
+              </div>
 
               <h3 className="collection-title">Your Collection</h3>
 
               <div className="collection-grid">
-                <div className="collection-card" onClick={() => setIsLikedSongsOpen(true)}>
-                  <div className="liked-card-gradient">
-                    <Heart size={36} fill="white" color="white" />
+                {/* Liked Songs Card */}
+                <div className="collection-card collection-card--liked focusable" tabIndex={0} onClick={() => setIsLikedSongsOpen(true)}>
+                  <div className="collection-card-art liked-card-gradient">
+                    <Heart size={32} fill="white" color="white" />
+                    <div className="collection-card-art-shine"></div>
                   </div>
                   <div className="collection-card-info">
                     <div className="collection-card-title">Liked Songs</div>
@@ -1120,17 +1485,43 @@ function App() {
                   </div>
                 </div>
 
-                {playlists.map((playlist) => (
-                  <div key={playlist.id} className="collection-card" onClick={() => setSelectedPlaylist(playlist)}>
-                    <div className="playlist-card-gradient" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, var(--card-orange) 0%, var(--neon-cyan) 100%)', borderRadius: '12px' }}>
-                      <ListMusic size={36} color="white" />
+                {playlists.map((playlist, pIdx) => {
+                  const gradients = [
+                    'linear-gradient(135deg, #f5954a 0%, #ff6b9d 100%)',
+                    'linear-gradient(135deg, #00e5cc 0%, #007cf0 100%)',
+                    'linear-gradient(135deg, #7c3aed 0%, #db2777 100%)',
+                    'linear-gradient(135deg, #059669 0%, #0284c7 100%)',
+                    'linear-gradient(135deg, #dc2626 0%, #f59e0b 100%)',
+                  ];
+                  const grad = gradients[pIdx % gradients.length];
+                  return (
+                    <div key={playlist.id} className="collection-card focusable" tabIndex={0} onClick={() => setSelectedPlaylist(playlist)}>
+                      <div className="collection-card-art" style={{ background: playlist.img ? `url(${playlist.img}) center/cover no-repeat` : grad }}>
+                        {!playlist.img && <ListMusic size={32} color="white" />}
+                        <div className="collection-card-art-shine"></div>
+                      </div>
+                      <div className="collection-card-info">
+                        <div className="collection-card-title">{playlist.name}</div>
+                        <div className="collection-card-desc">{playlist.songs.length} songs</div>
+                      </div>
+                      <button
+                        className="collection-card-delete-btn focusable"
+                        tabIndex={0}
+                        onClick={(e) => handleDeletePlaylist(playlist.id, e)}
+                        title="Delete playlist"
+                      >
+                        ×
+                      </button>
                     </div>
-                    <div className="collection-card-info">
-                      <div className="collection-card-title">{playlist.name}</div>
-                      <div className="collection-card-desc">{playlist.songs.length} songs</div>
-                    </div>
+                  );
+                })}
+
+                {playlists.length === 0 && (
+                  <div className="empty-playlists-msg">
+                    <ListMusic size={28} color="var(--text-secondary)" />
+                    <p>No playlists yet.<br />Tap "New Playlist" to start.</p>
                   </div>
-                ))}
+                )}
               </div>
             </div>
           )
@@ -1229,7 +1620,7 @@ function App() {
             <div className="d-np-queue-header">UP NEXT</div>
             <div className="d-np-queue-list hide-scrollbar">
               {getUpcomingSongs().map((song, idx) => (
-                <div key={song.id || idx} className="d-np-queue-item" onClick={() => playSong(song)}>
+                <div key={song.id || idx} className="d-np-queue-item focusable" tabIndex={0} onClick={() => playSong(song)}>
                   <img
                     src={getSongImage(song)}
                     alt={song.title}
@@ -1257,11 +1648,11 @@ function App() {
       {isNowPlayingOpen && currentTrack && (
         <div className="now-playing-fullscreen">
           <div className="now-playing-header">
-            <button className="np-back-btn" onClick={() => setIsNowPlayingOpen(false)}>
+            <button className="np-back-btn focusable" tabIndex={0} onClick={() => setIsNowPlayingOpen(false)}>
               <ChevronDown size={28} />
             </button>
             <span className="np-header-title">Now Playing</span>
-            <button className="np-like-btn" onClick={(e) => toggleLike(currentTrack.title, e)}>
+            <button className="np-like-btn focusable" tabIndex={0} onClick={(e) => toggleLike(currentTrack.title, e)}>
               <Heart
                 size={24}
                 fill={likedSongs.includes(currentTrack.title) ? "#f3b1b1" : "none"}
@@ -1310,7 +1701,8 @@ function App() {
               max={duration || 100}
               value={currentTime}
               onChange={handleProgressChange}
-              className="np-slider"
+              className="np-slider focusable"
+              tabIndex={0}
             />
             <div className="np-time-labels">
               <span>{formatTime(currentTime)}</span>
@@ -1319,19 +1711,19 @@ function App() {
           </div>
 
           <div className="np-controls">
-            <button className="np-control-sub" onClick={() => triggerToast('Added to Playlist')}>
+            <button className="np-control-sub focusable" tabIndex={0} onClick={() => triggerToast('Added to Playlist')}>
               <Plus size={24} />
             </button>
-            <button className="np-control-main" onClick={playPreviousSong}>
+            <button className="np-control-main focusable" tabIndex={0} onClick={playPreviousSong}>
               <SkipForward size={24} style={{ transform: 'rotate(180deg)' }} />
             </button>
-            <button className="np-play-pause-btn" onClick={togglePlay}>
+            <button className="np-play-pause-btn focusable" tabIndex={0} onClick={togglePlay}>
               {isPlaying ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" />}
             </button>
-            <button className="np-control-main" onClick={playNextSong}>
+            <button className="np-control-main focusable" tabIndex={0} onClick={playNextSong}>
               <SkipForward size={24} />
             </button>
-            <button className="np-control-sub" onClick={() => triggerToast('Song downloaded offline!')}>
+            <button className="np-control-sub focusable" tabIndex={0} onClick={() => triggerToast('Song downloaded offline!')}>
               <Download size={24} />
             </button>
           </div>
@@ -1340,7 +1732,7 @@ function App() {
 
       {/* E. MOBILE FLOATING MINI PLAYER */}
       {currentTrack && !isNowPlayingOpen && (
-        <div className="mini-player" onClick={() => setIsNowPlayingOpen(true)}>
+        <div className="mini-player focusable" tabIndex={0} onClick={() => setIsNowPlayingOpen(true)}>
           <div className="mini-player-progress-bar">
             <input
               type="range"
@@ -1349,7 +1741,8 @@ function App() {
               value={currentTime}
               onChange={handleProgressChange}
               onClick={(e) => e.stopPropagation()}
-              className="mini-player-slider"
+              className="mini-player-slider focusable"
+              tabIndex={0}
             />
           </div>
           <div className="mini-player-body">
@@ -1366,11 +1759,12 @@ function App() {
               <div className="mini-player-artist">{currentTrack.artist}</div>
             </div>
             <div className="mini-player-controls" onClick={(e) => e.stopPropagation()}>
-              <button className="player-control-btn" onClick={togglePlay}>
+              <button className="player-control-btn focusable" tabIndex={0} onClick={togglePlay}>
                 {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" />}
               </button>
               <button
-                className="player-control-btn"
+                className="player-control-btn focusable"
+                tabIndex={0}
                 onClick={playNextSong}
               >
                 <SkipForward size={20} fill="currentColor" />
@@ -1403,16 +1797,18 @@ function App() {
 
           <div className="d-player-center">
             <div className="d-player-controls">
-              <button className="d-player-icon-btn" onClick={playPreviousSong}>
+              <button className="d-player-icon-btn focusable" tabIndex={0} onClick={playPreviousSong}>
                 <SkipForward size={18} style={{ transform: 'rotate(180deg)' }} />
               </button>
               <button
+                className="focusable"
+                tabIndex={0}
                 style={{ backgroundColor: 'white', color: 'black', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', cursor: 'pointer' }}
                 onClick={togglePlay}
               >
                 {isPlaying ? <Pause size={18} fill="black" /> : <Play size={18} fill="black" style={{ marginLeft: '2px' }} />}
               </button>
-              <button className="d-player-icon-btn" onClick={playNextSong}>
+              <button className="d-player-icon-btn focusable" tabIndex={0} onClick={playNextSong}>
                 <SkipForward size={18} />
               </button>
             </div>
@@ -1425,23 +1821,160 @@ function App() {
                 max={duration || 100}
                 value={currentTime}
                 onChange={handleProgressChange}
-                className="d-player-slider"
+                className="d-player-slider focusable"
+                tabIndex={0}
               />
               <span className="d-player-time">{formatTimeRemaining(currentTime, duration)}</span>
             </div>
           </div>
 
           <div className="d-player-right">
-            <button className="d-player-icon-btn" onClick={(e) => toggleLike(currentTrack.title, e)}>
+            <button className="d-player-icon-btn focusable" tabIndex={0} onClick={(e) => toggleLike(currentTrack.title, e)}>
               <Heart
                 size={18}
                 fill={likedSongs.includes(currentTrack.title) ? "#f3b1b1" : "none"}
                 stroke={likedSongs.includes(currentTrack.title) ? "#f3b1b1" : "white"}
               />
             </button>
-            <button className="d-player-icon-btn" onClick={() => triggerToast('Downloaded offline!')}>
+            <button className="d-player-icon-btn focusable" tabIndex={0} onClick={() => triggerToast('Downloaded offline!')}>
               <Download size={18} />
             </button>
+            <button className="d-player-icon-btn focusable" tabIndex={0} onClick={() => setIsDesktopFullscreenOpen(true)} title="Fullscreen">
+              <Maximize2 size={18} />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Desktop Immersive Fullscreen Player */}
+      {isDesktopFullscreenOpen && currentTrack && (
+        <div className="desktop-fullscreen-player fadeIn">
+          {/* Blurred Background */}
+          <div
+            className="fullscreen-bg-blur"
+            style={{ backgroundImage: `url(${getSongImage(currentTrack)})` }}
+          />
+          <div className="fullscreen-overlay" />
+
+          {/* Header */}
+          <div className="fullscreen-header">
+            <div className="fullscreen-logo">
+              <Radio size={20} className="logo-icon" color="var(--card-orange)" />
+              {/* <span style={{ color: 'white' }}></span> */}
+            </div>
+            <button className="fullscreen-close-btn" onClick={() => setIsDesktopFullscreenOpen(false)} title="Close Fullscreen (Esc)">
+              <Minimize2 size={24} />
+            </button>
+          </div>
+
+          {/* Main Content Body */}
+          <div className="fullscreen-body">
+            {/* Left side: Album Art */}
+            <div className="fullscreen-body-left">
+              <div className="fullscreen-album-wrapper">
+                <img
+                  src={getSongImage(currentTrack)}
+                  alt={currentTrack.title}
+                  className={`fullscreen-album-img ${isPlaying ? 'spinning' : ''}`}
+                  onError={(e) => {
+                    e.target.src = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=600&auto=format&fit=crop';
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Right side: Controls & Queue */}
+            <div className="fullscreen-body-right">
+              <div className="fullscreen-track-details">
+                <h1 className="fullscreen-title">{currentTrack.title}</h1>
+                <p className="fullscreen-artist">{currentTrack.artist}</p>
+              </div>
+
+              {/* Timeline */}
+              <div className="fullscreen-timeline-container">
+                <div className="fullscreen-time-labels">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{formatTimeRemaining(currentTime, duration)}</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max={duration || 100}
+                  value={currentTime}
+                  onChange={handleProgressChange}
+                  className="fullscreen-timeline-slider"
+                />
+              </div>
+
+              {/* Playback Controls */}
+              <div className="fullscreen-controls-row">
+                <button className="fullscreen-icon-btn" onClick={(e) => toggleLike(currentTrack.title, e)}>
+                  <Heart
+                    size={22}
+                    fill={likedSongs.includes(currentTrack.title) ? "#ff6b6b" : "none"}
+                    stroke={likedSongs.includes(currentTrack.title) ? "#ff6b6b" : "white"}
+                  />
+                </button>
+
+                <button className="fullscreen-icon-btn" onClick={playPreviousSong}>
+                  <SkipForward size={24} style={{ transform: 'rotate(180deg)' }} />
+                </button>
+
+                <button className="fullscreen-play-btn" onClick={togglePlay}>
+                  {isPlaying ? <Pause size={28} fill="black" /> : <Play size={28} fill="black" style={{ marginLeft: '4px' }} />}
+                </button>
+
+                <button className="fullscreen-icon-btn" onClick={playNextSong}>
+                  <SkipForward size={24} />
+                </button>
+
+                <button className="fullscreen-icon-btn" onClick={() => shuffleQueue(activePlaybackQueue)}>
+                  <Sparkles size={20} />
+                </button>
+              </div>
+
+              {/* Volume Row */}
+              <div className="fullscreen-volume-row">
+                <Headphones size={18} style={{ opacity: 0.6 }} />
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  defaultValue="1"
+                  onChange={(e) => {
+                    if (audioRef.current) {
+                      audioRef.current.volume = parseFloat(e.target.value);
+                    }
+                  }}
+                  className="fullscreen-volume-slider"
+                  title="Volume"
+                />
+              </div>
+
+              {/* Up Next Section */}
+              <div className="fullscreen-queue-section">
+                <div className="fullscreen-queue-header">UP NEXT</div>
+                <div className="fullscreen-queue-list hide-scrollbar">
+                  {getUpcomingSongs().map((song, idx) => (
+                    <div key={song.id || idx} className="fullscreen-queue-item" onClick={() => playSong(song)}>
+                      <img
+                        src={getSongImage(song)}
+                        alt={song.title}
+                        className="fullscreen-queue-img"
+                        onError={(e) => {
+                          e.target.src = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=100&auto=format&fit=crop';
+                        }}
+                      />
+                      <div className="fullscreen-queue-info">
+                        <div className="fullscreen-queue-title">{song.title}</div>
+                        <div className="fullscreen-queue-artist">{song.artist}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -1485,11 +2018,28 @@ function App() {
                   padding: '12px',
                   color: 'white',
                   marginTop: '16px',
-                  marginBottom: '20px',
+                  marginBottom: '12px',
                   outline: 'none',
                   fontSize: '14px'
                 }}
                 autoFocus
+              />
+              <input
+                type="text"
+                placeholder="Playlist Image URL (optional)"
+                value={newPlaylistImg}
+                onChange={(e) => setNewPlaylistImg(e.target.value)}
+                style={{
+                  width: '100%',
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: '8px',
+                  padding: '12px',
+                  color: 'white',
+                  marginBottom: '20px',
+                  outline: 'none',
+                  fontSize: '14px'
+                }}
               />
               <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
                 <button
@@ -1525,6 +2075,12 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Account Settings Container */}
+      {isAccountSettingsOpen && <AccountSettings onClose={() => setIsAccountSettingsOpen(false)} />}
+      
+      {/* Download Settings Container */}
+      {isDownloadOpen && <DownloadContainer onClose={() => setIsDownloadOpen(false)} />}
     </div>
   )
 }

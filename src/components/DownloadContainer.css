@@ -1,0 +1,110 @@
+.download-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.download-container {
+  background: var(--panel-bg, #ffffff);
+  color: var(--text-color, #121212);
+  border-radius: 12px;
+  max-width: 480px;
+  width: 90%;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.download-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.download-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.download-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.download-select {
+  background: var(--input-bg, #ffffff);
+  border: 1px solid var(--input-border, #e5e5e7);
+  color: var(--text-color, #121212);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.download-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+.download-btn-primary {
+  background: var(--card-orange, #f5954a);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.download-btn-primary:hover {
+  opacity: 0.9;
+}
+
+.download-btn-secondary {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.download-btn-secondary:hover {
+  background: var(--hover-bg);
+}
+
+.download-close-btn {
+  align-self: flex-end;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 8px;
+}
+
+.download-close-btn:hover {
+  background: var(--hover-bg);
+}
