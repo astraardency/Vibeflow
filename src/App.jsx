@@ -147,13 +147,22 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Update browser tab title to currently playing song
+  // Update browser tab title and favicon to currently playing song
   useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+
     if (currentTrack) {
       const play = isPlaying ? '▶ ' : '⏸ ';
       document.title = `${play}${currentTrack.title} • ${currentTrack.artist}`;
+      link.href = currentTrack.img || '/vite.svg';
     } else {
       document.title = 'Melophile';
+      link.href = '/vite.svg';
     }
   }, [currentTrack, isPlaying]);
 
@@ -1995,15 +2004,15 @@ function App() {
           padding: '20px'
         }}>
           <div className="modal-content" style={{
-            background: 'var(--bg-glass)',
-            border: '1px solid var(--border-glass)',
+            background: 'var(--panel-bg)',
+            border: '1px solid var(--border-color)',
             padding: '24px',
             borderRadius: '16px',
             maxWidth: '400px',
             width: '100%',
-            boxShadow: 'var(--shadow-premium)'
+            boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
           }}>
-            <h3 style={{ color: 'white', fontSize: '18px', fontWeight: '600', marginBottom: '16px', margin: 0 }}>Create New Playlist</h3>
+            <h3 style={{ color: 'var(--text-color)', fontSize: '18px', fontWeight: '600', marginBottom: '16px', margin: 0 }}>Create New Playlist</h3>
             <form onSubmit={handleCreatePlaylist}>
               <input
                 type="text"
@@ -2012,11 +2021,11 @@ function App() {
                 onChange={(e) => setNewPlaylistName(e.target.value)}
                 style={{
                   width: '100%',
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'var(--input-bg)',
+                  border: '1px solid var(--input-border)',
                   borderRadius: '8px',
                   padding: '12px',
-                  color: 'white',
+                  color: 'var(--text-color)',
                   marginTop: '16px',
                   marginBottom: '12px',
                   outline: 'none',
@@ -2031,11 +2040,11 @@ function App() {
                 onChange={(e) => setNewPlaylistImg(e.target.value)}
                 style={{
                   width: '100%',
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'var(--input-bg)',
+                  border: '1px solid var(--input-border)',
                   borderRadius: '8px',
                   padding: '12px',
-                  color: 'white',
+                  color: 'var(--text-color)',
                   marginBottom: '20px',
                   outline: 'none',
                   fontSize: '14px'
@@ -2047,8 +2056,8 @@ function App() {
                   onClick={() => setShowCreateModal(false)}
                   style={{
                     background: 'transparent',
-                    border: '1px solid rgba(255,255,255,0.2)',
-                    color: 'white',
+                    border: '1px solid var(--border-color)',
+                    color: 'var(--text-color)',
                     padding: '8px 16px',
                     borderRadius: '20px',
                     cursor: 'pointer'
