@@ -64,7 +64,7 @@ const AccountSettings = ({ onClose }) => {
       setEmail(user.email);
     } catch (error) {
       console.error("Error signing in with Google:", error);
-      alert("Failed to sign in with Google. Please try again.");
+      alert(`Failed to sign in with Google: ${error.message || "Please try again."}`);
     }
   };
 
