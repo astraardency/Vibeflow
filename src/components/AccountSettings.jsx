@@ -208,40 +208,75 @@ const AccountSettings = ({ onClose }) => {
             </div>
           </div>
         ) : (
-          <div className="account-profile-view" style={{ paddingTop: '20px' }}>
+          <div className="account-profile-view">
+            <div className="profile-header-bg"></div>
             <div className="account-avatar-large">
               {username.charAt(0).toUpperCase()}
             </div>
-            <h3 className="account-username">@{username}</h3>
             
-            <div className="account-settings-list">
+            <div className="account-info-container">
+              <h2 className="auth-title">{username}</h2>
+              <p className="account-username">{email}</p>
+            </div>
+            
+            <div className="account-settings-list hide-scrollbar" style={{ maxHeight: '350px', overflowY: 'auto' }}>
               <div className="account-setting-item">
-                <span>Data Saver</span>
-                <input type="checkbox" />
+                <div className="setting-item-left">
+                  <span>Data Saver</span>
+                </div>
+                <label className="toggle-switch">
+                  <input type="checkbox" />
+                  <span className="toggle-slider"></span>
+                </label>
               </div>
               <div className="account-setting-item">
-                <span>High Quality Audio</span>
-                <input type="checkbox" defaultChecked />
+                <div className="setting-item-left">
+                  <span>High Quality Audio</span>
+                </div>
+                <label className="toggle-switch">
+                  <input type="checkbox" defaultChecked />
+                  <span className="toggle-slider"></span>
+                </label>
               </div>
               <div className="account-setting-item">
-                <span>Explicit Content</span>
-                <input type="checkbox" defaultChecked />
+                <div className="setting-item-left">
+                  <span>Explicit Content</span>
+                </div>
+                <label className="toggle-switch">
+                  <input type="checkbox" defaultChecked />
+                  <span className="toggle-slider"></span>
+                </label>
               </div>
               <div className="account-setting-item">
-                <span>Gapless Playback</span>
-                <input type="checkbox" defaultChecked />
+                <div className="setting-item-left">
+                  <span>Gapless Playback</span>
+                </div>
+                <label className="toggle-switch">
+                  <input type="checkbox" defaultChecked />
+                  <span className="toggle-slider"></span>
+                </label>
               </div>
               <div className="account-setting-item">
-                <span>Offline Mode</span>
-                <input type="checkbox" />
+                <div className="setting-item-left">
+                  <span>Offline Mode</span>
+                </div>
+                <label className="toggle-switch">
+                  <input type="checkbox" />
+                  <span className="toggle-slider"></span>
+                </label>
               </div>
               <div className="account-setting-item">
-                <span>Push Notifications</span>
-                <input type="checkbox" defaultChecked />
+                <div className="setting-item-left">
+                  <span>Push Notifications</span>
+                </div>
+                <label className="toggle-switch">
+                  <input type="checkbox" defaultChecked />
+                  <span className="toggle-slider"></span>
+                </label>
               </div>
             </div>
             
-            <button className="auth-primary-btn" style={{ marginTop: '20px' }} onClick={handleLogout}>Log Out</button>
+            <button className="auth-primary-btn logout-btn" style={{ width: '100%' }} onClick={handleLogout}>Log Out</button>
           </div>
         )}
       </div>

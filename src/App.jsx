@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from 'firebase/firestore'
-import { db } from './services/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
+import { db, auth } from './services/firebase'
 import Header from './components/Header'
 import HeroCard from './components/HeroCard'
 
@@ -57,27 +58,41 @@ function App() {
 
   // Fetch playlists from Firestore and merge with local storage
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, 'playlists'), (snapshot) => {
-      const playlistsData = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }))
-      setPlaylists(prev => {
-        // Merge local and remote, preferring remote
-        const merged = [...playlistsData]
-        const remoteIds = new Set(playlistsData.map(p => p.id))
-        prev.forEach(p => {
-          if (!remoteIds.has(p.id)) {
-            merged.push(p)
-          }
+    let unsubscribeSnapshot = null;
+
+    const setupSnapshot = () => {
+      if (unsubscribeSnapshot) unsubscribeSnapshot();
+      unsubscribeSnapshot = onSnapshot(collection(db, 'playlists'), (snapshot) => {
+        const playlistsData = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        setPlaylists(prev => {
+          // Merge local and remote, preferring remote
+          const merged = [...playlistsData]
+          const remoteIds = new Set(playlistsData.map(p => p.id))
+          prev.forEach(p => {
+            if (!remoteIds.has(p.id)) {
+              merged.push(p)
+            }
+          })
+          localStorage.setItem('playlists', JSON.stringify(merged))
+          return merged
         })
-        localStorage.setItem('playlists', JSON.stringify(merged))
-        return merged
+      }, (error) => {
+        console.error("Error fetching playlists: ", error)
       })
-    }, (error) => {
-      console.error("Error fetching playlists: ", error)
-    })
-    return () => unsubscribe()
+    };
+
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+      // Re-run snapshot setup whether logged in or out, to clear old errors and fetch with new permissions
+      setupSnapshot();
+    });
+
+    return () => {
+      unsubscribeAuth();
+      if (unsubscribeSnapshot) unsubscribeSnapshot();
+    }
   }, [])
   const [selectedPlaylist, setSelectedPlaylist] = useState(null)
   const [playlistSearchQuery, setPlaylistSearchQuery] = useState('')
