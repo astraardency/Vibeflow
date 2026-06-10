@@ -242,9 +242,15 @@ function App() {
           setIsSearching(true)
           const songs = await searchSongs(searchQuery, 100)
           
-          const communityPlaylists = playlists.filter(p => 
+          // Always show community playlists, optionally bringing matched ones to the front
+          const matchedPlaylists = playlists.filter(p => 
             p.name.toLowerCase().includes(searchQuery.toLowerCase())
-          ).map(p => ({
+          );
+          const unmatchedPlaylists = playlists.filter(p => 
+            !p.name.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+          
+          const communityPlaylists = [...matchedPlaylists, ...unmatchedPlaylists].map(p => ({
             ...p,
             title: p.name,
             songCount: p.songs?.length || 0
@@ -638,9 +644,15 @@ function App() {
     setIsSearching(true)
     const songs = await searchSongs(searchQuery, 100)
     
-    const communityPlaylists = playlists.filter(p => 
+    // Always show community playlists, optionally bringing matched ones to the front
+    const matchedPlaylists = playlists.filter(p => 
       p.name.toLowerCase().includes(searchQuery.toLowerCase())
-    ).map(p => ({
+    );
+    const unmatchedPlaylists = playlists.filter(p => 
+      !p.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    
+    const communityPlaylists = [...matchedPlaylists, ...unmatchedPlaylists].map(p => ({
       ...p,
       title: p.name,
       songCount: p.songs?.length || 0
