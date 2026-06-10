@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import { db } from './services/firebase'
 import Header from './components/Header'
 import HeroCard from './components/HeroCard'
 
@@ -44,14 +46,21 @@ function App() {
   const [isLoadingArtistSongs, setIsLoadingArtistSongs] = useState(false)
 
   // Playlist States
-  const [playlists, setPlaylists] = useState(() => {
-    try {
-      const saved = localStorage.getItem('playlists')
-      return saved ? JSON.parse(saved) : []
-    } catch (e) {
-      return []
-    }
-  })
+  const [playlists, setPlaylists] = useState([])
+
+  // Fetch playlists from Firestore
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'playlists'), (snapshot) => {
+      const playlistsData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      setPlaylists(playlistsData)
+    }, (error) => {
+      console.error("Error fetching playlists: ", error)
+    })
+    return () => unsubscribe()
+  }, [])
   const [selectedPlaylist, setSelectedPlaylist] = useState(null)
   const [playlistSearchQuery, setPlaylistSearchQuery] = useState('')
   const [playlistSearchResults, setPlaylistSearchResults] = useState([])
@@ -186,7 +195,7 @@ function App() {
         const loadTrending = async () => {
           setIsSearching(true)
           const [songs, playlists] = await Promise.all([
-            searchSongs('latest Tamil songs'),
+            searchSongs('latest Tamil songs', 100),
             searchPlaylists('Tamil hits')
           ])
           setSearchResults(songs)
@@ -198,7 +207,7 @@ function App() {
         const performSearch = async () => {
           setIsSearching(true)
           const [songs, playlists] = await Promise.all([
-            searchSongs(searchQuery),
+            searchSongs(searchQuery, 100),
             searchPlaylists(searchQuery)
           ])
           setSearchResults(songs)
@@ -456,69 +465,81 @@ function App() {
   }
 
   // Playlist Action Handlers
-  const handleCreatePlaylist = (e) => {
+  const handleCreatePlaylist = async (e) => {
     e.preventDefault()
     if (!newPlaylistName.trim()) return
+    const creator = localStorage.getItem('username') || 'Anonymous'
     const newPl = {
-      id: Date.now().toString(),
       name: newPlaylistName.trim(),
       img: newPlaylistImg.trim() || 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop',
-      songs: []
+      songs: [],
+      creator: creator,
+      createdAt: Date.now()
     }
-    const updated = [...playlists, newPl]
-    setPlaylists(updated)
-    localStorage.setItem('playlists', JSON.stringify(updated))
-    setNewPlaylistName('')
-    setNewPlaylistImg('')
-    setShowCreateModal(false)
-    triggerToast(`Created playlist "${newPl.name}"!`)
+    
+    try {
+      await addDoc(collection(db, 'playlists'), newPl)
+      setNewPlaylistName('')
+      setNewPlaylistImg('')
+      setShowCreateModal(false)
+      triggerToast(`Created playlist "${newPl.name}"!`)
+    } catch (error) {
+      console.error("Error adding playlist: ", error)
+      triggerToast('Error creating playlist.')
+    }
   }
 
-  const handleDeletePlaylist = (id, e) => {
+  const handleDeletePlaylist = async (id, e) => {
     if (e) e.stopPropagation()
-    const updated = playlists.filter(p => p.id !== id)
-    setPlaylists(updated)
-    localStorage.setItem('playlists', JSON.stringify(updated))
-    if (selectedPlaylist && selectedPlaylist.id === id) {
-      setSelectedPlaylist(null)
-    }
-    triggerToast('Playlist deleted.')
-  }
-
-  const addSongToPlaylist = (playlistId, song) => {
-    const updated = playlists.map(p => {
-      if (p.id === playlistId) {
-        if (p.songs.some(s => s.id === song.id || s.title === song.title)) {
-          triggerToast('Song already in playlist!')
-          return p
-        }
-        const updatedSongs = [...p.songs, song]
-        triggerToast(`Added "${song.title}" to ${p.name}!`)
-        return { ...p, songs: updatedSongs }
+    try {
+      await deleteDoc(doc(db, 'playlists', id))
+      if (selectedPlaylist && selectedPlaylist.id === id) {
+        setSelectedPlaylist(null)
       }
-      return p
-    })
-    setPlaylists(updated)
-    localStorage.setItem('playlists', JSON.stringify(updated))
-    if (selectedPlaylist && selectedPlaylist.id === playlistId) {
-      setSelectedPlaylist(updated.find(p => p.id === playlistId))
+      triggerToast('Playlist deleted.')
+    } catch (error) {
+      console.error("Error deleting playlist: ", error)
+      triggerToast('Error deleting playlist.')
     }
   }
 
-  const removeSongFromPlaylist = (playlistId, songId) => {
-    const updated = playlists.map(p => {
-      if (p.id === playlistId) {
-        const updatedSongs = p.songs.filter(s => s.id !== songId)
-        return { ...p, songs: updatedSongs }
-      }
-      return p
-    })
-    setPlaylists(updated)
-    localStorage.setItem('playlists', JSON.stringify(updated))
-    if (selectedPlaylist && selectedPlaylist.id === playlistId) {
-      setSelectedPlaylist(updated.find(p => p.id === playlistId))
+  const addSongToPlaylist = async (playlistId, song) => {
+    const playlist = playlists.find(p => p.id === playlistId)
+    if (!playlist) return
+
+    if (playlist.songs.some(s => s.id === song.id || s.title === song.title)) {
+      triggerToast('Song already in playlist!')
+      return
     }
-    triggerToast('Song removed from playlist.')
+
+    const updatedSongs = [...playlist.songs, song]
+    try {
+      await updateDoc(doc(db, 'playlists', playlistId), { songs: updatedSongs })
+      triggerToast(`Added "${song.title}" to ${playlist.name}!`)
+      if (selectedPlaylist && selectedPlaylist.id === playlistId) {
+        setSelectedPlaylist({ ...playlist, songs: updatedSongs })
+      }
+    } catch (error) {
+      console.error("Error updating playlist: ", error)
+      triggerToast('Error adding song.')
+    }
+  }
+
+  const removeSongFromPlaylist = async (playlistId, songId) => {
+    const playlist = playlists.find(p => p.id === playlistId)
+    if (!playlist) return
+
+    const updatedSongs = playlist.songs.filter(s => s.id !== songId)
+    try {
+      await updateDoc(doc(db, 'playlists', playlistId), { songs: updatedSongs })
+      triggerToast('Song removed from playlist.')
+      if (selectedPlaylist && selectedPlaylist.id === playlistId) {
+        setSelectedPlaylist({ ...playlist, songs: updatedSongs })
+      }
+    } catch (error) {
+      console.error("Error removing song: ", error)
+      triggerToast('Error removing song.')
+    }
   }
 
   const handlePlaylistSearch = async (e) => {
@@ -537,7 +558,7 @@ function App() {
 
     setIsSearching(true)
     const [songs, playlists] = await Promise.all([
-      searchSongs(searchQuery),
+      searchSongs(searchQuery, 100),
       searchPlaylists(searchQuery)
     ])
     setSearchResults(songs)
@@ -1196,7 +1217,7 @@ function App() {
                                 {uniqueArtists.map((artistName, idx) => {
                                   const artistSong = searchResults.find(s => s.artist.includes(artistName));
                                   return (
-                                    <div key={idx} className="search-playlist-card focusable" style={{ flex: '0 0 100px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+                                    <div key={idx} onClick={() => setSearchQuery(artistName)} className="search-playlist-card focusable" style={{ flex: '0 0 100px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
                                       <div style={{ width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--card-border, #333)' }}>
                                         <img src={artistSong?.img} alt={artistName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                       </div>
@@ -1226,7 +1247,7 @@ function App() {
                                 {uniqueAlbums.map((albumName, idx) => {
                                   const albumSong = searchResults.find(s => s.album === albumName);
                                   return (
-                                    <div key={idx} className="search-playlist-card focusable" style={{ flex: '0 0 130px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                    <div key={idx} onClick={() => setSearchQuery(albumName)} className="search-playlist-card focusable" style={{ flex: '0 0 130px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                                       <div style={{ width: '130px', height: '130px', borderRadius: '12px', overflow: 'hidden' }}>
                                         <img src={albumSong?.img} alt={albumName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                       </div>
@@ -1422,9 +1443,9 @@ function App() {
                 )}
                 
                 <div className="playlist-banner-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: '1 1 200px' }}>
-                  <span className="playlist-badge" style={{ marginBottom: '8px', fontSize: '12px', fontWeight: '700', letterSpacing: '1px', color: 'var(--text-secondary)' }}>PLAYLIST</span>
+                  <span className="playlist-badge" style={{ marginBottom: '8px', fontSize: '12px', fontWeight: '700', letterSpacing: '1px', color: 'var(--text-secondary)' }}>COMMUNITY PLAYLIST</span>
                   <h2 className="playlist-banner-title" style={{ fontSize: '32px', fontWeight: '800', color: 'var(--text-color)', margin: '0 0 8px 0', lineHeight: '1.2' }}>{selectedPlaylist.name}</h2>
-                  <p className="playlist-banner-desc" style={{ color: 'var(--text-secondary)', margin: '0 0 20px 0', fontSize: '14px' }}>{selectedPlaylist.songs.length} songs • Hand-picked vibe</p>
+                  <p className="playlist-banner-desc" style={{ color: 'var(--text-secondary)', margin: '0 0 20px 0', fontSize: '14px' }}>{selectedPlaylist.songs.length} songs • Created by @{selectedPlaylist.creator || 'Anonymous'}</p>
                   
                   {selectedPlaylist.songs.length > 0 && (
                     <button
@@ -1620,7 +1641,7 @@ function App() {
                       </div>
                       <div className="collection-card-info">
                         <div className="collection-card-title">{playlist.name}</div>
-                        <div className="collection-card-desc">{playlist.songs.length} songs</div>
+                        <div className="collection-card-desc">{playlist.songs.length} songs • by @{playlist.creator || 'Anonymous'}</div>
                       </div>
                       {/* <button
                         className="collection-card-delete-btn focusable"
