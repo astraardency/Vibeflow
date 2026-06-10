@@ -177,21 +177,39 @@ function App() {
     setSelectedSaavnPlaylist(null)
   }, [activeTab])
 
-  // Load default trending Tamil songs on search tab when empty
+  // Real-time debounced search
   useEffect(() => {
-    if (activeTab === 'search' && !searchQuery.trim()) {
-      const loadTrending = async () => {
-        setIsSearching(true)
-        const [songs, playlists] = await Promise.all([
-          searchSongs('latest Tamil songs'),
-          searchPlaylists('Tamil hits')
-        ])
-        setSearchResults(songs)
-        setSearchPlaylistsResults(playlists)
-        setIsSearching(false)
+    if (activeTab !== 'search') return;
+
+    const delayDebounceFn = setTimeout(() => {
+      if (!searchQuery.trim()) {
+        const loadTrending = async () => {
+          setIsSearching(true)
+          const [songs, playlists] = await Promise.all([
+            searchSongs('latest Tamil songs'),
+            searchPlaylists('Tamil hits')
+          ])
+          setSearchResults(songs)
+          setSearchPlaylistsResults(playlists)
+          setIsSearching(false)
+        }
+        loadTrending()
+      } else {
+        const performSearch = async () => {
+          setIsSearching(true)
+          const [songs, playlists] = await Promise.all([
+            searchSongs(searchQuery),
+            searchPlaylists(searchQuery)
+          ])
+          setSearchResults(songs)
+          setSearchPlaylistsResults(playlists)
+          setIsSearching(false)
+        }
+        performSearch()
       }
-      loadTrending()
-    }
+    }, 400) // 400ms debounce
+
+    return () => clearTimeout(delayDebounceFn)
   }, [activeTab, searchQuery])
 
   // Load artist songs from JioSaavn when selected
@@ -1164,6 +1182,66 @@ function App() {
                           </div>
                         </div>
                       )}
+
+                      {/* Derived Artists Section */}
+                      {(() => {
+                        const uniqueArtists = Array.from(new Set(searchResults.map(s => s.artist.split(',')[0].trim()).filter(Boolean))).slice(0, 6);
+                        if (uniqueArtists.length > 0 && searchQuery.trim() !== '') {
+                          return (
+                            <div className="search-playlists-section" style={{ marginBottom: '24px' }}>
+                              <h3 className="section-title" style={{ margin: '0 0 var(--spacing-sm) 0', fontSize: '18px', color: 'var(--text-color)' }}>
+                                Artists
+                              </h3>
+                              <div className="search-playlists-horizontal hide-scrollbar" style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '8px' }}>
+                                {uniqueArtists.map((artistName, idx) => {
+                                  const artistSong = searchResults.find(s => s.artist.includes(artistName));
+                                  return (
+                                    <div key={idx} className="search-playlist-card focusable" style={{ flex: '0 0 100px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+                                      <div style={{ width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--card-border, #333)' }}>
+                                        <img src={artistSong?.img} alt={artistName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                      </div>
+                                      <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--text-color)', textAlign: 'center', width: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                        {artistName}
+                                      </div>
+                                    </div>
+                                  )
+                                })}
+                              </div>
+                            </div>
+                          )
+                        }
+                        return null;
+                      })()}
+
+                      {/* Derived Movies Section */}
+                      {(() => {
+                        const uniqueAlbums = Array.from(new Set(searchResults.map(s => s.album).filter(Boolean))).slice(0, 6);
+                        if (uniqueAlbums.length > 0 && searchQuery.trim() !== '') {
+                          return (
+                            <div className="search-playlists-section" style={{ marginBottom: '24px' }}>
+                              <h3 className="section-title" style={{ margin: '0 0 var(--spacing-sm) 0', fontSize: '18px', color: 'var(--text-color)' }}>
+                                Movies & Albums
+                              </h3>
+                              <div className="search-playlists-horizontal hide-scrollbar" style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '8px' }}>
+                                {uniqueAlbums.map((albumName, idx) => {
+                                  const albumSong = searchResults.find(s => s.album === albumName);
+                                  return (
+                                    <div key={idx} className="search-playlist-card focusable" style={{ flex: '0 0 130px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                      <div style={{ width: '130px', height: '130px', borderRadius: '12px', overflow: 'hidden' }}>
+                                        <img src={albumSong?.img} alt={albumName} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                      </div>
+                                      <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--text-color)', width: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                        {albumName}
+                                      </div>
+                                    </div>
+                                  )
+                                })}
+                              </div>
+                            </div>
+                          )
+                        }
+                        return null;
+                      })()}
 
                       {/* Songs Search Results Section */}
                       <h3 className="section-title" style={{ margin: '0 0 var(--spacing-sm) 0', fontSize: '18px', color: 'var(--text-color)' }}>

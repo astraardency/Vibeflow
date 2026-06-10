@@ -203,8 +203,20 @@ const AccountSettings = ({ onClose }) => {
                 <input type="checkbox" />
               </div>
               <div className="account-setting-item">
+                <span>High Quality Audio</span>
+                <input type="checkbox" defaultChecked />
+              </div>
+              <div className="account-setting-item">
                 <span>Explicit Content</span>
                 <input type="checkbox" defaultChecked />
+              </div>
+              <div className="account-setting-item">
+                <span>Gapless Playback</span>
+                <input type="checkbox" defaultChecked />
+              </div>
+              <div className="account-setting-item">
+                <span>Offline Mode</span>
+                <input type="checkbox" />
               </div>
               <div className="account-setting-item">
                 <span>Push Notifications</span>
