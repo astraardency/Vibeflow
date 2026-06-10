@@ -603,11 +603,14 @@ function App() {
     }
   }
 
-  const handlePlaylistSearch = async (e) => {
-    e.preventDefault()
-    if (!playlistSearchQuery.trim()) return
+  const handlePlaylistSearch = async (e, query = playlistSearchQuery) => {
+    if (e) e.preventDefault()
+    if (!query.trim()) {
+      setPlaylistSearchResults([])
+      return
+    }
     setIsSearchingPlaylistSongs(true)
-    const results = await searchSongs(playlistSearchQuery)
+    const results = await searchSongs(query)
     setPlaylistSearchResults(results)
     setIsSearchingPlaylistSongs(false)
   }
@@ -1596,6 +1599,7 @@ function App() {
                       placeholder="Search for songs to add..."
                       value={playlistSearchQuery}
                       onChange={(e) => setPlaylistSearchQuery(e.target.value)}
+                      onKeyUp={(e) => handlePlaylistSearch(e, e.target.value)}
                       className="search-input-redesign focusable"
                       tabIndex={0}
                     />
