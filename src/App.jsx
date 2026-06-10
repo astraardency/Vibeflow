@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Header from './components/Header'
 import HeroCard from './components/HeroCard'
-import ArtistList from './components/ArtistList'
+
 import VibesList from './components/VibesList'
 import SuggestedSongsList from './components/SuggestedSongsList'
 import GenresList from './components/GenresList'
@@ -767,10 +767,10 @@ function App() {
       {/* B. MAIN SCROLL PANEL */}
       <div className="main-content-scroll hide-scrollbar">
         {/* Render Header on Home view */}
-        {activeTab === 'home' && !selectedArtist && <Header 
-          onAction={triggerToast} 
-          isDarkMode={isDarkMode} 
-          setIsDarkMode={setIsDarkMode} 
+        {activeTab === 'home' && !selectedArtist && <Header
+          onAction={triggerToast}
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
           openProfile={() => setIsAccountSettingsOpen(true)}
           openDownload={() => setIsDownloadOpen(true)}
         />}
@@ -952,11 +952,6 @@ function App() {
             /* Standard home widgets */
             <>
               <HeroCard onAction={() => setIsMelophileOpen(true)} />
-
-              <ArtistList onArtistSelect={(artist) => {
-                setSelectedArtist(artist)
-              }} currentArtist={selectedArtist} />
-
               <VibesList onAction={(msg) => {
                 triggerToast(msg)
                 playSong({ query: 'lofi hindi mix', title: 'Crossover Vibes', artist: 'Lo-Fi Mix' })
@@ -1313,31 +1308,67 @@ function App() {
                 </button>
               </div>
 
-              <div className="playlist-banner" style={{ background: 'linear-gradient(135deg, var(--card-orange), var(--neon-cyan))', padding: '30px 20px', borderRadius: '16px', margin: '20px 0', position: 'relative', overflow: 'hidden' }}>
-                <div className="playlist-banner-overlay" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.3)' }}></div>
-                <div className="playlist-banner-content" style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%' }}>
-                  <div>
-                    <span className="playlist-badge">PLAYLIST</span>
-                    <h2 className="playlist-banner-title" style={{ color: 'white', margin: '10px 0 5px 0' }}>{selectedPlaylist.name}</h2>
-                    <p className="playlist-banner-desc" style={{ color: 'rgba(255,255,255,0.9)', margin: 0 }}>{selectedPlaylist.songs.length} songs • Hand-picked vibe</p>
+              <div className="playlist-banner" style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '24px',
+                alignItems: 'flex-end',
+                padding: '20px 0',
+                margin: '20px 0',
+              }}>
+                {selectedPlaylist.img ? (
+                  <img 
+                    src={selectedPlaylist.img} 
+                    alt={selectedPlaylist.name} 
+                    style={{ 
+                      width: '180px', 
+                      height: '180px', 
+                      objectFit: 'cover', 
+                      borderRadius: '12px',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.15)' 
+                    }} 
+                  />
+                ) : (
+                  <div style={{ 
+                    width: '180px', 
+                    height: '180px', 
+                    background: 'linear-gradient(135deg, var(--card-orange), var(--neon-cyan))', 
+                    borderRadius: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.15)'
+                  }}>
+                    <ListMusic size={64} color="white" />
                   </div>
+                )}
+                
+                <div className="playlist-banner-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: '1 1 200px' }}>
+                  <span className="playlist-badge" style={{ marginBottom: '8px', fontSize: '12px', fontWeight: '700', letterSpacing: '1px', color: 'var(--text-secondary)' }}>PLAYLIST</span>
+                  <h2 className="playlist-banner-title" style={{ fontSize: '32px', fontWeight: '800', color: 'var(--text-color)', margin: '0 0 8px 0', lineHeight: '1.2' }}>{selectedPlaylist.name}</h2>
+                  <p className="playlist-banner-desc" style={{ color: 'var(--text-secondary)', margin: '0 0 20px 0', fontSize: '14px' }}>{selectedPlaylist.songs.length} songs • Hand-picked vibe</p>
+                  
                   {selectedPlaylist.songs.length > 0 && (
                     <button
                       onClick={() => shuffleQueue(selectedPlaylist.songs)}
                       className="focusable"
                       tabIndex={0}
                       style={{
-                        background: 'white',
+                        background: 'var(--card-orange)',
                         border: 'none',
-                        color: 'black',
-                        padding: '8px 16px',
-                        borderRadius: '20px',
-                        fontSize: '12px',
-                        fontWeight: '600',
+                        color: 'white',
+                        padding: '10px 24px',
+                        borderRadius: '24px',
+                        fontSize: '13px',
+                        fontWeight: '700',
                         cursor: 'pointer',
-                        boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+                        boxShadow: '0 4px 14px rgba(245, 149, 74, 0.4)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px'
                       }}
                     >
+                      <Play size={16} fill="white" />
                       Shuffle Play
                     </button>
                   )}
@@ -1505,7 +1536,7 @@ function App() {
                   const grad = gradients[pIdx % gradients.length];
                   return (
                     <div key={playlist.id} className="collection-card focusable" tabIndex={0} onClick={() => setSelectedPlaylist(playlist)}>
-                      <div className="collection-card-art" style={{ background: playlist.img ? `url(${playlist.img}) center/cover no-repeat` : grad }}>
+                      <div className="collection-card-art" style={{ background: playlist.img ? `url("${playlist.img}") center/cover no-repeat` : grad }}>
                         {!playlist.img && <ListMusic size={32} color="white" />}
                         <div className="collection-card-art-shine"></div>
                       </div>
@@ -1513,14 +1544,14 @@ function App() {
                         <div className="collection-card-title">{playlist.name}</div>
                         <div className="collection-card-desc">{playlist.songs.length} songs</div>
                       </div>
-                      <button
+                      {/* <button
                         className="collection-card-delete-btn focusable"
                         tabIndex={0}
                         onClick={(e) => handleDeletePlaylist(playlist.id, e)}
                         title="Delete playlist"
                       >
                         ×
-                      </button>
+                      </button> */}
                     </div>
                   );
                 })}
@@ -2087,7 +2118,7 @@ function App() {
 
       {/* Account Settings Container */}
       {isAccountSettingsOpen && <AccountSettings onClose={() => setIsAccountSettingsOpen(false)} />}
-      
+
       {/* Download Settings Container */}
       {isDownloadOpen && <DownloadContainer onClose={() => setIsDownloadOpen(false)} />}
     </div>

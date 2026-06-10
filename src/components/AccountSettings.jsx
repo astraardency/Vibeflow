@@ -80,13 +80,15 @@ const AccountSettings = ({ onClose }) => {
           <div className="auth-content">
             <div className="auth-header">
               <div className="auth-logo">
-                {/* Lotus SVG Logo mimicking the image */}
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="var(--auth-logo-color, #3d4a3e)" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 22C12 22 19 16 19 11C19 6 12 2 12 2C12 2 5 6 5 11C5 16 12 22 12 22Z" opacity="0.3"/>
-                  <path d="M12 22C12 22 16 18 16 13C16 8 12 5 12 5C12 5 8 8 8 13C8 18 12 22 12 22Z" opacity="0.6"/>
-                  <path d="M12 22C12 22 14 19 14 15C14 11 12 9 12 9C12 9 10 11 10 15C10 19 12 22 12 22Z"/>
-                  <path d="M3 14C3 14 7 17 12 22C12 22 9 13 4 11C3.5 10.8 3 11.5 3 12.5V14Z"/>
-                  <path d="M21 14C21 14 17 17 12 22C12 22 15 13 20 11C20.5 10.8 21 11.5 21 12.5V14Z"/>
+                <svg width="64" height="64" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="50" r="50" fill="#46a8ff" />
+                  <circle cx="50" cy="50" r="40" fill="#ffffff" />
+                  <rect x="30" y="38" width="5" height="18" rx="2.5" fill="#46a8ff" />
+                  <rect x="39" y="32" width="5" height="30" rx="2.5" fill="#46a8ff" />
+                  <rect x="47.5" y="25" width="5" height="44" rx="2.5" fill="#46a8ff" />
+                  <rect x="56" y="32" width="5" height="30" rx="2.5" fill="#46a8ff" />
+                  <rect x="65" y="38" width="5" height="18" rx="2.5" fill="#46a8ff" />
+                  <text x="50" y="78" fontFamily="sans-serif" fontWeight="bold" fontSize="7" fill="#46a8ff" textAnchor="middle" letterSpacing="1">VIBEFLOW</text>
                 </svg>
               </div>
               <h2 className="auth-title">

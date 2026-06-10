@@ -99,6 +99,13 @@ html {
   }
 }
 
+.main-content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
 /* 1. NOW PLAYING FULL-SCREEN VIEW */
 .now-playing-fullscreen {
   position: fixed;
@@ -785,9 +792,8 @@ html {
   transform: scale(0.97);
 }
 
-.liked-card-gradient {
+.collection-card-art {
   aspect-ratio: 1;
-  background: linear-gradient(135deg, #ff6b9d 0%, #f7d2d2 100%);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -795,6 +801,11 @@ html {
   margin-bottom: 10px;
   position: relative;
   overflow: hidden;
+  width: 100%;
+}
+
+.liked-card-gradient {
+  background: linear-gradient(135deg, #ff6b9d 0%, #f7d2d2 100%);
 }
 
 .collection-card-title {
@@ -1636,10 +1647,17 @@ html {
 .playlist-banner {
   position: relative;
   border-radius: var(--radius-lg);
-  padding: 30px 20px;
-  margin-bottom: var(--spacing-lg);
+  padding: 10px 10px;
+  margin: 10px;
   color: white;
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 20px;
+  min-height: 260px;
+  height: auto;
   background: linear-gradient(135deg, var(--card-orange), var(--neon-cyan));
   box-shadow: var(--shadow-premium);
 }
@@ -1657,20 +1675,24 @@ html {
 }
 
 .playlist-banner-title {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 4px;
+  font-size: 34px;
+  font-weight: 900;
+  margin: 0 0 8px;
+  line-height: 1.05;
 }
 
 .playlist-banner-desc {
-  font-size: 13px;
+  font-size: 14px;
   opacity: 0.9;
+  margin: 0 0 18px;
 }
 
 .playlist-tracklist-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: var(--spacing-xs) var(--spacing-sm);
+  margin-top: 0;
   color: var(--text-secondary);
   font-size: 11px;
   font-weight: 700;
@@ -1682,8 +1704,9 @@ html {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  max-height: calc(100vh - 380px);
-  overflow-y: auto;
+  max-height: none;
+  overflow-y: visible;
+  padding-bottom: 120px;
 }
 
 .playlist-song-item {
@@ -1695,6 +1718,11 @@ html {
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid var(--border-color);
+}
+
+.playlist-song-item:hover {
+  transform: translateY(-2px);
+  background-color: var(--hover-bg);
 }
 
 .playlist-song-item:hover {

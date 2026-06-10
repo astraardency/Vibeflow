@@ -102,10 +102,10 @@ const artists = [
 
 // Fallback images from Unsplash in case CDN fails
 const fallbackImages = {
-  1: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=200&auto=format&fit=crop',
-  2: 'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=200&auto=format&fit=crop',
-  3: 'https://images.unsplash.com/photo-1507838153414-b4b713384a76?q=80&w=200&auto=format&fit=crop',
-  4: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=200&auto=format&fit=crop',
+  1: 'https://i.pinimg.com/736x/07/f7/a8/07f7a810d9fbac664ebb9dda1339c37e.jpg',
+  2: 'https://i.pinimg.com/736x/a1/45/1b/a1451b2311ba7824d9be832e482852fa.jpg',
+  3: 'https://i.pinimg.com/736x/b1/56/cf/b156cfac136c8cf08e44c3ad8282cd76.jpg',
+  4: 'https://i.pinimg.com/736x/ac/85/72/ac8572d97f9ddd8ce00902f5e51ff57d.jpg',
   5: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=200&auto=format&fit=crop',
   6: 'https://images.unsplash.com/photo-1487180142328-0c4e37023af5?q=80&w=200&auto=format&fit=crop',
   7: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=200&auto=format&fit=crop',

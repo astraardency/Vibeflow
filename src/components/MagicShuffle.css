@@ -3,74 +3,63 @@
   margin-bottom: 120px; /* Leave extra space below this for the bottom nav */
 }
 
-.magic-card {
-  background-color: var(--card-orange);
+.magic-shuffle-container {
+  padding: 0 var(--spacing-md);
+  margin-bottom: 20px;
+}
+
+.magic-card-new {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #e4d5ff 0%, #d8b4fe 100%);
   border-radius: var(--radius-lg);
   padding: var(--spacing-md);
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(245, 149, 74, 0.3);
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(216, 180, 254, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Decorative circles */
-.magic-card::before {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: 60px;
-  width: 80px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 100px 100px 0 0;
-}
-.magic-card::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  right: 40px;
-  width: 100px;
-  height: 30px;
-  background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 100px 100px 0 0;
+.magic-card-new:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(216, 180, 254, 0.4);
 }
 
-.magic-img {
-  width: 60px;
-  height: 60px;
-  border-radius: var(--radius-sm);
-  object-fit: cover;
-  z-index: 1;
-}
-
-.magic-info {
-  margin-left: var(--spacing-md);
-  flex: 1;
-  z-index: 1;
-  color: white;
-}
-
-.magic-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.magic-artist {
-  font-size: 13px;
-  opacity: 0.9;
-}
-
-.magic-action {
-  width: 40px;
-  height: 40px;
+.magic-icon-wrapper {
   background-color: white;
-  border-radius: var(--radius-pill);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.magic-zap-icon {
+  color: #5b21b6;
+}
+
+.magic-info-new {
+  flex-grow: 1;
+}
+
+.magic-title-new {
+  font-weight: 700;
+  font-size: 16px;
+  color: #2e1065;
+  margin-bottom: 4px;
+}
+
+.magic-subtitle-new {
+  font-size: 13px;
+  color: #5b21b6;
+  line-height: 1.3;
+}
+
+.magic-arrow {
+  margin-left: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: var(--card-orange);
-  z-index: 1;
-  flex-shrink: 0;
 }
