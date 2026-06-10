@@ -651,8 +651,22 @@ function App() {
     setIsSearching(false)
   }
 
-  // Load JioSaavn playlist details
+  // Load JioSaavn playlist details or Community Playlist
   const handlePlaylistCardClick = async (playlistId) => {
+    // Check if it's a community playlist first
+    const communityPlaylist = playlists.find(p => p.id === playlistId);
+    if (communityPlaylist) {
+      setSelectedSaavnPlaylist({
+        id: communityPlaylist.id,
+        title: communityPlaylist.name,
+        img: communityPlaylist.img,
+        description: `Created by @${communityPlaylist.creator}`,
+        songs: communityPlaylist.songs || [],
+        isCommunity: true
+      });
+      return;
+    }
+
     setIsLoadingSaavnPlaylist(true)
     try {
       const details = await getPlaylistDetails(playlistId)
@@ -1126,7 +1140,7 @@ function App() {
               }}>
                 <div className="playlist-banner-content" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%' }}>
                   <div>
-                    <span className="playlist-badge">SAAVN MIX</span>
+                    <span className="playlist-badge">{selectedSaavnPlaylist.isCommunity ? 'COMMUNITY MIX' : 'SAAVN MIX'}</span>
                     <h2 className="playlist-banner-title">{selectedSaavnPlaylist.title}</h2>
                     <p className="playlist-banner-desc" style={{ opacity: 0.9 }}>{selectedSaavnPlaylist.description || `${selectedSaavnPlaylist.songs.length} tracks`}</p>
                   </div>
