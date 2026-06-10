@@ -50,7 +50,14 @@ function App() {
   const [playlists, setPlaylists] = useState(() => {
     try {
       const saved = localStorage.getItem('playlists')
-      return saved ? JSON.parse(saved) : []
+      return saved ? JSON.parse(saved) : [{
+        id: 'global-1',
+        name: 'Vibeflow Global Mix',
+        creator: 'Admin',
+        img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop',
+        songs: [],
+        createdAt: Date.now()
+      }]
     } catch (e) {
       return []
     }
@@ -244,10 +251,10 @@ function App() {
           
           // Always show community playlists, optionally bringing matched ones to the front
           const matchedPlaylists = playlists.filter(p => 
-            p.name.toLowerCase().includes(searchQuery.toLowerCase())
+            p.name?.toLowerCase().includes(searchQuery.toLowerCase())
           );
           const unmatchedPlaylists = playlists.filter(p => 
-            !p.name.toLowerCase().includes(searchQuery.toLowerCase())
+            !p.name?.toLowerCase().includes(searchQuery.toLowerCase())
           );
           
           const communityPlaylists = [...matchedPlaylists, ...unmatchedPlaylists].map(p => ({
@@ -646,10 +653,10 @@ function App() {
     
     // Always show community playlists, optionally bringing matched ones to the front
     const matchedPlaylists = playlists.filter(p => 
-      p.name.toLowerCase().includes(searchQuery.toLowerCase())
+      p.name?.toLowerCase().includes(searchQuery.toLowerCase())
     );
     const unmatchedPlaylists = playlists.filter(p => 
-      !p.name.toLowerCase().includes(searchQuery.toLowerCase())
+      !p.name?.toLowerCase().includes(searchQuery.toLowerCase())
     );
     
     const communityPlaylists = [...matchedPlaylists, ...unmatchedPlaylists].map(p => ({
