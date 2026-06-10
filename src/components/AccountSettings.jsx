@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, User, Lock, X } from 'lucide-react';
 import { auth, googleProvider } from '../services/firebase';
-import { signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import './AccountSettings.css';
 
 const AccountSettings = ({ onClose }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => localStorage.getItem('isLoggedIn') === 'true');
   const [isLoginMode, setIsLoginMode] = useState(false); // Default to signup as in image
   
   // Form States
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(() => localStorage.getItem('username') || '');
+  const [email, setEmail] = useState(() => localStorage.getItem('email') || '');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedIn(true);
+        setUsername(user.displayName || user.email.split('@')[0]);
+        setEmail(user.email);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('isLoggedIn', isLoggedIn);
+    localStorage.setItem('username', username);
+    localStorage.setItem('email', email);
+  }, [isLoggedIn, username, email]);
 
   const handleAuth = (e) => {
     e.preventDefault();
