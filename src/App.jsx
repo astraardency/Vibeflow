@@ -46,16 +46,34 @@ function App() {
   const [isLoadingArtistSongs, setIsLoadingArtistSongs] = useState(false)
 
   // Playlist States
-  const [playlists, setPlaylists] = useState([])
+  const [playlists, setPlaylists] = useState(() => {
+    try {
+      const saved = localStorage.getItem('playlists')
+      return saved ? JSON.parse(saved) : []
+    } catch (e) {
+      return []
+    }
+  })
 
-  // Fetch playlists from Firestore
+  // Fetch playlists from Firestore and merge with local storage
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'playlists'), (snapshot) => {
       const playlistsData = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }))
-      setPlaylists(playlistsData)
+      setPlaylists(prev => {
+        // Merge local and remote, preferring remote
+        const merged = [...playlistsData]
+        const remoteIds = new Set(playlistsData.map(p => p.id))
+        prev.forEach(p => {
+          if (!remoteIds.has(p.id)) {
+            merged.push(p)
+          }
+        })
+        localStorage.setItem('playlists', JSON.stringify(merged))
+        return merged
+      })
     }, (error) => {
       console.error("Error fetching playlists: ", error)
     })
@@ -206,12 +224,21 @@ function App() {
       } else {
         const performSearch = async () => {
           setIsSearching(true)
-          const [songs, playlists] = await Promise.all([
+          const [songs, saavnPlaylists] = await Promise.all([
             searchSongs(searchQuery, 100),
             searchPlaylists(searchQuery)
           ])
+          
+          const communityPlaylists = playlists.filter(p => 
+            p.name.toLowerCase().includes(searchQuery.toLowerCase())
+          ).map(p => ({
+            ...p,
+            title: p.name,
+            songCount: p.songs?.length || 0
+          }))
+          
           setSearchResults(songs)
-          setSearchPlaylistsResults(playlists)
+          setSearchPlaylistsResults([...communityPlaylists, ...saavnPlaylists])
           setIsSearching(false)
         }
         performSearch()
@@ -469,7 +496,12 @@ function App() {
     e.preventDefault()
     if (!newPlaylistName.trim()) return
     const creator = localStorage.getItem('username') || 'Anonymous'
+    
+    // Generate a temporary ID for local storage
+    const tempId = Date.now().toString()
+    
     const newPl = {
+      id: tempId,
       name: newPlaylistName.trim(),
       img: newPlaylistImg.trim() || 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop',
       songs: [],
@@ -477,29 +509,44 @@ function App() {
       createdAt: Date.now()
     }
     
+    // Update local state immediately
+    const updatedPlaylists = [...playlists, newPl]
+    setPlaylists(updatedPlaylists)
+    localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
+    
+    setNewPlaylistName('')
+    setNewPlaylistImg('')
+    setShowCreateModal(false)
+    triggerToast(`Created playlist "${newPl.name}"!`)
+    
     try {
-      await addDoc(collection(db, 'playlists'), newPl)
-      setNewPlaylistName('')
-      setNewPlaylistImg('')
-      setShowCreateModal(false)
-      triggerToast(`Created playlist "${newPl.name}"!`)
+      // Try to sync with Firebase
+      const docRef = await addDoc(collection(db, 'playlists'), newPl)
+      // We don't need to do anything with docRef, onSnapshot will handle it
     } catch (error) {
-      console.error("Error adding playlist: ", error)
-      triggerToast('Error creating playlist.')
+      console.error("Error adding playlist to cloud: ", error)
+      triggerToast('Saved locally, but error syncing to cloud.')
     }
   }
 
   const handleDeletePlaylist = async (id, e) => {
     if (e) e.stopPropagation()
+    
+    // Update local state immediately
+    const updatedPlaylists = playlists.filter(p => p.id !== id)
+    setPlaylists(updatedPlaylists)
+    localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
+    
+    if (selectedPlaylist && selectedPlaylist.id === id) {
+      setSelectedPlaylist(null)
+    }
+    triggerToast('Playlist deleted.')
+    
     try {
+      // Try to sync with Firebase
       await deleteDoc(doc(db, 'playlists', id))
-      if (selectedPlaylist && selectedPlaylist.id === id) {
-        setSelectedPlaylist(null)
-      }
-      triggerToast('Playlist deleted.')
     } catch (error) {
-      console.error("Error deleting playlist: ", error)
-      triggerToast('Error deleting playlist.')
+      console.error("Error deleting playlist from cloud: ", error)
     }
   }
 
@@ -513,15 +560,23 @@ function App() {
     }
 
     const updatedSongs = [...playlist.songs, song]
+    const updatedPlaylist = { ...playlist, songs: updatedSongs }
+    
+    // Update local state immediately
+    const updatedPlaylists = playlists.map(p => p.id === playlistId ? updatedPlaylist : p)
+    setPlaylists(updatedPlaylists)
+    localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
+    triggerToast(`Added "${song.title}" to ${playlist.name}!`)
+    
+    if (selectedPlaylist && selectedPlaylist.id === playlistId) {
+      setSelectedPlaylist(updatedPlaylist)
+    }
+
     try {
+      // Try to sync with Firebase
       await updateDoc(doc(db, 'playlists', playlistId), { songs: updatedSongs })
-      triggerToast(`Added "${song.title}" to ${playlist.name}!`)
-      if (selectedPlaylist && selectedPlaylist.id === playlistId) {
-        setSelectedPlaylist({ ...playlist, songs: updatedSongs })
-      }
     } catch (error) {
-      console.error("Error updating playlist: ", error)
-      triggerToast('Error adding song.')
+      console.error("Error updating playlist in cloud: ", error)
     }
   }
 
@@ -530,15 +585,23 @@ function App() {
     if (!playlist) return
 
     const updatedSongs = playlist.songs.filter(s => s.id !== songId)
+    const updatedPlaylist = { ...playlist, songs: updatedSongs }
+    
+    // Update local state immediately
+    const updatedPlaylists = playlists.map(p => p.id === playlistId ? updatedPlaylist : p)
+    setPlaylists(updatedPlaylists)
+    localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
+    triggerToast('Song removed from playlist.')
+    
+    if (selectedPlaylist && selectedPlaylist.id === playlistId) {
+      setSelectedPlaylist(updatedPlaylist)
+    }
+
     try {
+      // Try to sync with Firebase
       await updateDoc(doc(db, 'playlists', playlistId), { songs: updatedSongs })
-      triggerToast('Song removed from playlist.')
-      if (selectedPlaylist && selectedPlaylist.id === playlistId) {
-        setSelectedPlaylist({ ...playlist, songs: updatedSongs })
-      }
     } catch (error) {
-      console.error("Error removing song: ", error)
-      triggerToast('Error removing song.')
+      console.error("Error removing song from cloud: ", error)
     }
   }
 
@@ -557,12 +620,21 @@ function App() {
     if (!searchQuery.trim()) return
 
     setIsSearching(true)
-    const [songs, playlists] = await Promise.all([
+    const [songs, saavnPlaylists] = await Promise.all([
       searchSongs(searchQuery, 100),
       searchPlaylists(searchQuery)
     ])
+    
+    const communityPlaylists = playlists.filter(p => 
+      p.name.toLowerCase().includes(searchQuery.toLowerCase())
+    ).map(p => ({
+      ...p,
+      title: p.name,
+      songCount: p.songs?.length || 0
+    }))
+    
     setSearchResults(songs)
-    setSearchPlaylistsResults(playlists)
+    setSearchPlaylistsResults([...communityPlaylists, ...saavnPlaylists])
     setIsSearching(false)
   }
 
