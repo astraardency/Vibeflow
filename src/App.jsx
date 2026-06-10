@@ -212,22 +212,20 @@ function App() {
       if (!searchQuery.trim()) {
         const loadTrending = async () => {
           setIsSearching(true)
-          const [songs, playlists] = await Promise.all([
-            searchSongs('latest Tamil songs', 100),
-            searchPlaylists('Tamil hits')
-          ])
+          const songs = await searchSongs('latest Tamil songs', 100)
           setSearchResults(songs)
-          setSearchPlaylistsResults(playlists)
+          setSearchPlaylistsResults(playlists.map(p => ({
+            ...p,
+            title: p.name,
+            songCount: p.songs?.length || 0
+          })))
           setIsSearching(false)
         }
         loadTrending()
       } else {
         const performSearch = async () => {
           setIsSearching(true)
-          const [songs, saavnPlaylists] = await Promise.all([
-            searchSongs(searchQuery, 100),
-            searchPlaylists(searchQuery)
-          ])
+          const songs = await searchSongs(searchQuery, 100)
           
           const communityPlaylists = playlists.filter(p => 
             p.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -238,7 +236,7 @@ function App() {
           }))
           
           setSearchResults(songs)
-          setSearchPlaylistsResults([...communityPlaylists, ...saavnPlaylists])
+          setSearchPlaylistsResults(communityPlaylists)
           setIsSearching(false)
         }
         performSearch()
@@ -620,10 +618,7 @@ function App() {
     if (!searchQuery.trim()) return
 
     setIsSearching(true)
-    const [songs, saavnPlaylists] = await Promise.all([
-      searchSongs(searchQuery, 100),
-      searchPlaylists(searchQuery)
-    ])
+    const songs = await searchSongs(searchQuery, 100)
     
     const communityPlaylists = playlists.filter(p => 
       p.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -634,7 +629,7 @@ function App() {
     }))
     
     setSearchResults(songs)
-    setSearchPlaylistsResults([...communityPlaylists, ...saavnPlaylists])
+    setSearchPlaylistsResults(communityPlaylists)
     setIsSearching(false)
   }
 
