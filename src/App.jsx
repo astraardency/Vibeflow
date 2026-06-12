@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { onAuthStateChanged } from 'firebase/auth'
 import { db, auth } from './services/firebase'
@@ -13,6 +14,7 @@ import BottomNav from './components/BottomNav'
 import { searchSongs, searchPlaylists, getPlaylistDetails } from './services/saavn'
 import defaultSongsRaw from './data/songs.js'
 const defaultSongs = defaultSongsRaw.filter(song => song.language?.toLowerCase() === 'tamil');
+import { defaultPlaylists } from './data/playlists.js'
 import AccountSettings from './components/AccountSettings'
 import DownloadContainer from './components/DownloadContainer'
 import './App.css'
@@ -20,7 +22,7 @@ import {
   Play, Pause, SkipForward, ArrowLeft, Heart,
   Search, Plus, Download, Radio, Headphones,
   Sparkles, Check, ChevronDown, ListMusic,
-  Home, PlusSquare, BarChart2, Sun, Moon, Maximize2, Minimize2
+  Home, PlusSquare, BarChart2, Sun, Moon, Maximize2, Minimize2, Monitor
 } from 'lucide-react'
 
 function App() {
@@ -50,16 +52,22 @@ function App() {
   const [playlists, setPlaylists] = useState(() => {
     try {
       const saved = localStorage.getItem('playlists')
-      return saved ? JSON.parse(saved) : [{
+      const parsed = saved ? JSON.parse(saved) : [{
         id: 'global-1',
-        name: 'Vibeflow Global Mix',
+        name: 'Vibeflow Hits',
         creator: 'Admin',
         img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop',
         songs: [],
         createdAt: Date.now()
       }]
+      defaultPlaylists.forEach(dp => {
+        if (!parsed.find(p => p.id === dp.id)) {
+          parsed.push(dp);
+        }
+      });
+      return parsed;
     } catch (e) {
-      return []
+      return [...defaultPlaylists]
     }
   })
 
@@ -135,6 +143,9 @@ function App() {
 
   // Audio Ref
   const audioRef = useRef(null)
+
+  // PiP Window
+  const [pipWindow, setPipWindow] = useState(null)
 
   const triggerToast = (message) => {
     setToastMessage(message)
@@ -213,7 +224,31 @@ function App() {
       document.title = 'Melophile';
       link.href = '/vite.svg';
     }
+
+    // MediaSession API for OS-level background playback controls
+    if ('mediaSession' in navigator && currentTrack) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: currentTrack.title,
+        artist: currentTrack.artist || 'Unknown Artist',
+        album: currentTrack.album || 'Unknown Album',
+        artwork: [
+          { src: currentTrack.img || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=200&auto=format&fit=crop', sizes: '96x96', type: 'image/jpeg' },
+          { src: currentTrack.img || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=200&auto=format&fit=crop', sizes: '128x128', type: 'image/jpeg' },
+          { src: currentTrack.img || 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=200&auto=format&fit=crop', sizes: '256x256', type: 'image/jpeg' }
+        ]
+      });
+    }
   }, [currentTrack, isPlaying]);
+
+  // Bind MediaSession action handlers when play methods are ready
+  useEffect(() => {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('play', togglePlay);
+      navigator.mediaSession.setActionHandler('pause', togglePlay);
+      navigator.mediaSession.setActionHandler('previoustrack', playPreviousSong);
+      navigator.mediaSession.setActionHandler('nexttrack', playNextSong);
+    }
+  }, [currentTrack, activePlaybackQueue, currentTrackIndex]);
 
   // Reset sub-views when tab changes
   useEffect(() => {
@@ -236,7 +271,7 @@ function App() {
           setIsSearching(true)
           const songs = await searchSongs('latest Tamil songs', 100)
           setSearchResults(songs)
-          setSearchPlaylistsResults(playlists.map(p => ({
+          setSearchPlaylistsResults(playlists.filter(p => !p.hidden).map(p => ({
             ...p,
             title: p.name,
             songCount: p.songs?.length || 0
@@ -248,21 +283,21 @@ function App() {
         const performSearch = async () => {
           setIsSearching(true)
           const songs = await searchSongs(searchQuery, 100)
-          
+
           // Always show community playlists, optionally bringing matched ones to the front
-          const matchedPlaylists = playlists.filter(p => 
+          const matchedPlaylists = playlists.filter(p =>
             p.name?.toLowerCase().includes(searchQuery.toLowerCase())
           );
-          const unmatchedPlaylists = playlists.filter(p => 
-            !p.name?.toLowerCase().includes(searchQuery.toLowerCase())
+          const unmatchedPlaylists = playlists.filter(p =>
+            !p.name?.toLowerCase().includes(searchQuery.toLowerCase()) && !p.hidden
           );
-          
+
           const communityPlaylists = [...matchedPlaylists, ...unmatchedPlaylists].map(p => ({
             ...p,
             title: p.name,
             songCount: p.songs?.length || 0
           }))
-          
+
           setSearchResults(songs)
           setSearchPlaylistsResults(communityPlaylists)
           setIsSearching(false)
@@ -522,10 +557,10 @@ function App() {
     e.preventDefault()
     if (!newPlaylistName.trim()) return
     const creator = localStorage.getItem('username') || 'Anonymous'
-    
+
     // Generate a temporary ID for local storage
     const tempId = Date.now().toString()
-    
+
     const newPl = {
       id: tempId,
       name: newPlaylistName.trim(),
@@ -534,17 +569,17 @@ function App() {
       creator: creator,
       createdAt: Date.now()
     }
-    
+
     // Update local state immediately
     const updatedPlaylists = [...playlists, newPl]
     setPlaylists(updatedPlaylists)
     localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
-    
+
     setNewPlaylistName('')
     setNewPlaylistImg('')
     setShowCreateModal(false)
     triggerToast(`Created playlist "${newPl.name}"!`)
-    
+
     try {
       // Try to sync with Firebase
       const docRef = await addDoc(collection(db, 'playlists'), newPl)
@@ -557,17 +592,17 @@ function App() {
 
   const handleDeletePlaylist = async (id, e) => {
     if (e) e.stopPropagation()
-    
+
     // Update local state immediately
     const updatedPlaylists = playlists.filter(p => p.id !== id)
     setPlaylists(updatedPlaylists)
     localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
-    
+
     if (selectedPlaylist && selectedPlaylist.id === id) {
       setSelectedPlaylist(null)
     }
     triggerToast('Playlist deleted.')
-    
+
     try {
       // Try to sync with Firebase
       await deleteDoc(doc(db, 'playlists', id))
@@ -587,13 +622,13 @@ function App() {
 
     const updatedSongs = [...playlist.songs, song]
     const updatedPlaylist = { ...playlist, songs: updatedSongs }
-    
+
     // Update local state immediately
     const updatedPlaylists = playlists.map(p => p.id === playlistId ? updatedPlaylist : p)
     setPlaylists(updatedPlaylists)
     localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
     triggerToast(`Added "${song.title}" to ${playlist.name}!`)
-    
+
     if (selectedPlaylist && selectedPlaylist.id === playlistId) {
       setSelectedPlaylist(updatedPlaylist)
     }
@@ -612,13 +647,13 @@ function App() {
 
     const updatedSongs = playlist.songs.filter(s => s.id !== songId)
     const updatedPlaylist = { ...playlist, songs: updatedSongs }
-    
+
     // Update local state immediately
     const updatedPlaylists = playlists.map(p => p.id === playlistId ? updatedPlaylist : p)
     setPlaylists(updatedPlaylists)
     localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
     triggerToast('Song removed from playlist.')
-    
+
     if (selectedPlaylist && selectedPlaylist.id === playlistId) {
       setSelectedPlaylist(updatedPlaylist)
     }
@@ -650,21 +685,21 @@ function App() {
 
     setIsSearching(true)
     const songs = await searchSongs(searchQuery, 100)
-    
+
     // Always show community playlists, optionally bringing matched ones to the front
-    const matchedPlaylists = playlists.filter(p => 
+    const matchedPlaylists = playlists.filter(p =>
       p.name?.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    const unmatchedPlaylists = playlists.filter(p => 
-      !p.name?.toLowerCase().includes(searchQuery.toLowerCase())
+    const unmatchedPlaylists = playlists.filter(p =>
+      !p.name?.toLowerCase().includes(searchQuery.toLowerCase()) && !p.hidden
     );
-    
+
     const communityPlaylists = [...matchedPlaylists, ...unmatchedPlaylists].map(p => ({
       ...p,
       title: p.name,
       songCount: p.songs?.length || 0
     }))
-    
+
     setSearchResults(songs)
     setSearchPlaylistsResults(communityPlaylists)
     setIsSearching(false)
@@ -681,7 +716,8 @@ function App() {
         img: communityPlaylist.img,
         description: `Created by @${communityPlaylist.creator}`,
         songs: communityPlaylist.songs || [],
-        isCommunity: true
+        isCommunity: true,
+        isHidden: communityPlaylist.hidden
       });
       return;
     }
@@ -779,6 +815,50 @@ function App() {
     playSong(shuffled[0], 0, shuffled)
     triggerToast('Shuffling tracks!')
   }
+
+  // Mini Player Widget implementation
+  const toggleMiniPlayer = async () => {
+    if (!('documentPictureInPicture' in window)) {
+      triggerToast('Widget is not supported in this browser. Try Chrome or Edge.');
+      return;
+    }
+
+    if (pipWindow) {
+      pipWindow.close();
+      return;
+    }
+
+    try {
+      const pipWin = await window.documentPictureInPicture.requestWindow({
+        width: 340,
+        height: 220,
+      });
+
+      // Copy styles
+      [...document.styleSheets].forEach((styleSheet) => {
+        try {
+          const cssRules = [...styleSheet.cssRules].map((rule) => rule.cssText).join('');
+          const style = document.createElement('style');
+          style.textContent = cssRules;
+          pipWin.document.head.appendChild(style);
+        } catch (e) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = styleSheet.href;
+          pipWin.document.head.appendChild(link);
+        }
+      });
+
+      pipWin.addEventListener('pagehide', () => {
+        setPipWindow(null);
+      });
+
+      setPipWindow(pipWin);
+    } catch (e) {
+      console.error(e);
+      triggerToast('Failed to open Widget');
+    }
+  };
 
   const getLikedSongsList = () => {
     const list = []
@@ -1163,26 +1243,60 @@ function App() {
                     <h2 className="playlist-banner-title">{selectedSaavnPlaylist.title}</h2>
                     <p className="playlist-banner-desc" style={{ opacity: 0.9 }}>{selectedSaavnPlaylist.description || `${selectedSaavnPlaylist.songs.length} tracks`}</p>
                   </div>
-                  {selectedSaavnPlaylist.songs.length > 0 && (
-                    <button
-                      onClick={() => shuffleQueue(selectedSaavnPlaylist.songs)}
-                      className="focusable"
-                      tabIndex={0}
-                      style={{
-                        background: 'white',
-                        border: 'none',
-                        color: 'black',
-                        padding: '8px 16px',
-                        borderRadius: '20px',
-                        fontSize: '12px',
-                        fontWeight: '600',
-                        cursor: 'pointer',
-                        boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                      }}
-                    >
-                      Shuffle Play
-                    </button>
-                  )}
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    {selectedSaavnPlaylist.isHidden && (
+                      <button
+                        onClick={() => {
+                          const newPl = {
+                            id: Date.now().toString(),
+                            name: selectedSaavnPlaylist.title,
+                            img: selectedSaavnPlaylist.img,
+                            songs: selectedSaavnPlaylist.songs,
+                            creator: localStorage.getItem('username') || 'Anonymous',
+                            createdAt: Date.now()
+                          };
+                          const updatedPlaylists = [...playlists, newPl];
+                          setPlaylists(updatedPlaylists);
+                          localStorage.setItem('playlists', JSON.stringify(updatedPlaylists));
+                          triggerToast(`Added "${newPl.name}" to your playlists!`);
+                        }}
+                        className="focusable"
+                        tabIndex={0}
+                        style={{
+                          background: 'rgba(255,255,255,0.2)',
+                          border: '1px solid white',
+                          color: 'white',
+                          padding: '8px 16px',
+                          borderRadius: '20px',
+                          fontSize: '12px',
+                          fontWeight: '600',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        + Add to Playlists
+                      </button>
+                    )}
+                    {selectedSaavnPlaylist.songs.length > 0 && (
+                      <button
+                        onClick={() => shuffleQueue(selectedSaavnPlaylist.songs)}
+                        className="focusable"
+                        tabIndex={0}
+                        style={{
+                          background: 'white',
+                          border: 'none',
+                          color: 'black',
+                          padding: '8px 16px',
+                          borderRadius: '20px',
+                          fontSize: '12px',
+                          fontWeight: '600',
+                          cursor: 'pointer',
+                          boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
+                        }}
+                      >
+                        Shuffle Play
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -1534,22 +1648,22 @@ function App() {
                 margin: '20px 0',
               }}>
                 {selectedPlaylist.img ? (
-                  <img 
-                    src={selectedPlaylist.img} 
-                    alt={selectedPlaylist.name} 
-                    style={{ 
-                      width: '180px', 
-                      height: '180px', 
-                      objectFit: 'cover', 
+                  <img
+                    src={selectedPlaylist.img}
+                    alt={selectedPlaylist.name}
+                    style={{
+                      width: '180px',
+                      height: '180px',
+                      objectFit: 'cover',
                       borderRadius: '12px',
-                      boxShadow: '0 8px 24px rgba(0,0,0,0.15)' 
-                    }} 
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.15)'
+                    }}
                   />
                 ) : (
-                  <div style={{ 
-                    width: '180px', 
-                    height: '180px', 
-                    background: 'linear-gradient(135deg, var(--card-orange), var(--neon-cyan))', 
+                  <div style={{
+                    width: '180px',
+                    height: '180px',
+                    background: 'linear-gradient(135deg, var(--card-orange), var(--neon-cyan))',
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
@@ -1559,12 +1673,12 @@ function App() {
                     <ListMusic size={64} color="white" />
                   </div>
                 )}
-                
+
                 <div className="playlist-banner-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', flex: '1 1 200px' }}>
                   <span className="playlist-badge" style={{ marginBottom: '8px', fontSize: '12px', fontWeight: '700', letterSpacing: '1px', color: 'var(--text-secondary)' }}>COMMUNITY PLAYLIST</span>
                   <h2 className="playlist-banner-title" style={{ fontSize: '32px', fontWeight: '800', color: 'var(--text-color)', margin: '0 0 8px 0', lineHeight: '1.2' }}>{selectedPlaylist.name}</h2>
                   <p className="playlist-banner-desc" style={{ color: 'var(--text-secondary)', margin: '0 0 20px 0', fontSize: '14px' }}>{selectedPlaylist.songs.length} songs • Created by @{selectedPlaylist.creator || 'Anonymous'}</p>
-                  
+
                   {selectedPlaylist.songs.length > 0 && (
                     <button
                       onClick={() => shuffleQueue(selectedPlaylist.songs)}
@@ -1713,7 +1827,7 @@ function App() {
               {/* Stats Row */}
               <div className="library-stats-row">
                 <div className="library-stat-pill">
-                  <span className="lib-stat-val">{playlists.length}</span>
+                  <span className="lib-stat-val">{playlists.filter(p => !p.hidden).length}</span>
                   <span className="lib-stat-label">Playlists</span>
                 </div>
                 <div className="library-stat-divider"></div>
@@ -1723,7 +1837,7 @@ function App() {
                 </div>
                 <div className="library-stat-divider"></div>
                 <div className="library-stat-pill">
-                  <span className="lib-stat-val">{playlists.reduce((acc, p) => acc + p.songs.length, 0)}</span>
+                  <span className="lib-stat-val">{playlists.filter(p => !p.hidden).reduce((acc, p) => acc + p.songs.length, 0)}</span>
                   <span className="lib-stat-label">Saved Songs</span>
                 </div>
               </div>
@@ -1743,7 +1857,7 @@ function App() {
                   </div>
                 </div>
 
-                {playlists.map((playlist, pIdx) => {
+                {playlists.filter(p => !p.hidden).map((playlist, pIdx) => {
                   const gradients = [
                     'linear-gradient(135deg, #f5954a 0%, #ff6b9d 100%)',
                     'linear-gradient(135deg, #00e5cc 0%, #007cf0 100%)',
@@ -1774,7 +1888,7 @@ function App() {
                   );
                 })}
 
-                {playlists.length === 0 && (
+                {playlists.filter(p => !p.hidden).length === 0 && (
                   <div className="empty-playlists-msg">
                     <ListMusic size={28} color="var(--text-secondary)" />
                     <p>No playlists yet.<br />Tap "New Playlist" to start.</p>
@@ -2097,6 +2211,9 @@ function App() {
             <button className="d-player-icon-btn focusable" tabIndex={0} onClick={() => triggerToast('Downloaded offline!')}>
               <Download size={18} />
             </button>
+            <button className="d-player-icon-btn focusable" tabIndex={0} onClick={toggleMiniPlayer} title="Widget">
+              <Monitor size={18} />
+            </button>
             <button className="d-player-icon-btn focusable" tabIndex={0} onClick={() => setIsDesktopFullscreenOpen(true)} title="Fullscreen">
               <Maximize2 size={18} />
             </button>
@@ -2339,6 +2456,44 @@ function App() {
 
       {/* Download Settings Container */}
       {isDownloadOpen && <DownloadContainer onClose={() => setIsDownloadOpen(false)} />}
+
+      {/* Mini Player React Portal */}
+      {pipWindow && createPortal(
+        <div style={{ 
+          background: 'var(--panel-bg, #1e1e1e)', 
+          height: '100vh', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          padding: '20px',
+          boxSizing: 'border-box'
+        }}>
+          <img 
+            src={getSongImage(currentTrack)} 
+            alt={currentTrack?.title}
+            style={{ width: '100px', height: '100px', borderRadius: '12px', objectFit: 'cover', marginBottom: '16px', boxShadow: '0 8px 16px rgba(0,0,0,0.3)' }} 
+          />
+          <div style={{ color: 'var(--text-color, #fff)', fontWeight: 'bold', textAlign: 'center', fontSize: '15px', marginBottom: '4px', width: '100%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {currentTrack?.title || 'No Track Playing'}
+          </div>
+          <div style={{ color: 'var(--text-secondary, #aaa)', fontSize: '12px', marginBottom: '20px', width: '100%', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {currentTrack?.artist || 'Unknown Artist'}
+          </div>
+          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+            <button onClick={playPreviousSong} style={{ background: 'none', border: 'none', color: 'var(--text-color, #fff)', cursor: 'pointer', display: 'flex' }}>
+              <SkipForward size={22} style={{ transform: 'rotate(180deg)' }} />
+            </button>
+            <button onClick={togglePlay} style={{ background: 'var(--card-orange, #f5954a)', border: 'none', color: 'white', width: '48px', height: '48px', borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(245, 149, 74, 0.4)' }}>
+              {isPlaying ? <Pause size={22} fill="white" /> : <Play size={22} fill="white" style={{ marginLeft: '4px' }} />}
+            </button>
+            <button onClick={playNextSong} style={{ background: 'none', border: 'none', color: 'var(--text-color, #fff)', cursor: 'pointer', display: 'flex' }}>
+              <SkipForward size={22} />
+            </button>
+          </div>
+        </div>,
+        pipWindow.document.body
+      )}
     </div>
   )
 }
