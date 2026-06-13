@@ -247,8 +247,56 @@ function App() {
       navigator.mediaSession.setActionHandler('pause', togglePlay);
       navigator.mediaSession.setActionHandler('previoustrack', playPreviousSong);
       navigator.mediaSession.setActionHandler('nexttrack', playNextSong);
+      
+      // Seek handlers for better lock screen widget integration
+      navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+        const skipTime = details.seekOffset || 10;
+        if (audioRef.current) {
+          audioRef.current.currentTime = Math.max(audioRef.current.currentTime - skipTime, 0);
+        }
+      });
+      navigator.mediaSession.setActionHandler('seekforward', (details) => {
+        const skipTime = details.seekOffset || 10;
+        if (audioRef.current) {
+          audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration);
+        }
+      });
     }
   }, [currentTrack, activePlaybackQueue, currentTrackIndex]);
+
+  // Preload the next track's audio URL to ensure gapless playback and background continuous play
+  useEffect(() => {
+    if (activePlaybackQueue.length === 0 || currentTrackIndex === -1) return;
+    
+    let nextIndex = currentTrackIndex + 1;
+    if (nextIndex >= activePlaybackQueue.length) {
+      nextIndex = 0; // loop back
+    }
+    
+    const nextSong = activePlaybackQueue[nextIndex];
+    if (nextSong && !nextSong.audioUrl) {
+      const fetchNext = async () => {
+        try {
+          const queryStr = nextSong.query || `${nextSong.title} ${nextSong.artist}`;
+          const results = await searchSongs(queryStr);
+          if (results && results.length > 0) {
+            const fetchedSong = results[0];
+            setActivePlaybackQueue(prev => {
+              const newQueue = [...prev];
+              // only update if it hasn't been updated already
+              if (!newQueue[nextIndex].audioUrl) {
+                 newQueue[nextIndex] = { ...newQueue[nextIndex], audioUrl: fetchedSong.audioUrl };
+              }
+              return newQueue;
+            });
+          }
+        } catch (e) {
+          console.error("Failed to preload next track", e);
+        }
+      };
+      fetchNext();
+    }
+  }, [currentTrackIndex, activePlaybackQueue]);
 
   // Reset sub-views when tab changes
   useEffect(() => {
@@ -919,6 +967,8 @@ function App() {
         onTimeUpdate={onTimeUpdate}
         onLoadedMetadata={onLoadedMetadata}
         onEnded={onAudioEnded}
+        playsInline
+        preload="auto"
       />
 
       {/* Global Toast Notification */}
@@ -1306,26 +1356,32 @@ function App() {
               </div>
 
               <div className="playlist-songs-list hide-scrollbar">
-                {selectedSaavnPlaylist.songs.map((song, idx) => {
-                  const isActive = currentTrack?.id === song.id;
-                  return (
-                    <div
-                      key={song.id || idx}
-                      className={`playlist-song-item focusable ${isActive ? 'active-track' : ''}`}
-                      tabIndex={0}
-                      onClick={() => playSong(song, idx, selectedSaavnPlaylist.songs)}
-                    >
-                      <span className="playlist-song-idx">
-                        {isActive && isPlaying ? "▶" : idx + 1}
-                      </span>
-                      <div className="playlist-song-info">
-                        <div className="playlist-song-title">{song.title}</div>
-                        <div className="playlist-song-artist">{song.artist}</div>
+                {selectedSaavnPlaylist.songs.length === 0 ? (
+                  <div className="no-songs-placeholder" style={{ padding: '40px 20px', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '14px' }}>
+                    No songs available in this playlist.
+                  </div>
+                ) : (
+                  selectedSaavnPlaylist.songs.map((song, idx) => {
+                    const isActive = currentTrack?.id === song.id;
+                    return (
+                      <div
+                        key={song.id || idx}
+                        className={`playlist-song-item focusable ${isActive ? 'active-track' : ''}`}
+                        tabIndex={0}
+                        onClick={() => playSong(song, idx, selectedSaavnPlaylist.songs)}
+                      >
+                        <span className="playlist-song-idx">
+                          {isActive && isPlaying ? "▶" : idx + 1}
+                        </span>
+                        <div className="playlist-song-info">
+                          <div className="playlist-song-title">{song.title}</div>
+                          <div className="playlist-song-artist">{song.artist}</div>
+                        </div>
+                        <div className="playlist-song-album">{song.album || 'Single'}</div>
                       </div>
-                      <div className="playlist-song-album">{song.album || 'Single'}</div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
             </div>
           ) : (

@@ -1,375 +1,1275 @@
-// Tamil Music Playlists - curated by astraardency
-// Active user playlists are stored dynamically in Firebase Firestore.
-
 export const defaultPlaylists = [
-  {
-    id: "pl_1",
-    name: "Tamil Hits 2024",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_1", title: "Chillax", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Chillax.jpg" },
-      { id: "s_2", title: "Kaththi", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Kaththi.jpg" },
-      { id: "s_3", title: "Enantha Enantha", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Enantha Enantha.jpg" },
-      { id: "s_4", title: "Rowdy Baby", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Rowdy Baby.jpg" },
-      { id: "s_5", title: "Kannaana Kanney", artist: "D. Imman", img: "images/D. Imman/Kannaana Kanney.jpg" }
-    ]
-  },
-  {
-    id: "pl_2",
-    name: "A.R. Rahman Classics",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_6", title: "Roja Jaaneman", artist: "A.R. Rahman", img: "images/A.R. Rahman/Roja Jaaneman.jpg" },
-      { id: "s_7", title: "Mustafa Mustafa", artist: "A.R. Rahman", img: "images/A.R. Rahman/Mustafa Mustafa.jpg" },
-      { id: "s_8", title: "Urvasi Urvasi", artist: "A.R. Rahman", img: "images/A.R. Rahman/Urvasi Urvasi.jpg" },
-      { id: "s_9", title: "Kehna Hi Kya", artist: "A.R. Rahman", img: "images/A.R. Rahman/Kehna Hi Kya.jpg" },
-      { id: "s_10", title: "Chinna Chinna Aasai", artist: "A.R. Rahman", img: "images/A.R. Rahman/Chinna Chinna Aasai.jpg" },
-      { id: "s_11", title: "Dil Se Re", artist: "A.R. Rahman", img: "images/A.R. Rahman/Dil Se Re.jpg" }
-    ]
-  },
-  {
-    id: "pl_3",
-    name: "Anirudh Bangers",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_12", title: "Why This Kolaveri Di", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Why This Kolaveri Di.jpg" },
-      { id: "s_13", title: "Aaluma Doluma", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Aaluma Doluma.jpg" },
-      { id: "s_14", title: "Verithanam", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Verithanam.jpg" },
-      { id: "s_15", title: "Naana Thadanaa", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Naana Thadanaa.jpg" },
-      { id: "s_16", title: "Maari Thara Local", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Maari Thara Local.jpg" },
-      { id: "s_17", title: "Kannazhaga", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Kannazhaga.jpg" }
-    ]
-  },
-  {
-    id: "pl_4",
-    name: "Yuvan Love Songs",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_18", title: "Nenjukkul Peidhidum", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Nenjukkul Peidhidum.jpg" },
-      { id: "s_19", title: "Oru Murai Vanthu Paarthaya", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Oru Murai Vanthu Paarthaya.jpg" },
-      { id: "s_20", title: "Munbe Vaa", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Munbe Vaa.jpg" },
-      { id: "s_21", title: "Inaindha Kaigal", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Inaindha Kaigal.jpg" },
-      { id: "s_22", title: "Thalli Pogathey", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Thalli Pogathey.jpg" }
-    ]
-  },
-  {
-    id: "pl_5",
-    name: "90s Tamil Nostalgic",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1598387993441-a364f854cfba?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_23", title: "Poove Unakkaga", artist: "A.R. Rahman", img: "images/A.R. Rahman/Poove Unakkaga.jpg" },
-      { id: "s_24", title: "Kadhal Rojave", artist: "A.R. Rahman", img: "images/A.R. Rahman/Kadhal Rojave.jpg" },
-      { id: "s_25", title: "En Iniya Pon Nilave", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/En Iniya Pon Nilave.jpg" },
-      { id: "s_26", title: "Ninaithale Inikkum", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Ninaithale Inikkum.jpg" },
-      { id: "s_27", title: "Roja Kaadhal", artist: "A.R. Rahman", img: "images/A.R. Rahman/Roja Kaadhal.jpg" },
-      { id: "s_28", title: "Urvasi Urvasi", artist: "A.R. Rahman", img: "images/A.R. Rahman/Urvasi Urvasi.jpg" }
-    ]
-  },
-  {
-    id: "pl_6",
-    name: "Ilaiyaraaja Forever",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_29", title: "Poovarasam Peepee", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Poovarasam Peepee.jpg" },
-      { id: "s_30", title: "Naan Paadum Mouna Raagam", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Naan Paadum Mouna Raagam.jpg" },
-      { id: "s_31", title: "Endrendrum Punnagai", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Endrendrum Punnagai.jpg" },
-      { id: "s_32", title: "Unakkena Vaazhjiren", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Unakkena Vaazhjiren.jpg" },
-      { id: "s_33", title: "Aasai Aasaiyai", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Aasai Aasaiyai.jpg" },
-      { id: "s_34", title: "Ninaithale Inikkum", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Ninaithale Inikkum.jpg" }
-    ]
-  },
-  {
-    id: "pl_7",
-    name: "Rajinikanth Mass Hits",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_35", title: "Verithanam", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Verithanam.jpg" },
-      { id: "s_36", title: "Kabali Para", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Kabali Para.jpg" },
-      { id: "s_37", title: "Neruppu Da", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Neruppu Da.jpg" },
-      { id: "s_38", title: "Kaala Kaala", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Kaala Kaala.jpg" },
-      { id: "s_39", title: "Style", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Style.jpg" }
-    ]
-  },
-  {
-    id: "pl_8",
-    name: "D. Imman Melodies",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_40", title: "Kannaana Kanney", artist: "D. Imman", img: "images/D. Imman/Kannaana Kanney.jpg" },
-      { id: "s_41", title: "Aayiram Jenmangal", artist: "D. Imman", img: "images/D. Imman/Aayiram Jenmangal.jpg" },
-      { id: "s_42", title: "Nee Partha Vizhigal", artist: "D. Imman", img: "images/D. Imman/Nee Partha Vizhigal.jpg" },
-      { id: "s_43", title: "Uyire Uyire", artist: "D. Imman", img: "images/D. Imman/Uyire Uyire.jpg" },
-      { id: "s_44", title: "Thanga Magan", artist: "D. Imman", img: "images/D. Imman/Thanga Magan.jpg" },
-      { id: "s_45", title: "Aalaporan Thamizhan", artist: "D. Imman", img: "images/D. Imman/Aalaporan Thamizhan.jpg" }
-    ]
-  },
-  {
-    id: "pl_9",
-    name: "Santhosh Narayanan Vibes",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_46", title: "Inji Iduppazhagi", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Inji Iduppazhagi.jpg" },
-      { id: "s_47", title: "Mental Manadhil", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Mental Manadhil.jpg" },
-      { id: "s_48", title: "Rekka Vecha Paravaiyada", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Rekka Vecha Paravaiyada.jpg" },
-      { id: "s_49", title: "Aayirathil Oruvan", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Aayirathil Oruvan.jpg" },
-      { id: "s_50", title: "Enjoy Enjaami", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Enjoy Enjaami.jpg" }
-    ]
-  },
-  {
-    id: "pl_10",
-    name: "Tamil Peppy Dance Hits",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_51", title: "Rowdy Baby", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Rowdy Baby.jpg" },
-      { id: "s_52", title: "Aaluma Doluma", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Aaluma Doluma.jpg" },
-      { id: "s_53", title: "Kutti Story", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Kutti Story.jpg" },
-      { id: "s_54", title: "Vaathi Coming", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Vaathi Coming.jpg" },
-      { id: "s_55", title: "Chellamma", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Chellamma.jpg" },
-      { id: "s_56", title: "Inji Iduppazhagi", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Inji Iduppazhagi.jpg" }
-    ]
-  },
-  {
-    id: "pl_11",
-    name: "Vijay Movie Anthems",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_57", title: "Vaathi Coming", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Vaathi Coming.jpg" },
-      { id: "s_58", title: "Beast Mode", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Beast Mode.jpg" },
-      { id: "s_59", title: "Selfie Pulla", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Selfie Pulla.jpg" },
-      { id: "s_60", title: "Naana Thadanaa", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Naana Thadanaa.jpg" },
-      { id: "s_61", title: "Aalaporan Thamizhan", artist: "D. Imman", img: "images/D. Imman/Aalaporan Thamizhan.jpg" }
-    ]
-  },
-  {
-    id: "pl_12",
-    name: "Soulful Tamil Melodies",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_62", title: "Vinnaithaandi Varuvaayaa", artist: "A.R. Rahman", img: "images/A.R. Rahman/Vinnaithaandi Varuvaayaa.jpg" },
-      { id: "s_63", title: "Nenjukkul Peidhidum", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Nenjukkul Peidhidum.jpg" },
-      { id: "s_64", title: "Kannazhaga", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Kannazhaga.jpg" },
-      { id: "s_65", title: "Aayiram Jenmangal", artist: "D. Imman", img: "images/D. Imman/Aayiram Jenmangal.jpg" },
-      { id: "s_66", title: "Nee Partha Vizhigal", artist: "D. Imman", img: "images/D. Imman/Nee Partha Vizhigal.jpg" }
-    ]
-  },
-  {
-    id: "pl_13",
-    name: "G.V. Prakash Kumar Hits",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1471478331149-c72f17e33c73?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_67", title: "Konjam Konjam", artist: "G.V. Prakash Kumar", img: "images/G.V. Prakash Kumar/Konjam Konjam.jpg" },
-      { id: "s_68", title: "Nee Yaarendra", artist: "G.V. Prakash Kumar", img: "images/G.V. Prakash Kumar/Nee Yaarendra.jpg" },
-      { id: "s_69", title: "Hosanna", artist: "A.R. Rahman", img: "images/A.R. Rahman/Hosanna.jpg" },
-      { id: "s_70", title: "Anbil Avan", artist: "G.V. Prakash Kumar", img: "images/G.V. Prakash Kumar/Anbil Avan.jpg" },
-      { id: "s_71", title: "Nee Himavandhaa", artist: "G.V. Prakash Kumar", img: "images/G.V. Prakash Kumar/Nee Himavandhaa.jpg" }
-    ]
-  },
-  {
-    id: "pl_14",
-    name: "Harris Jayaraj Timeless",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_72", title: "Anbe En Anbe", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Anbe En Anbe.jpg" },
-      { id: "s_73", title: "Nenjam Ellam", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Nenjam Ellam.jpg" },
-      { id: "s_74", title: "Oru Deivam Thantha Poove", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Oru Deivam Thantha Poove.jpg" },
-      { id: "s_75", title: "Yaaradi Nee Mohini", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Yaaradi Nee Mohini.jpg" },
-      { id: "s_76", title: "Kaaney Kaaney", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Kaaney Kaaney.jpg" },
-      { id: "s_77", title: "Vellai Pookal", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Vellai Pookal.jpg" }
-    ]
-  },
-  {
-    id: "pl_15",
-    name: "Kadhal Romance Mix",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_78", title: "Munbe Vaa", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Munbe Vaa.jpg" },
-      { id: "s_79", title: "Kadhal Rojave", artist: "A.R. Rahman", img: "images/A.R. Rahman/Kadhal Rojave.jpg" },
-      { id: "s_80", title: "Thalli Pogathey", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Thalli Pogathey.jpg" },
-      { id: "s_81", title: "Vinnaithaandi Varuvaayaa", artist: "A.R. Rahman", img: "images/A.R. Rahman/Vinnaithaandi Varuvaayaa.jpg" },
-      { id: "s_82", title: "Oru Murai Vanthu Paarthaya", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Oru Murai Vanthu Paarthaya.jpg" },
-      { id: "s_83", title: "Hosanna", artist: "A.R. Rahman", img: "images/A.R. Rahman/Hosanna.jpg" }
-    ]
-  },
-  {
-    id: "pl_16",
-    name: "Tamil Rap & Hip-Hop",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_84", title: "Enjoy Enjaami", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Enjoy Enjaami.jpg" },
-      { id: "s_85", title: "Bigil Theme", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Bigil Theme.jpg" },
-      { id: "s_86", title: "Kutti Story", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Kutti Story.jpg" },
-      { id: "s_87", title: "Neruppu Da", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Neruppu Da.jpg" },
-      { id: "s_88", title: "Siriki", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Siriki.jpg" }
-    ]
-  },
-  {
-    id: "pl_17",
-    name: "Kuthu Party Night",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1526478806334-5fd488fcaabc?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_89", title: "Urvasi Urvasi", artist: "A.R. Rahman", img: "images/A.R. Rahman/Urvasi Urvasi.jpg" },
-      { id: "s_90", title: "Aaluma Doluma", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Aaluma Doluma.jpg" },
-      { id: "s_91", title: "Maari Thara Local", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Maari Thara Local.jpg" },
-      { id: "s_92", title: "Chillax", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Chillax.jpg" },
-      { id: "s_93", title: "Vaathi Coming", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Vaathi Coming.jpg" },
-      { id: "s_94", title: "Inji Iduppazhagi", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Inji Iduppazhagi.jpg" }
-    ]
-  },
-  {
-    id: "pl_18",
-    name: "Chill Lofi Tamil",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_95", title: "Kannaana Kanney", artist: "D. Imman", img: "images/D. Imman/Kannaana Kanney.jpg" },
-      { id: "s_96", title: "Nenjukkul Peidhidum", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Nenjukkul Peidhidum.jpg" },
-      { id: "s_97", title: "Naan Paadum Mouna Raagam", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Naan Paadum Mouna Raagam.jpg" },
-      { id: "s_98", title: "Mental Manadhil", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Mental Manadhil.jpg" },
-      { id: "s_99", title: "Uyire Uyire", artist: "D. Imman", img: "images/D. Imman/Uyire Uyire.jpg" }
-    ]
-  },
-  {
-    id: "pl_19",
-    name: "2000s Tamil Golden Era",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1458560871784-56d23406c091?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_100", title: "Mustafa Mustafa", artist: "A.R. Rahman", img: "images/A.R. Rahman/Mustafa Mustafa.jpg" },
-      { id: "s_101", title: "Anbe En Anbe", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Anbe En Anbe.jpg" },
-      { id: "s_102", title: "Yaaradi Nee Mohini", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Yaaradi Nee Mohini.jpg" },
-      { id: "s_103", title: "Oru Deivam Thantha Poove", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Oru Deivam Thantha Poove.jpg" },
-      { id: "s_104", title: "En Iniya Pon Nilave", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/En Iniya Pon Nilave.jpg" },
-      { id: "s_105", title: "Kadhal Rojave", artist: "A.R. Rahman", img: "images/A.R. Rahman/Kadhal Rojave.jpg" }
-    ]
-  },
-  {
-    id: "pl_20",
-    name: "Villain BGM Collection",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_106", title: "Kabali Para", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Kabali Para.jpg" },
-      { id: "s_107", title: "Kaala Kaala", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Kaala Kaala.jpg" },
-      { id: "s_108", title: "Bigil Theme", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Bigil Theme.jpg" },
-      { id: "s_109", title: "Beast Mode", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Beast Mode.jpg" },
-      { id: "s_110", title: "Neruppu Da", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Neruppu Da.jpg" }
-    ]
-  },
-  {
-    id: "pl_21",
-    name: "Mothers & Family Songs",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_111", title: "Kannaana Kanney", artist: "D. Imman", img: "images/D. Imman/Kannaana Kanney.jpg" },
-      { id: "s_112", title: "Chinna Chinna Aasai", artist: "A.R. Rahman", img: "images/A.R. Rahman/Chinna Chinna Aasai.jpg" },
-      { id: "s_113", title: "Aayiram Jenmangal", artist: "D. Imman", img: "images/D. Imman/Aayiram Jenmangal.jpg" },
-      { id: "s_114", title: "Inaindha Kaigal", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Inaindha Kaigal.jpg" },
-      { id: "s_115", title: "Naan Paadum Mouna Raagam", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Naan Paadum Mouna Raagam.jpg" }
-    ]
-  },
-  {
-    id: "pl_22",
-    name: "Rain & Monsoon Mood",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1519692933481-e162a57d6721?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_116", title: "Nenjukkul Peidhidum", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Nenjukkul Peidhidum.jpg" },
-      { id: "s_117", title: "Poove Unakkaga", artist: "A.R. Rahman", img: "images/A.R. Rahman/Poove Unakkaga.jpg" },
-      { id: "s_118", title: "Vellai Pookal", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Vellai Pookal.jpg" },
-      { id: "s_119", title: "Kaaney Kaaney", artist: "Harris Jayaraj", img: "images/Harris Jayaraj/Kaaney Kaaney.jpg" },
-      { id: "s_120", title: "Thalli Pogathey", artist: "Yuvan Shankar Raja", img: "images/Yuvan Shankar Raja/Thalli Pogathey.jpg" },
-      { id: "s_121", title: "Roja Kaadhal", artist: "A.R. Rahman", img: "images/A.R. Rahman/Roja Kaadhal.jpg" }
-    ]
-  },
-  {
-    id: "pl_23",
-    name: "Kollywood Top 2023",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1501612780327-45045538702b?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_122", title: "Chellamma", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Chellamma.jpg" },
-      { id: "s_123", title: "Siriki", artist: "Anirudh Ravichander", img: "images/Anirudh Ravichander/Siriki.jpg" },
-      { id: "s_124", title: "Rekka Vecha Paravaiyada", artist: "Santhosh Narayanan", img: "images/Santhosh Narayanan/Rekka Vecha Paravaiyada.jpg" },
-      { id: "s_125", title: "Anbil Avan", artist: "G.V. Prakash Kumar", img: "images/G.V. Prakash Kumar/Anbil Avan.jpg" },
-      { id: "s_126", title: "Nee Partha Vizhigal", artist: "D. Imman", img: "images/D. Imman/Nee Partha Vizhigal.jpg" }
-    ]
-  },
-  {
-    id: "pl_24",
-    name: "Devotional Tamil Classics",
-    creator: "astraardency",
-    img: "https://images.unsplash.com/photo-1545231097-cbd6b24523f9?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    hidden: true,
-    songs: [
-      { id: "s_127", title: "Aayiram Jenmangal", artist: "D. Imman", img: "images/D. Imman/Aayiram Jenmangal.jpg" },
-      { id: "s_128", title: "Endrendrum Punnagai", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Endrendrum Punnagai.jpg" },
-      { id: "s_129", title: "Unakkena Vaazhjiren", artist: "Ilaiyaraaja", img: "images/Ilaiyaraaja/Unakkena Vaazhjiren.jpg" },
-      { id: "s_130", title: "Kannaana Kanney", artist: "D. Imman", img: "images/D. Imman/Kannaana Kanney.jpg" }
-    ]
-  }
+    {
+        id: 'global-1',
+        name: 'Vibeflow Hits',
+        creator: 'Admin',
+        img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop',
+        songs: [],
+        createdAt: Date.now()
+    },
+    {
+        id: 'custom-80s&90s',
+        name: '80s & 90s Evergreen Hits',
+        creator: 'Vibeflow Official',
+        img: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop',
+        createdAt: Date.now(),
+        songs: [
+            {
+                "id": "song_1",
+                "title": "Muthumani Maalai (From \"Chin...",
+                "artist": "S. P. Balasubrahmanyam, P. Susheela",
+                "img": "",
+                "audioUrl": "",
+                "duration": 299,
+                "album": "Best Hits of Ilaiyaraja ..."
+            },
+            {
+                "id": "song_2",
+                "title": "Mannil Indha",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 253,
+                "album": "Keladi Kanmani (Ori..."
+            },
+            {
+                "id": "song_3",
+                "title": "Nenjukkulae Innarendru (From...",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 294,
+                "album": "SPB & Janaki Evergre..."
+            },
+            {
+                "id": "song_4",
+                "title": "Malliga Mottu (From \"Sakthivel\")",
+                "artist": "Mano, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 303,
+                "album": "Best Hits of Ilaiyaraja ..."
+            },
+            {
+                "id": "song_5",
+                "title": "Santhaikku Vantha Kili",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 327,
+                "album": "Dharma Durai (Origin..."
+            },
+            {
+                "id": "song_6",
+                "title": "Enakena Pirandhava",
+                "artist": "Deva, S. P. Balasubrahmanyam, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 263,
+                "album": "Kizhakku Karai (Origi..."
+            },
+            {
+                "id": "song_7",
+                "title": "Indha Maan",
+                "artist": "Ilaiyaraaja, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 276,
+                "album": "Karakattakkaran (Ori..."
+            },
+            {
+                "id": "song_8",
+                "title": "Neethane",
+                "artist": "Ilaiyaraaja, Swarnalatha, K. J. Yesudas",
+                "img": "",
+                "audioUrl": "",
+                "duration": 308,
+                "album": "Paatu Vaathiyar (Orig..."
+            },
+            {
+                "id": "song_9",
+                "title": "Thenmadurai Vaigai Nadhi",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 272,
+                "album": "Dharmathin Thalaiva..."
+            },
+            {
+                "id": "song_10",
+                "title": "Kooppitta Malar Thedi",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 295,
+                "album": "Vasanthakaala Paravai"
+            },
+            {
+                "id": "song_11",
+                "title": "Arachcha Santhanam",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 296,
+                "album": "Chinna Thambi (Origi..."
+            },
+            {
+                "id": "song_12",
+                "title": "Ooru Sanam Thoongidichu",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 278,
+                "album": "Mella Thirandhadhu K..."
+            },
+            {
+                "id": "song_13",
+                "title": "Koondukkulla (From \"Chinna G...",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 257,
+                "album": "SPB & Janaki Evergre..."
+            },
+            {
+                "id": "song_14",
+                "title": "Intha Maamanoda (From \"Utha...",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 287,
+                "album": "Evergreen Songs of Il..."
+            },
+            {
+                "id": "song_15",
+                "title": "Maanguyilae - Duet",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 266,
+                "album": "Karakattakkaran (Ori..."
+            },
+            {
+                "id": "song_16",
+                "title": "Innum Ennai",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 297,
+                "album": "Singaravelan"
+            },
+            {
+                "id": "song_17",
+                "title": "Nee Engey En Anbe",
+                "artist": "Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 309,
+                "album": "Chinna Thambi (Origi..."
+            },
+            {
+                "id": "song_18",
+                "title": "Kadhoram Loolakku",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 303,
+                "album": "Chinna Mapillai (Origi..."
+            },
+            {
+                "id": "song_19",
+                "title": "Kaattu Kuyil Paattu (From \"Chin...",
+                "artist": "Mano, Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 280,
+                "album": "Evergreen Songs of Il..."
+            },
+            {
+                "id": "song_20",
+                "title": "Thedum Kann Paarvai",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 283,
+                "album": "Mella Thirandhadhu K..."
+            },
+            {
+                "id": "song_21",
+                "title": "Vaa Vennila Unnaithane (From \"...",
+                "artist": "S. P. Balasubrahmanyam, P. Susheela",
+                "img": "",
+                "audioUrl": "",
+                "duration": 279,
+                "album": "Endrum Raaja"
+            },
+            {
+                "id": "song_22",
+                "title": "Rajathi Raja (From \"Mannan\")",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 298,
+                "album": "SPB & Janaki Evergre..."
+            },
+            {
+                "id": "song_23",
+                "title": "Adi Poonguyiley (From \"Aranm...",
+                "artist": "Mano, Minmini",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "Love Notes by Ilaiyar..."
+            },
+            {
+                "id": "song_24",
+                "title": "Ennai Thottu",
+                "artist": "Ilaiyaraaja, S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 301,
+                "album": "Unna Ninachen Paatu..."
+            },
+            {
+                "id": "song_25",
+                "title": "Kalyaana Thaen Nilaa",
+                "artist": "K. J. Yesudas, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 282,
+                "album": "Mounam Sammadha..."
+            },
+            {
+                "id": "song_26",
+                "title": "Sangeetha Megam",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 270,
+                "album": "Udaya Geetham (Ori..."
+            },
+            {
+                "id": "song_27",
+                "title": "Kalyaana Maalai",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 279,
+                "album": "Pudhu Pudhu Arthan..."
+            },
+            {
+                "id": "song_28",
+                "title": "Thooliyile Ada Vantha - Male V...",
+                "artist": "Mano",
+                "img": "",
+                "audioUrl": "",
+                "duration": 282,
+                "album": "Chinna Thambi (Origi..."
+            },
+            {
+                "id": "song_29",
+                "title": "Valaiyosai",
+                "artist": "Ilaiyaraaja, S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 275,
+                "album": "Sathya (Original Moti..."
+            },
+            {
+                "id": "song_30",
+                "title": "Thendral Kaatre",
+                "artist": "K. J. Yesudas, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 295,
+                "album": "Eeramana Rojave (Ori..."
+            },
+            {
+                "id": "song_31",
+                "title": "Enna Saththam Indha Neram",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 257,
+                "album": "Punnagai Mannan (Or..."
+            },
+            {
+                "id": "song_32",
+                "title": "Pachamala Poovu",
+                "artist": "Ilaiyaraaja, S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 266,
+                "album": "Kizhakku Vaasal (Ori..."
+            },
+            {
+                "id": "song_33",
+                "title": "Chinna Chinna Vanna Kuyil",
+                "artist": "S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 266,
+                "album": "Mouna Ragam (Origi..."
+            },
+            {
+                "id": "song_34",
+                "title": "Poovoma Oorgolam",
+                "artist": "Swarnalatha, S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 291,
+                "album": "Chinna Thambi (Origi..."
+            },
+            {
+                "id": "song_35",
+                "title": "Shenbagame Shenbagame - M...",
+                "artist": "Mano",
+                "img": "",
+                "audioUrl": "",
+                "duration": 277,
+                "album": "Enga Ooru Pattukara..."
+            },
+            {
+                "id": "song_36",
+                "title": "Aanenna Pennena",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 346,
+                "album": "Dharma Durai (Origin..."
+            },
+            {
+                "id": "song_37",
+                "title": "Kungumam Manjalukku (From \"...",
+                "artist": "K. J. Yesudas, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 299,
+                "album": "Mesmerising Tamil So..."
+            },
+            {
+                "id": "song_38",
+                "title": "Thaneerilay Mugam",
+                "artist": "Mano, Uma Ramanan",
+                "img": "",
+                "audioUrl": "",
+                "duration": 288,
+                "album": "Manikuyil"
+            },
+            {
+                "id": "song_39",
+                "title": "Annan Enna Thambi Enna",
+                "artist": "K. J. Yesudas",
+                "img": "",
+                "audioUrl": "",
+                "duration": 300,
+                "album": "Dharma Durai (Origin..."
+            },
+            {
+                "id": "song_40",
+                "title": "Keladi Kanmani",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 275,
+                "album": "Pudhu Pudhu Arthan..."
+            },
+            {
+                "id": "song_41",
+                "title": "Paadi Parandha",
+                "artist": "Ilaiyaraaja, S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 295,
+                "album": "Kizhakku Vaasal (Ori..."
+            },
+            {
+                "id": "song_42",
+                "title": "Nilaave Vaa",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 277,
+                "album": "Mouna Ragam (Origi..."
+            },
+            {
+                "id": "song_43",
+                "title": "Guruvayurappa",
+                "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 274,
+                "album": "Pudhu Pudhu Arthan..."
+            },
+            {
+                "id": "song_44",
+                "title": "Mandram Vandha",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 287,
+                "album": "Mouna Ragam (Origi..."
+            },
+            {
+                "id": "song_45",
+                "title": "Adho Andha Nadhiyoram",
+                "artist": "S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 349,
+                "album": "Ezhai Jaathi"
+            },
+            {
+                "id": "song_46",
+                "title": "Shenbagame Shenbagame - D...",
+                "artist": "Mano, Ilaiyaraaja",
+                "img": "",
+                "audioUrl": "",
+                "duration": 278,
+                "album": "Enga Ooru Pattukara..."
+            },
+            {
+                "id": "song_47",
+                "title": "Kuzhaloodhum Kannanukku",
+                "artist": "K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 278,
+                "album": "Mella Thirandhadhu K..."
+            },
+            {
+                "id": "song_48",
+                "title": "Kadhal Kavithaigal",
+                "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 310,
+                "album": "Gopura Vasalile (Orig..."
+            },
+            {
+                "id": "song_49",
+                "title": "Ooreallam Un Paattuthaan (Fro...",
+                "artist": "K. J. Yesudas",
+                "img": "",
+                "audioUrl": "",
+                "duration": 323,
+                "album": "K. J. Yesudas Tamil Hit..."
+            },
+            {
+                "id": "song_50",
+                "title": "Oru Maina Maina",
+                "artist": "Mano, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 309,
+                "album": "Uzhaippali"
+            },
+            {
+                "id": "song_51",
+                "title": "Priyasakhi",
+                "artist": "Mano, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 307,
+                "album": "Gopura Vasalile (Orig..."
+            },
+            {
+                "id": "song_52",
+                "title": "Pattu Poove (From \"Chembarut...",
+                "artist": "Mano, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "Golden Hits of S. Jana..."
+            },
+            {
+                "id": "song_53",
+                "title": "Kannukkul Nooru Nilava (From...",
+                "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 265,
+                "album": "Sangeetha Utsavam -..."
+            },
+            {
+                "id": "song_54",
+                "title": "Oru Koottu",
+                "artist": "Mano, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 227,
+                "album": "Padikkathavan (Origi..."
+            },
+            {
+                "id": "song_55",
+                "title": "Vaanile Thenila",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 275,
+                "album": "Kaakki Sattai (Origin..."
+            },
+            {
+                "id": "song_56",
+                "title": "Kuyil Paattu (Happy)",
+                "artist": "Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 294,
+                "album": "En Rasavin Manasile (..."
+            },
+            {
+                "id": "song_57",
+                "title": "Ennathaan Sugamo",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 267,
+                "album": "Mappillai (Original M..."
+            },
+            {
+                "id": "song_58",
+                "title": "Aagaya Vennilavae",
+                "artist": "Uma Ramanan, K. J. Yesudas",
+                "img": "",
+                "audioUrl": "",
+                "duration": 278,
+                "album": "Arangetra Velai (Orig..."
+            },
+            {
+                "id": "song_59",
+                "title": "Raasave Unnai Vida (From \"Ara...",
+                "artist": "S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 268,
+                "album": "Solo Songs of S. Jana..."
+            },
+            {
+                "id": "song_60",
+                "title": "Nalam Vazha (From \"Marupadiy...",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 300,
+                "album": "S. P. Balasubrahmany..."
+            },
+            {
+                "id": "song_61",
+                "title": "Endhan Nenjil (From \"Kalaignan\")",
+                "artist": "S. Janaki, K. J. Yesudas",
+                "img": "",
+                "audioUrl": "",
+                "duration": 289,
+                "album": "K. J. Yesudas Duet So..."
+            },
+            {
+                "id": "song_62",
+                "title": "Nila Kayum (From \"Chembarut...",
+                "artist": "Mano, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 303,
+                "album": "Golden Hits of S. Jana..."
+            },
+            {
+                "id": "song_63",
+                "title": "Ila Nenje Vaa (From \"Vanna Van...",
+                "artist": "K. J. Yesudas",
+                "img": "",
+                "audioUrl": "",
+                "duration": 327,
+                "album": "K. J. Yesudas Tamil Hit..."
+            },
+            {
+                "id": "song_64",
+                "title": "Naan Erikarai",
+                "artist": "K. J. Yesudas, Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 308,
+                "album": "Chinna Thayee"
+            },
+            {
+                "id": "song_65",
+                "title": "Paatha Kolusu (From \"Thirumat...",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "S. P. Balasubrahmany..."
+            },
+            {
+                "id": "song_66",
+                "title": "Medhuva Medhuva (From \"Ann...",
+                "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 260,
+                "album": "Sangeetha Utsavam -..."
+            },
+            {
+                "id": "song_67",
+                "title": "Vaa Vaa Anbe",
+                "artist": "K. J. Yesudas, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "Eeramana Rojave (Ori..."
+            },
+            {
+                "id": "song_68",
+                "title": "Kannama Kaadhal Ennum (From...",
+                "artist": "Ilaiyaraaja, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 275,
+                "album": "Love Notes by Ilaiyar..."
+            },
+            {
+                "id": "song_69",
+                "title": "Ennavendru Solvathamma (Fro...",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 304,
+                "album": "SPB Evergreen Songs"
+            },
+            {
+                "id": "song_70",
+                "title": "Aalappol Velappol",
+                "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 308,
+                "album": "Yejaman (Original Mo..."
+            },
+            {
+                "id": "song_71",
+                "title": "Malaiyoram Veesum Kaathu",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 276,
+                "album": "Paadu Nilave (Origina..."
+            },
+            {
+                "id": "song_72",
+                "title": "Maane Marghathamey (From \"...",
+                "artist": "Mano, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 312,
+                "album": "Golden Hits of S. Jana..."
+            },
+            {
+                "id": "song_73",
+                "title": "Chinna Chinna Thooral (From \"S...",
+                "artist": "S. P. Balasubrahmanyam, Anuradha Sriram",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "Evergreen Songs of Il..."
+            },
+            {
+                "id": "song_74",
+                "title": "Pathinettu Vayathu",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 308,
+                "album": "Spb & S Janaki - Tamil..."
+            },
+            {
+                "id": "song_75",
+                "title": "Sorkathin Vasapadi",
+                "artist": "K. J. Yesudas, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 308,
+                "album": "Unnai Solli Kutramillai..."
+            },
+            {
+                "id": "song_76",
+                "title": "Idho Idho En Pallavi",
+                "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 279,
+                "album": "Sigaram (Original Mo..."
+            },
+            {
+                "id": "song_77",
+                "title": "Oorellam Saamiyaga (From \"D...",
+                "artist": "Ilaiyaraaja",
+                "img": "",
+                "audioUrl": "",
+                "duration": 249,
+                "album": "Evergreen Songs Of ..."
+            },
+            {
+                "id": "song_78",
+                "title": "Thalattum Poongkaatru",
+                "artist": "S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 315,
+                "album": "Gopura Vasalile (Orig..."
+            },
+            {
+                "id": "song_79",
+                "title": "Unn Manasile Paattuthaan (Hap...",
+                "artist": "Mano, Ilaiyaraaja",
+                "img": "",
+                "audioUrl": "",
+                "duration": 264,
+                "album": "Paandi Nattu Thanga..."
+            },
+            {
+                "id": "song_80",
+                "title": "Karutha Machan",
+                "artist": "S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 281,
+                "album": "Pudhu Nellu Pudhu N..."
+            },
+            {
+                "id": "song_81",
+                "title": "Oru Kadhal Devadhai",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 269,
+                "album": "Idhaya Thaamarai (O..."
+            },
+            {
+                "id": "song_82",
+                "title": "Vanithamani",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 278,
+                "album": "Vikram (Original Moti..."
+            },
+            {
+                "id": "song_83",
+                "title": "Panivizhum Iravu",
+                "artist": "S. Janaki, S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 273,
+                "album": "Mouna Ragam (Origi..."
+            },
+            {
+                "id": "song_84",
+                "title": "Innum Ennai Enna (From \"Singar...",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 297,
+                "album": "SPB & Janaki Evergre..."
+            },
+            {
+                "id": "song_85",
+                "title": "Kannan Vanthu",
+                "artist": "S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 251,
+                "album": "Rettai Vaal Kuruvi (Ori..."
+            },
+            {
+                "id": "song_86",
+                "title": "Endha Pennilum Illada Onru",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 309,
+                "album": "Captain Magal"
+            },
+            {
+                "id": "song_87",
+                "title": "Meenamma Meenamma",
+                "artist": "Mano, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 285,
+                "album": "Rajathi Raja (Original ..."
+            },
+            {
+                "id": "song_88",
+                "title": "Thodi Ragam",
+                "artist": "K. J. Yesudas, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 296,
+                "album": "Managara Kaval (Ori..."
+            },
+            {
+                "id": "song_89",
+                "title": "Maalayil Yaaro",
+                "artist": "Ilaiyaraaja, Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 331,
+                "album": "Chatriyan (Original M..."
+            },
+            {
+                "id": "song_90",
+                "title": "Adi Raakumuthu",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 311,
+                "album": "Yejaman (Original Mo..."
+            },
+            {
+                "id": "song_91",
+                "title": "Adiye Adi Chinnapulla",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 291,
+                "album": "Sindhoo Nadi Poo"
+            },
+            {
+                "id": "song_92",
+                "title": "Nilave Mugam",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 307,
+                "album": "Yejaman (Original Mo..."
+            },
+            {
+                "id": "song_93",
+                "title": "Oru Naalum",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 361,
+                "album": "Yejaman (Original Mo..."
+            },
+            {
+                "id": "song_94",
+                "title": "Paadu Nilavae",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 319,
+                "album": "Udaya Geetham (Ori..."
+            },
+            {
+                "id": "song_95",
+                "title": "Ennodu Paattu Paadungal",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 359,
+                "album": "Udaya Geetham (Ori..."
+            },
+            {
+                "id": "song_96",
+                "title": "Thene Thenpaandi - Male",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 277,
+                "album": "Udaya Geetham (Ori..."
+            },
+            {
+                "id": "song_97",
+                "title": "Uthaya Geetham",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 281,
+                "album": "Udaya Geetham (Ori..."
+            },
+            {
+                "id": "song_98",
+                "title": "Senguruvi",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 357,
+                "album": "Thiru Moorthy"
+            },
+            {
+                "id": "song_99",
+                "title": "Nee Pathi Naan Pathi",
+                "artist": "K. J. Yesudas, Uma Ramanan",
+                "img": "",
+                "audioUrl": "",
+                "duration": 283,
+                "album": "Keladi Kannmanii (Ori..."
+            },
+            {
+                "id": "song_100",
+                "title": "Engirundho Ilangkuyilin (From \"...",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "Evergreen Songs of S..."
+            },
+            {
+                "id": "song_101",
+                "title": "Sollividu Velli Nilavae (From \"A...",
+                "artist": "Mano, Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 301,
+                "album": "Evergreen Songs of S..."
+            },
+            {
+                "id": "song_102",
+                "title": "Maanam Idi Idikka",
+                "artist": "Ilaiyaraaja, S. P. Balasubrahmanya...",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "Unna Ninachen Paatu ..."
+            },
+            {
+                "id": "song_103",
+                "title": "Ore Murai Un Dharisanam",
+                "artist": "Ilaiyaraaja, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 262,
+                "album": "En Jeevan Paaduthu (..."
+            },
+            {
+                "id": "song_104",
+                "title": "Mana Maalaiyum",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 272,
+                "album": "Vaathiyaar Veettu Pill..."
+            },
+            {
+                "id": "song_105",
+                "title": "Ammadi Idhuthan Kathala (Fro...",
+                "artist": "S. P. Balasubrahmanyam, K. S. Chith...",
+                "img": "",
+                "audioUrl": "",
+                "duration": 320,
+                "album": "S.P. Balasubrahmany..."
+            },
+            {
+                "id": "song_106",
+                "title": "Poothathu Poonthoppu",
+                "artist": "Mano, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 289,
+                "album": "Thanga Manasukkara..."
+            },
+            {
+                "id": "song_107",
+                "title": "Poovana",
+                "artist": "Mano, Vani Jairam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 278,
+                "album": "Ponmana Selvan (Ori..."
+            },
+            {
+                "id": "song_108",
+                "title": "Mayanginen Solla Thayanginen",
+                "artist": "Jayachandran, Susheela",
+                "img": "",
+                "audioUrl": "",
+                "duration": 256,
+                "album": "Naane Raja Naane M..."
+            },
+            {
+                "id": "song_109",
+                "title": "Maniyae Manikuyilae (From \"N...",
+                "artist": "Mano, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 340,
+                "album": "Golden Hits of S. Jana..."
+            },
+            {
+                "id": "song_110",
+                "title": "Un Paarvayil - Male",
+                "artist": "K. J. Yesudas",
+                "img": "",
+                "audioUrl": "",
+                "duration": 246,
+                "album": "Amman Kovil Kizhaka..."
+            },
+            {
+                "id": "song_111",
+                "title": "Thendral Vandhu",
+                "artist": "Ilaiyaraaja, K. J. Yesudas, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 256,
+                "album": "Thendrale Ennai Thod..."
+            },
+            {
+                "id": "song_112",
+                "title": "Thaana Vantha",
+                "artist": "Ilaiyaraaja, S. P. Balasubrahmanya...",
+                "img": "",
+                "audioUrl": "",
+                "duration": 300,
+                "album": "Ooru Vittu Ooru Van..."
+            },
+            {
+                "id": "song_113",
+                "title": "Chittu Kuruvi",
+                "artist": "Ilaiyaraaja, S. P. Balasubrahmanya...",
+                "img": "",
+                "audioUrl": "",
+                "duration": 266,
+                "album": "Chinna Veedu (Origin..."
+            },
+            {
+                "id": "song_114",
+                "title": "Ding Dang Dang",
+                "artist": "S. P. Balasubrahmanyam, K. S. Chith...",
+                "img": "",
+                "audioUrl": "",
+                "duration": 297,
+                "album": "Panakkaran (Original..."
+            },
+            {
+                "id": "song_115",
+                "title": "Thoongatha Vizhigal",
+                "artist": "K. J. Yesudas, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 280,
+                "album": "Agni Natchathiram (..."
+            },
+            {
+                "id": "song_116",
+                "title": "Maasi Masam Alana Ponnu",
+                "artist": "K. J. Yesudas, Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 300,
+                "album": "Dharma Durai (Origin..."
+            },
+            {
+                "id": "song_117",
+                "title": "Adi Aasa Machan",
+                "artist": "Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 302,
+                "album": "Kummi Pattu"
+            },
+            {
+                "id": "song_118",
+                "title": "Poonguyil Ragame",
+                "artist": "Sirpy, S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 233,
+                "album": "Naan Pesa Ninepadell..."
+            },
+            {
+                "id": "song_119",
+                "title": "Vaanam Idi Idikka (From \"Unna ...",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "SPB & Janaki Evergre..."
+            },
+            {
+                "id": "song_120",
+                "title": "Valli Valli Ena (From \"Deiva Vakk...",
+                "artist": "Ilaiyaraaja, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 292,
+                "album": "Evergreen Songs of K..."
+            },
+            {
+                "id": "song_121",
+                "title": "Nooru Varusham - Male Version",
+                "artist": "Mano",
+                "img": "",
+                "audioUrl": "",
+                "duration": 267,
+                "album": "Panakkaran (Original..."
+            },
+            {
+                "id": "song_122",
+                "title": "Rasathi Unnai",
+                "artist": "P. Jayachandran",
+                "img": "",
+                "audioUrl": "",
+                "duration": 264,
+                "album": "Vaidehi Kathirunthal (..."
+            },
+            {
+                "id": "song_123",
+                "title": "Neela Kuyile Solai Kuyile",
+                "artist": "Arunmozhi, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 269,
+                "album": "Soora Samhaaram (..."
+            },
+            {
+                "id": "song_124",
+                "title": "Adho Mega Oorvalam",
+                "artist": "Mano, Sunanda",
+                "img": "",
+                "audioUrl": "",
+                "duration": 309,
+                "album": "Eeramana Rojave (Ori..."
+            },
+            {
+                "id": "song_125",
+                "title": "Mani Osai",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 279,
+                "album": "Payanangal Mudivat..."
+            },
+            {
+                "id": "song_126",
+                "title": "Ilaya Nila Pozhigirathe",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 281,
+                "album": "Payanangal Mudivat..."
+            },
+            {
+                "id": "song_127",
+                "title": "O Butterfly",
+                "artist": "S. P. Balasubrahmanyam, Asha Bho...",
+                "img": "",
+                "audioUrl": "",
+                "duration": 301,
+                "album": "90's Love Special Vol ..."
+            },
+            {
+                "id": "song_128",
+                "title": "Unna Partha",
+                "artist": "K. S. Chithra, Malaysia Vasudevan",
+                "img": "",
+                "audioUrl": "",
+                "duration": 290,
+                "album": "Athisaya Piravi (Origi..."
+            },
+            {
+                "id": "song_129",
+                "title": "Adi Vaanmathi",
+                "artist": "Ilaiyaraaja, S. P. Balasubrahmanya...",
+                "img": "",
+                "audioUrl": "",
+                "duration": 269,
+                "album": "Siva (Original Motion ..."
+            },
+            {
+                "id": "song_130",
+                "title": "Soru Kondu Pora",
+                "artist": "K. S. Chithra, S. P. Balasubrahmanya...",
+                "img": "",
+                "audioUrl": "",
+                "duration": 232,
+                "album": "En Aasai Machan (Ori..."
+            },
+            {
+                "id": "song_131",
+                "title": "Kalaivaniyo Raniyo (From \"Villu ...",
+                "artist": "S. P. Balasubrahmanyam",
+                "img": "",
+                "audioUrl": "",
+                "duration": 306,
+                "album": "S. P. Balasubrahmany..."
+            },
+            {
+                "id": "song_132",
+                "title": "Ennullae (From \"Valli\")",
+                "artist": "Swarnalatha",
+                "img": "",
+                "audioUrl": "",
+                "duration": 414,
+                "album": "Swarnalatha Songs V..."
+            },
+            {
+                "id": "song_133",
+                "title": "Muthu Mani (From \"Adharmam\")",
+                "artist": "S. P. Balasubrahmanyam, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 268,
+                "album": "Murali Evergreen Son..."
+            },
+            {
+                "id": "song_134",
+                "title": "Oru Sandhana Kaattukkulle",
+                "artist": "Ilaiyaraaja, S. Janaki",
+                "img": "",
+                "audioUrl": "",
+                "duration": 326,
+                "album": "Ellame En Rasathan"
+            },
+            {
+                "id": "song_135",
+                "title": "Thenpaandi Thamizhe - Duet",
+                "artist": "Ilaiyaraaja, K. J. Yesudas, K. S. Chithra",
+                "img": "",
+                "audioUrl": "",
+                "duration": 281,
+                "album": "Paasa Paravaigal (Ori..."
+            },
+            {
+                "id": "song_136",
+                "title": "Poradada",
+                "artist": "Ilaiyaraaja, Malaysia Vasudevan",
+                "img": "",
+                "audioUrl": "",
+                "duration": 268,
+                "album": "Alai Osai (Original Mo..."
+            }
+        ]
+    },
+    {
+        id: 'custom-romantic',
+        name: 'Romantic Melodies',
+        creator: 'Vibeflow Official',
+        img: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=200&auto=format&fit=crop',
+        createdAt: Date.now(),
+        songs: []
+    },
+    {
+        id: 'custom-midnight',
+        name: 'Midnight Drives',
+        creator: 'Vibeflow Official',
+        img: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=200&auto=format&fit=crop',
+        createdAt: Date.now(),
+        songs: []
+    },
+    {
+        id: 'custom-party',
+        name: 'Party Anthems',
+        creator: 'Vibeflow Official',
+        img: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=200&auto=format&fit=crop',
+        createdAt: Date.now(),
+        songs: []
+    },
+    {
+        id: 'custom-chill',
+        name: 'Focus & Chill',
+        creator: 'Vibeflow Official',
+        img: 'https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=200&auto=format&fit=crop',
+        createdAt: Date.now(),
+        songs: []
+    }
 ];
