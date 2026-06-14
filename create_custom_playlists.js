@@ -20,7 +20,7 @@ const customPlaylists = [
   {
     name: "80s & 90s Evergreen Hits",
     creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop",
+    img: "https://i.pinimg.com/736x/cf/52/e5/cf52e5ce5a3f982a06c3deab4cd56939.jpg",
     createdAt: Date.now(),
     songs: [
       {
@@ -1241,37 +1241,9 @@ const customPlaylists = [
     ]
   },
   {
-    name: "Romantic Melodies",
-    creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    songs: []
-  },
-  {
-    name: "Midnight Drives",
-    creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    songs: []
-  },
-  {
-    name: "Party Anthems",
-    creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    songs: []
-  },
-  {
-    name: "Focus & Chill",
-    creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=200&auto=format&fit=crop",
-    createdAt: Date.now(),
-    songs: []
-  },
-  {
     name: "S.P.B Melodies",
     creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=200&auto=format&fit=crop",
+    img: "https://i.pinimg.com/736x/23/42/87/234287b89bd94e1acc6a14c46d8d4db3.jpg",
     createdAt: Date.now(),
     songs: [
       {
@@ -2305,7 +2277,7 @@ const customPlaylists = [
   {
     name: "Hiphop Tamizha",
     creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=200&auto=format&fit=crop",
+    img: "https://i.pinimg.com/736x/08/bf/f9/08bff9f28c2739618c7837e8f8f183f2.jpg",
     createdAt: Date.now(),
     songs: [
       {
@@ -4095,7 +4067,7 @@ const customPlaylists = [
   {
     name: "Sleeping Tablet",
     creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=200&auto=format&fit=crop",
+    img: "https://i.pinimg.com/736x/60/f9/27/60f927de319f6c69430fba8082d57f16.jpg",
     createdAt: Date.now(),
     songs: [
       {
@@ -5741,7 +5713,7 @@ const customPlaylists = [
   {
     name: "Anirudh All Songs",
     creator: "Vibeflow Official",
-    img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=200&auto=format&fit=crop",
+    img: "https://i.pinimg.com/736x/48/16/7a/48167ae34f17e5f203548ee44c685bbe.jpg",
     createdAt: Date.now(),
     songs: [
       {
@@ -7714,6 +7686,203 @@ const customPlaylists = [
         "audioUrl": "audio_url_219.mp3",
         "duration": 210,
         "album": "Salambala (Trending Version)"
+      }
+    ]
+  },
+  {
+    name: "Sai Abhyankkar Vibe",
+    creator: "Vibeflow Official",
+    img: "https://i.pinimg.com/736x/2e/07/80/2e07806e902e78373c75f679b17fc8d1.jpg",
+    createdAt: Date.now(),
+    songs: [
+      {
+        "id": "song_1",
+        "title": "Pavazha Malli - From \"Think Indie\"",
+        "artist": "Sai Abhyankkar, Shruti Haasan, Vivek",
+        "img": "image_url_1.jpg",
+        "audioUrl": "audio_url_1.mp3",
+        "duration": 215,
+        "album": "Pavazha Malli (From \"Think Indie\")"
+      },
+      {
+        "id": "song_2",
+        "title": "Oorum Blood - From \"Dude\"",
+        "artist": "Sai Abhyankkar, Paal Dabba, Bhumi, Deepthi Suresh",
+        "img": "image_url_2.jpg",
+        "audioUrl": "audio_url_2.mp3",
+        "duration": 205,
+        "album": "Oorum Blood (From \"Dude\")"
+      },
+      {
+        "id": "song_3",
+        "title": "Singari",
+        "artist": "Sai Abhyankkar, Pradeep Ranganathan, Sai Smriti, Semv.iii",
+        "img": "image_url_3.jpg",
+        "audioUrl": "audio_url_3.mp3",
+        "duration": 220,
+        "album": "Dude (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_4",
+        "title": "Nallaru Po - From \"Dude\"",
+        "artist": "Sai Abhyankkar, Tippu, Mohit Chauhan, Vivek",
+        "img": "image_url_4.jpg",
+        "audioUrl": "audio_url_4.mp3",
+        "duration": 195,
+        "album": "Nallaru Po (From \"Dude\")"
+      },
+      {
+        "id": "song_5",
+        "title": "Aasa Kooda - From \"Think Indie\"",
+        "artist": "Sai Abhyankkar, Sai Smriti",
+        "img": "image_url_5.jpg",
+        "audioUrl": "audio_url_5.mp3",
+        "duration": 230,
+        "album": "Aasa Kooda (From \"Think Indie\")"
+      },
+      {
+        "id": "song_6",
+        "title": "Katchi Sera - From \"Think Indie\"",
+        "artist": "Sai Abhyankkar",
+        "img": "image_url_6.jpg",
+        "audioUrl": "audio_url_6.mp3",
+        "duration": 185,
+        "album": "Katchi Sera (From \"Think Indie\")"
+      },
+      {
+        "id": "song_7",
+        "title": "Vizhi Veekura - From \"Think Indie\"",
+        "artist": "Sai Abhyankkar, Sai Smriti, Adesh Krishna",
+        "img": "image_url_7.jpg",
+        "audioUrl": "audio_url_7.mp3",
+        "duration": 210,
+        "album": "Vizhi Veekura (From \"Think Indie\")"
+      },
+      {
+        "id": "song_8",
+        "title": "Sithira Puthiri - From \"Think Indie\"",
+        "artist": "Sai Abhyankkar, Vivek",
+        "img": "image_url_8.jpg",
+        "audioUrl": "audio_url_8.mp3",
+        "duration": 200,
+        "album": "Sithira Puthiri(From \"Think Indie\")"
+      },
+      {
+        "id": "song_9",
+        "title": "Make Way For The King (From \"Raaka\")",
+        "artist": "Sai Abhyankkar, Dhp",
+        "img": "image_url_9.jpg",
+        "audioUrl": "audio_url_9.mp3",
+        "duration": 175,
+        "album": "Make Way For The King (From \"Raaka\")"
+      },
+      {
+        "id": "song_10",
+        "title": "Jaalakaari - From \"Balti\"",
+        "artist": "Sai Abhyankkar, Sublahshini, Vinayak Sasikumar",
+        "img": "image_url_10.jpg",
+        "audioUrl": "audio_url_10.mp3",
+        "duration": 225,
+        "album": "Jaalakaari (From \"Balti\")"
+      },
+      {
+        "id": "song_11",
+        "title": "Adi Alaye (From \"Parasakkthi\") (Tamil)",
+        "artist": "G. V. Prakash, Sean Roldan, Dhee, Ekadesi",
+        "img": "image_url_11.jpg",
+        "audioUrl": "audio_url_11.mp3",
+        "duration": 240,
+        "album": "Adi Alaye (From \"Parasakkthi\") (Tamil)"
+      },
+      {
+        "id": "song_12",
+        "title": "Espresso",
+        "artist": "Sabrina Carpenter",
+        "img": "image_url_12.jpg",
+        "audioUrl": "audio_url_12.mp3",
+        "duration": 175,
+        "album": "Espresso"
+      },
+      {
+        "id": "song_13",
+        "title": "Soda Break - From \"Balti\"",
+        "artist": "Sai Abhyankkar",
+        "img": "image_url_13.jpg",
+        "audioUrl": "audio_url_13.mp3",
+        "duration": 190,
+        "album": "Soda Break (From \"Balti\")"
+      },
+      {
+        "id": "song_14",
+        "title": "Thangapaavey",
+        "artist": "Anirudh Ravichander, Ravi G, Vivek",
+        "img": "image_url_14.jpg",
+        "audioUrl": "audio_url_14.mp3",
+        "duration": 235,
+        "album": "Madharaasi(Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_15",
+        "title": "Karaya Karaya (From \"Heartin\")",
+        "artist": "Rajesh Murugesan, Vivek, Shakthisree Gopalan, Benny Dayal",
+        "img": "image_url_15.jpg",
+        "audioUrl": "audio_url_15.mp3",
+        "duration": 210,
+        "album": "Karaya Karaya (From \"Heartin\")"
+      },
+      {
+        "id": "song_16",
+        "title": "Salambala",
+        "artist": "Anirudh Ravichander, Sai Abhyankkar, Super Subu",
+        "img": "image_url_16.jpg",
+        "audioUrl": "audio_url_16.mp3",
+        "duration": 220,
+        "album": "Madharaasi(Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_17",
+        "title": "Finding Her",
+        "artist": "Kushagra, Bharath, Saaheal",
+        "img": "image_url_17.jpg",
+        "audioUrl": "audio_url_17.mp3",
+        "duration": 185,
+        "album": "Finding Her"
+      },
+      {
+        "id": "song_18",
+        "title": "Ishq",
+        "artist": "Faheem Abdullah, Rauhan Malik, Amir Ameer",
+        "img": "image_url_18.jpg",
+        "audioUrl": "audio_url_18.mp3",
+        "duration": 245,
+        "album": "Lost;Found"
+      },
+      {
+        "id": "song_19",
+        "title": "Kitni Haseen",
+        "artist": "AKASH MEHTA",
+        "img": "image_url_19.jpg",
+        "audioUrl": "audio_url_19.mp3",
+        "duration": 215,
+        "album": "Kitni Haseen"
+      },
+      {
+        "id": "song_20",
+        "title": "Harleys In Hawaii",
+        "artist": "Katy Perry",
+        "img": "image_url_20.jpg",
+        "audioUrl": "audio_url_20.mp3",
+        "duration": 185,
+        "album": "Harleys In Hawaii"
+      },
+      {
+        "id": "song_21",
+        "title": "Benz In The Universe Theme - From \"Benz\"",
+        "artist": "Sai Abhyankkar",
+        "img": "image_url_21.jpg",
+        "audioUrl": "audio_url_21.mp3",
+        "duration": 160,
+        "album": "Benz In The Universe Theme (From \"Benz\")"
       }
     ]
   }
