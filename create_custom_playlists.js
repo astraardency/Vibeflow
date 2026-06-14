@@ -5737,6 +5737,194 @@ const customPlaylists = [
     "album": ""
   }
 ]
+  },
+  {
+    name: "Anirudh All Songs",
+    creator: "Vibeflow Official",
+    img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=200&auto=format&fit=crop",
+    createdAt: Date.now(),
+    songs: [
+      {
+        "id": "song_19",
+        "title": "Powerhouse",
+        "artist": "Anirudh Ravichander, Arivu",
+        "img": "image_url_19.jpg",
+        "audioUrl": "audio_url_19.mp3",
+        "duration": 210,
+        "album": "Coolie (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_4",
+        "title": "Dheema",
+        "artist": "Anirudh Ravichander, Vignesh Shivan",
+        "img": "image_url_4.jpg",
+        "audioUrl": "audio_url_4.mp3",
+        "duration": 185,
+        "album": "Love Insurance Kompany (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_34",
+        "title": "Manasilaayo",
+        "artist": "Anirudh Ravichander, Malaysia Vasudevan, Deepthi Suresh, Yugendran Vasudevan",
+        "img": "image_url_34.jpg",
+        "audioUrl": "audio_url_34.mp3",
+        "duration": 245,
+        "album": "Vettaiyan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_9",
+        "title": "Thalapathy Kacheri (From \"Jana Nayagan\")",
+        "artist": "Anirudh Ravichander, Thalapathy Vijay, Arivu",
+        "img": "image_url_9.jpg",
+        "audioUrl": "audio_url_9.mp3",
+        "duration": 220,
+        "album": "Thalapathy Kacheri (From \"Jana Nayagan\")"
+      },
+      {
+        "id": "song_28",
+        "title": "Pathikichu",
+        "artist": "Anirudh Ravichander, Yogi Sekar, Amogh Balaji",
+        "img": "image_url_28.jpg",
+        "audioUrl": "audio_url_28.mp3",
+        "duration": 195,
+        "album": "Vidaamuyarchi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_2",
+        "title": "Raga of Revenge (From \"DC\")",
+        "artist": "Anirudh Ravichander",
+        "img": "image_url_2.jpg",
+        "audioUrl": "audio_url_2.mp3",
+        "duration": 150,
+        "album": "Raga of Revenge (From \"DC\")"
+      },
+      {
+        "id": "song_13",
+        "title": "Thangapaavey",
+        "artist": "Anirudh Ravichander, Ravi G, Vivek",
+        "img": "image_url_13.jpg",
+        "audioUrl": "audio_url_13.mp3",
+        "duration": 260,
+        "album": "Madharaasi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_40",
+        "title": "Hands Up",
+        "artist": "Anirudh Ravichander",
+        "img": "image_url_40.jpg",
+        "audioUrl": "audio_url_40.mp3",
+        "duration": 180,
+        "album": "Vettaiyan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_7",
+        "title": "Arasan Theme (From \"Arasan\")",
+        "artist": "Anirudh Ravichander",
+        "img": "image_url_7.jpg",
+        "audioUrl": "audio_url_7.mp3",
+        "duration": 140,
+        "album": "Arasan Theme (From \"Arasan\")"
+      },
+      {
+        "id": "song_25",
+        "title": "I Am The Danger",
+        "artist": "Siddharth Basrur, Anirudh Ravichander, Heisenberg",
+        "img": "image_url_25.jpg",
+        "audioUrl": "audio_url_25.mp3",
+        "duration": 230,
+        "album": "Coolie (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_1",
+        "title": "Aaja Raja (From \"KH x RK Reunion\")",
+        "artist": "Anirudh Ravichander, Chintu",
+        "img": "image_url_1.jpg",
+        "audioUrl": "audio_url_1.mp3",
+        "duration": 205,
+        "album": "Aaja Raja (From \"KH x RK Reunion\")"
+      },
+      {
+        "id": "song_37",
+        "title": "Clean Shot",
+        "artist": "Anirudh Ravichander, Amogh Balaji, Malaysia Vasudevan",
+        "img": "image_url_37.jpg",
+        "audioUrl": "audio_url_37.mp3",
+        "duration": 215,
+        "album": "Vettaiyan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_21",
+        "title": "Monica",
+        "artist": "Anirudh Ravichander, Sublahshini, Asal Kolaar",
+        "img": "image_url_21.jpg",
+        "audioUrl": "audio_url_21.mp3",
+        "duration": 200,
+        "album": "Coolie (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_11",
+        "title": "Raavana Mavandaa (From \"Jana Nayagan\")",
+        "artist": "Anirudh Ravichander, Vivek",
+        "img": "image_url_11.jpg",
+        "audioUrl": "audio_url_11.mp3",
+        "duration": 240,
+        "album": "Raavana Mavandaa (From \"Jana Nayagan\")"
+      },
+      {
+        "id": "song_30",
+        "title": "Thaniye",
+        "artist": "Anirudh Ravichander",
+        "img": "image_url_30.jpg",
+        "audioUrl": "audio_url_30.mp3",
+        "duration": 190,
+        "album": "Vidaamuyarchi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_17",
+        "title": "Unadhu Enadhu",
+        "artist": "Anirudh Ravichander, Shilpa Rao, Ravi G, Adesh Krishna",
+        "img": "image_url_17.jpg",
+        "audioUrl": "audio_url_17.mp3",
+        "duration": 275,
+        "album": "Madharaasi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_5",
+        "title": "Adadaadi",
+        "artist": "Anirudh Ravichander, Mathichiyam Bala, Rokesh, Heisenberg, Vignesh Shivan",
+        "img": "image_url_5.jpg",
+        "audioUrl": "audio_url_5.mp3",
+        "duration": 225,
+        "album": "Love Insurance Kompany (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_26",
+        "title": "Thirudi",
+        "artist": "Jen Martin, Anirudh Ravichander, Ashique AR",
+        "img": "image_url_26.jpg",
+        "audioUrl": "audio_url_26.mp3",
+        "duration": 210,
+        "album": "Kiss (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_15",
+        "title": "Usure Uruvi",
+        "artist": "Anirudh Ravichander, Ravi G, Vishnu Edavan",
+        "img": "image_url_15.jpg",
+        "audioUrl": "audio_url_15.mp3",
+        "duration": 255,
+        "album": "Madharaasi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_33",
+        "title": "Hukum Reloaded - Tamil (From \"Jailer 2\")",
+        "artist": "Anirudh Ravichander",
+        "img": "image_url_33.jpg",
+        "audioUrl": "audio_url_33.mp3",
+        "duration": 195,
+        "album": "Hukum Reloaded - Tamil (From \"Jailer 2\")"
+      }
+    ]
   }
 ];
 
