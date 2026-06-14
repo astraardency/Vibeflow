@@ -1706,7 +1706,7 @@ function App() {
                         <span className="playlist-song-idx" style={{ color: 'var(--text-secondary)', width: '20px' }}>
                           {currentTrack?.title === song.title && isPlaying ? "▶" : idx + 1}
                         </span>
-                        <div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
                           <div className="playlist-song-title" style={{ fontWeight: '500', fontSize: '14px' }}>{song.title}</div>
                           <div className="playlist-song-artist" style={{ color: 'var(--text-secondary)', fontSize: '12px' }}>{song.artist}</div>
                         </div>
@@ -1839,7 +1839,7 @@ function App() {
                         <span className="playlist-song-idx" style={{ color: 'var(--text-secondary)', width: '20px' }}>
                           {currentTrack?.title === song.title && isPlaying ? "▶" : idx + 1}
                         </span>
-                        <div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
                           <div className="playlist-song-title">{song.title}</div>
                           <div className="playlist-song-artist">{song.artist}</div>
                         </div>
