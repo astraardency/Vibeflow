@@ -140,6 +140,8 @@ function App() {
   const [isLoadingSong, setIsLoadingSong] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  const [isShuffleMode, setIsShuffleMode] = useState(false)
+  const [prefetchingNext, setPrefetchingNext] = useState(false)
 
   // Audio Ref
   const audioRef = useRef(null)
@@ -209,6 +211,7 @@ function App() {
 
   // Update browser tab title and favicon to currently playing song
   useEffect(() => {
+    setPrefetchingNext(false);
     let link = document.querySelector("link[rel~='icon']");
     if (!link) {
       link = document.createElement('link');
@@ -577,9 +580,50 @@ function App() {
   }
 
   // Audio event listeners
+  const getNextSongIndex = (list, currentIndex) => {
+    if (isShuffleMode && list.length > 1) {
+      let nextIndex = Math.floor(Math.random() * list.length);
+      while (nextIndex === currentIndex) {
+         nextIndex = Math.floor(Math.random() * list.length);
+      }
+      return nextIndex;
+    }
+    let nextIndex = currentIndex + 1;
+    if (nextIndex >= list.length || nextIndex === -1) {
+      nextIndex = 0; // loop back
+    }
+    return nextIndex;
+  };
+
+  const prefetchNextTrack = async () => {
+    const list = getCurrentTracklist();
+    if (!list || list.length === 0) return;
+    const currentIndex = list.findIndex(s => s.id === currentTrack?.id || s.title === currentTrack?.title);
+    const nextIndex = getNextSongIndex(list, currentIndex);
+    const nextSong = list[nextIndex];
+
+    if (nextSong && !nextSong.audioUrl) {
+       const queryStr = nextSong.query || `${nextSong.title} ${nextSong.artist}`;
+       const results = await searchSongs(queryStr);
+       if (results && results.length > 0) {
+          const updatedQueue = [...list];
+          updatedQueue[nextIndex] = { ...nextSong, ...results[0] };
+          setActivePlaybackQueue(updatedQueue);
+       }
+    }
+  };
+
   const onTimeUpdate = () => {
     if (audioRef.current) {
       setCurrentTime(audioRef.current.currentTime)
+      const dur = audioRef.current.duration;
+      if (dur > 0) {
+        const remaining = dur - audioRef.current.currentTime;
+        if (remaining < 15 && remaining > 0 && !prefetchingNext) {
+           setPrefetchingNext(true);
+           prefetchNextTrack();
+        }
+      }
     }
   }
 
@@ -593,8 +637,9 @@ function App() {
     setIsPlaying(false)
     const listToUse = getCurrentTracklist()
     const currentIndex = listToUse.findIndex(s => s.id === currentTrack?.id || s.title === currentTrack?.title)
-    if (currentIndex !== -1 && currentIndex < listToUse.length - 1) {
-      playSong(listToUse[currentIndex + 1])
+    if (currentIndex !== -1) {
+      const nextIndex = getNextSongIndex(listToUse, currentIndex);
+      playSong(listToUse[nextIndex], nextIndex, listToUse)
     } else {
       playSong(listToUse[0])
     }
@@ -835,10 +880,7 @@ function App() {
     const list = getCurrentTracklist()
     if (list.length === 0) return
 
-    let nextIndex = currentTrackIndex + 1
-    if (nextIndex >= list.length || nextIndex === -1) {
-      nextIndex = 0 // loop back
-    }
+    let nextIndex = getNextSongIndex(list, currentTrackIndex)
     playSong(list[nextIndex], nextIndex, list)
   }
 
@@ -853,6 +895,17 @@ function App() {
     playSong(list[prevIndex], prevIndex, list)
   }
 
+  const toggleShuffleMode = () => {
+    if (!currentTrack) return;
+    if (!isShuffleMode) {
+      setIsShuffleMode(true);
+      triggerToast('Shuffle ON');
+    } else {
+      setIsShuffleMode(false);
+      triggerToast('Shuffle OFF');
+    }
+  }
+
   const shuffleQueue = (queue) => {
     if (!queue || queue.length === 0) return
     const shuffled = [...queue]
@@ -860,6 +913,7 @@ function App() {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
     }
+    setIsShuffleMode(true);
     playSong(shuffled[0], 0, shuffled)
     triggerToast('Shuffling tracks!')
   }
@@ -2359,8 +2413,8 @@ function App() {
                   <SkipForward size={24} />
                 </button>
 
-                <button className="fullscreen-icon-btn" onClick={() => shuffleQueue(activePlaybackQueue)}>
-                  <Sparkles size={20} />
+                <button className="fullscreen-icon-btn" onClick={toggleShuffleMode}>
+                  <Sparkles size={20} fill={isShuffleMode ? "var(--card-orange)" : "none"} color={isShuffleMode ? "var(--card-orange)" : "white"} />
                 </button>
               </div>
 

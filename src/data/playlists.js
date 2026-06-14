@@ -1241,35 +1241,1380 @@ export const defaultPlaylists = [
         ]
     },
     {
-        id: 'custom-romantic',
-        name: 'Romantic Melodies',
+        id: 'custom-deva',
+        name: 'Deva Vibes',
         creator: 'Vibeflow Official',
-        img: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=200&auto=format&fit=crop',
+        img: 'https://i.pinimg.com/736x/78/cc/2a/78cc2aafdc511092ce06cc3a37cdc074.jpg',
         createdAt: Date.now(),
-        songs: []
-    },
-    {
-        id: 'custom-midnight',
-        name: 'Midnight Drives',
-        creator: 'Vibeflow Official',
-        img: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=200&auto=format&fit=crop',
-        createdAt: Date.now(),
-        songs: []
-    },
-    {
-        id: 'custom-party',
-        name: 'Party Anthems',
-        creator: 'Vibeflow Official',
-        img: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=200&auto=format&fit=crop',
-        createdAt: Date.now(),
-        songs: []
-    },
-    {
-        id: 'custom-chill',
-        name: 'Focus & Chill',
-        creator: 'Vibeflow Official',
-        img: 'https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=200&auto=format&fit=crop',
-        createdAt: Date.now(),
-        songs: []
+        songs: [
+  {
+    "id": "song_48",
+    "title": "Engengey",
+    "artist": "Asha Bhosle, Hariharan",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Naerukku Naer (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_110",
+    "title": "Bharathikku",
+    "artist": "S. P. Balasubrahmanyam",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Priyamudan (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_22",
+    "title": "Ennoda Kadhal",
+    "artist": "Mano, Harini",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Panchathanthiram"
+  },
+  {
+    "id": "song_99",
+    "title": "Adeda Nedandhu Verae",
+    "artist": "Deva, Shankar Mahadevan, Anuradha Sriram",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "1-2-3 (One Two Three)"
+  },
+  {
+    "id": "song_139",
+    "title": "Oru Kaditham - Female Version",
+    "artist": "Deva, K. S. Chithra",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Deva (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_75",
+    "title": "Paya Un Munjile",
+    "artist": "Deva, Vadivelu, Swarnalatha, Anuradha Sriram",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ponnu Velayira Bhoomi"
+  },
+  {
+    "id": "song_15",
+    "title": "Thanga Magan Indru Singanadai",
+    "artist": "K. J. Yesudas, K. S. Chithra",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Baasha (Tamil) (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_62",
+    "title": "Tajmahal Ondru",
+    "artist": "Hariharan",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kannodu Kanbathellam (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_104",
+    "title": "Vaa Vaa En Thalaivae",
+    "artist": "Unnikrishnan, Harini, Mahadhi, Shobana",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Sandhithavaelai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_38",
+    "title": "Sona Sona",
+    "artist": "Hariharan, Ajith Kumar, Febi Mani",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaali (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_72",
+    "title": "Chinnavsiyan",
+    "artist": "Deva, Surendar, K. S. Chithra",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaanmathi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_122",
+    "title": "Ape Aela",
+    "artist": "Deva, Mano, S. Janaki",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Surieyan"
+  },
+  {
+    "id": "song_91",
+    "title": "Velinaettukkeatru",
+    "artist": "Hariharan, Harini",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaanavil"
+  },
+  {
+    "id": "song_145",
+    "title": "Rekkaiketti Parakkudayya",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra, Deva, Vairamuthu",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Annamalai"
+  },
+  {
+    "id": "song_67",
+    "title": "Coca Cola Pole",
+    "artist": "Deva, Sabesh",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Uyirile Kalanthathu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_129",
+    "title": "Chingucha Chingucha",
+    "artist": "Deva, K. S. Chithra",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Porkaalam (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_55",
+    "title": "Kadhale Kadhale",
+    "artist": "Hariharan, Sujatha",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Avvai Shanmugi"
+  },
+  {
+    "id": "song_3",
+    "title": "Udhayam Theatre",
+    "artist": "Deva, Sabesh",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aananda Poonkaatrae (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_107",
+    "title": "Un Per Solla (Duet)",
+    "artist": "Sujatha, Hariharan",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Minsara Kanna"
+  },
+  {
+    "id": "song_21",
+    "title": "Kai Kai",
+    "artist": "Anuradha Sriram, Shankar Mahadevan, Kalaikumar",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Bagavathi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_114",
+    "title": "Manam Virumbuthey",
+    "artist": "Unnikrishnan",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Naerukku Naer (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_131",
+    "title": "Kaavura Kuyilu",
+    "artist": "S. P. Balasubrahmanyam, S. Janaki, Kasthuri Raja",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Solaiyamma (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_83",
+    "title": "Unai Ninaithu Naan Enai",
+    "artist": "S. P. Balasubrahmanyam, Sujatha, K. S. Chithra",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ninaithen Vanthai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_44",
+    "title": "Chinna Chinna Kiliye",
+    "artist": "Deva, Hariharan, Anuradha Sriram, Mahanadhi Shobana",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kannethirae Thondrinal (Original Background Score)"
+  },
+  {
+    "id": "song_101",
+    "title": "Roja Keathu",
+    "artist": "Deva, Hariharan",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Red (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_86",
+    "title": "Saru Kandu Para",
+    "artist": "K. S. Chithra, S. P. Balasubrahmanyam",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "En Aasai Machan (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_135",
+    "title": "Enakena Piranthave",
+    "artist": "Deva, S. P. Balasubrahmanyam, K. S. Chithra, Vaali",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kizhakku Karai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_51",
+    "title": "Paave Paave Penpaave",
+    "artist": "S. N. Surendar, K. S. Chithra",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Once More"
+  },
+  {
+    "id": "song_7",
+    "title": "Kathadikkuthu Kathadikkuthu",
+    "artist": "Deva, Sabesh, Krishnaraj",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ninaivirukkum Varai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_65",
+    "title": "Kondayil Thezhampaa",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Annamalai"
+  },
+  {
+    "id": "song_12",
+    "title": "Nalam Nalamariya Aval",
+    "artist": "S. P. Balasubrahmanyam, Anuradha Sriram",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kadhal Kottai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_123",
+    "title": "Mattu Mattu",
+    "artist": "Deva, Swarnalatha",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kadhal Kottai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_106",
+    "title": "Boy Friend",
+    "artist": "Mano, Sujatha",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Minsara Kanna"
+  },
+  {
+    "id": "song_133",
+    "title": "Pathinettu Vayathu",
+    "artist": "S. P. Balasubrahmanyam, S. Janaki, Deva, Vaali",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Surieyan"
+  },
+  {
+    "id": "song_42",
+    "title": "Paralee Paralee",
+    "artist": "Hariharan",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Unaithedi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_32",
+    "title": "Oru Pannu Onnu",
+    "artist": "Hariharan, Anuradha Sriram, Vairamuthu",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kushi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_96",
+    "title": "En Jennal",
+    "artist": "Hariharan, Sadhana Sargam",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Chokkathangam (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_128",
+    "title": "Mani Megalai",
+    "artist": "S. P. Balasubrahmanyam",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kaalamellam Kathiruppen"
+  },
+  {
+    "id": "song_60",
+    "title": "Karupputhen Yenakku",
+    "artist": "Deva, Anuradha Sriram",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vetri Kodi Kattu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_45",
+    "title": "Ennavele Ennavele",
+    "artist": "Mano, Anuradha Sriram",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ninaithen Vanthai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_39",
+    "title": "Nilavai Konduva",
+    "artist": "Unnikrishnan, Anuradha Sriram",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaali (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_89",
+    "title": "Thenjavooru Mannu Eduthu",
+    "artist": "Deva, Krishnaraj",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Porkaalam (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_130",
+    "title": "Vazhe Thappu",
+    "artist": "Deva, Pulamaipithan, Mano, S. Janaki",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Chakravarthy (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_10",
+    "title": "Mottu Mottu Malaradha",
+    "artist": "Swarnalatha",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kadhal Kottai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_127",
+    "title": "Neelakuyile",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaikasi Porandhachu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_95",
+    "title": "Enna Nenatche",
+    "artist": "Unnikrishnan, Anuradha Sriram",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Chokkathangam (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_54",
+    "title": "Panju Mittai..",
+    "artist": "Malaysia Vasudevan, S. Janaki",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ettupatti Rasa"
+  },
+  {
+    "id": "song_41",
+    "title": "April Maathathil",
+    "artist": "Unnikrishnan, Harini",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaali (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_59",
+    "title": "Thillothama",
+    "artist": "S. P. Balasubrahmanyam, Swarnalatha",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aasai"
+  },
+  {
+    "id": "song_144",
+    "title": "Kondayil Thezhampaa",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra, Deva, Vairamuthu",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Annamalai"
+  },
+  {
+    "id": "song_57",
+    "title": "Meenamma",
+    "artist": "P. Unni Krishnan, Anuradha Sriram",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aasai"
+  },
+  {
+    "id": "song_147",
+    "title": "Style-U Style-U Dhaan Idhu Super",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra, Deva, Vairamuthu",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Baasha (Tamil) (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_94",
+    "title": "Megathil Ondrai Nindraen",
+    "artist": "Hariharan, Sujatha",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kaadhal Sadu Gudu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_118",
+    "title": "Kundrathile",
+    "artist": "Sabesh",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Nesam"
+  },
+  {
+    "id": "song_148",
+    "title": "Thanga Magan Indru Singanadai",
+    "artist": "K. J. Yesudas, K. S. Chithra, Deva, Vairamuthu",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Baasha (Tamil) (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_136",
+    "title": "Chinna Pannuthen",
+    "artist": "Mano, K. S. Chithra",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaikasi Porandhachu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_34",
+    "title": "Keechu Kiliye",
+    "artist": "Deva, Hariharan",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Mugavari (Original Background Score)"
+  },
+  {
+    "id": "song_4",
+    "title": "Kathaval Chavadi Lady",
+    "artist": "Deva, Sabesh, Chorus",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kannethirae Thondrinal (Original Background Score)"
+  },
+  {
+    "id": "song_20",
+    "title": "July Malargale",
+    "artist": "Karthik, Sadhana Sargam, Pa. Vijay",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Bagavathi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_142",
+    "title": "Sendhoora Pandikku",
+    "artist": "Deva, Vaali, S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Sendhoorapandi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_113",
+    "title": "Mudhan Mudhalil(Male)",
+    "artist": "Hariharan",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aahaa"
+  },
+  {
+    "id": "song_56",
+    "title": "Konja Naal",
+    "artist": "Hariharan",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aasai"
+  },
+  {
+    "id": "song_150",
+    "title": "Naguma",
+    "artist": "Deva, Hariharan, K. S. Chithra",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Arunachalam (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_8",
+    "title": "Malay Malay",
+    "artist": "Anuradha Sriram, A.R.Rehanah, Mahalakshmi Iyer",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Chocklet (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_13",
+    "title": "Naguma",
+    "artist": "Deva, Hariharan, K. S. Chithra",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Arunachalam"
+  },
+  {
+    "id": "song_78",
+    "title": "Yena Yena",
+    "artist": "Hariharan, Harini, Sriram, Ganga",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Appu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_119",
+    "title": "Anna Nagar Aandalu",
+    "artist": "Sabesh",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kaalamellam Kadhal Vaazhga (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_143",
+    "title": "Annamalai Annamalai",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra, Deva, Vairamuthu",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Annamalai"
+  },
+  {
+    "id": "song_6",
+    "title": "Sirippu Varuthu",
+    "artist": "Deva",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vetri Kodi Kattu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_146",
+    "title": "Oru Penpura",
+    "artist": "K. J. Yesudas, Deva, Vairamuthu",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Annamalai"
+  },
+  {
+    "id": "song_47",
+    "title": "Muthal Muthalil(Duet)",
+    "artist": "Hariharan, K. S. Chithra",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aahaa"
+  },
+  {
+    "id": "song_97",
+    "title": "Nijama Nijama",
+    "artist": "Sadhana Sargam, Tippu",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Virumbukiren (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_64",
+    "title": "Oru Penpura",
+    "artist": "K. J. Yesudas",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Annamalai"
+  },
+  {
+    "id": "song_85",
+    "title": "Annamalai Annamalai",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Annamalai"
+  },
+  {
+    "id": "song_124",
+    "title": "Aathara",
+    "artist": "Swarnalatha",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Panchalankurichi"
+  },
+  {
+    "id": "song_37",
+    "title": "Semmeena Vinmeena",
+    "artist": "Hariharan",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aananda Poonkaatrae (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_138",
+    "title": "Athi Pazham",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Raaja Pandi"
+  },
+  {
+    "id": "song_31",
+    "title": "Mattu Onru",
+    "artist": "Hariharan, Sadhana Sargam, Vairamuthu",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kushi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_116",
+    "title": "Vaa Vaa En Thalaivae",
+    "artist": "Unnikrishnan, Harini, Mahadhi, Shobana",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Sandhithavaelai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_100",
+    "title": "Hey Penne",
+    "artist": "Deva, Suresh Peters, Madhangi",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "1-2-3 (One Two Three)"
+  },
+  {
+    "id": "song_140",
+    "title": "Asengum",
+    "artist": "K. S. Chithra, S. Janaki",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Manasuketha Magaraasa (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_151",
+    "title": "Aethu Mettuthapukulle",
+    "artist": "K. S. Chithra, P. Susheela",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Manasuketha Magaraasa (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_2",
+    "title": "Vitha Vithama Soap",
+    "artist": "Deva, Krishnaraj",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kaadhale Nimmadhi"
+  },
+  {
+    "id": "song_88",
+    "title": "Vaikaraiyil",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaanmathi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_93",
+    "title": "Idam Theruvaya",
+    "artist": "Unnikrishnan, Pop Shalini",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Appu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_82",
+    "title": "Un Mabile Vizhi Moodi",
+    "artist": "K. S. Chithra",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ninaithen Vanthai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_5",
+    "title": "Munniyamma Kobapadathey Munniyamma",
+    "artist": "Sabesh",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Sandhithavaelai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_73",
+    "title": "Aiyaya Alemelu",
+    "artist": "Deva, Vijay",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Deva (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_126",
+    "title": "Raasithan",
+    "artist": "K. S. Chithra, S. P. Balasubrahmanyam",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "En Aasai Machan (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_29",
+    "title": "Macerina Macerina",
+    "artist": "Deva, Devan Ekambaram, Sowmya Raoh, Vairamuthu",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kushi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_69",
+    "title": "Veedhi Machinichi",
+    "artist": "Krishnaraj, Anuradha Sriram",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Lovely (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_49",
+    "title": "Aval Varuvala",
+    "artist": "Hariharan, Shahul Hameed",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Naerukku Naer (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_134",
+    "title": "Veedhi Pottapulle Veliye",
+    "artist": "Deva, Vaali, Vadivelu",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kaalam Maari Pochu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_66",
+    "title": "Rekkaiketti Parakkudayya",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Annamalai"
+  },
+  {
+    "id": "song_121",
+    "title": "Kanden Irukkum Idam",
+    "artist": "Deva, Sabesh",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kaadhale Nimmadhi"
+  },
+  {
+    "id": "song_115",
+    "title": "Garuda Garuda",
+    "artist": "Krishnaraj, Sujatha",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Natpukkaga (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_77",
+    "title": "Thangeniram",
+    "artist": "Vijay, Swarnalatha",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Nenjinilae (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_1",
+    "title": "Salomiya",
+    "artist": "Deva",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kannethirae Thondrinal (Original Background Score)"
+  },
+  {
+    "id": "song_80",
+    "title": "Ra Ra Ra Ra Ramayya",
+    "artist": "S. P. Balasubrahmanyam, Swarnalatha",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Basha (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_36",
+    "title": "Meenatchi Meenatchi",
+    "artist": "Deva, Sabesh",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aananda Poonkaatrae (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_19",
+    "title": "Manasay Manasay",
+    "artist": "Deva, Hariharan",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Dum (Original Background Score)"
+  },
+  {
+    "id": "song_46",
+    "title": "Vennilave",
+    "artist": "Hariharan",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ninaithen Vanthai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_33",
+    "title": "Yea Nilave Yea Nilave",
+    "artist": "Deva, Unni Menon",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Mugavari (Original Background Score)"
+  },
+  {
+    "id": "song_11",
+    "title": "Vellarikka Pinju Vellarikka",
+    "artist": "Krishnaraj, Deva",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kadhal Kottai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_84",
+    "title": "Deva Deva Devathaiye",
+    "artist": "Deva, Hariharan, Harini",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Uyirile Kalanthathu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_141",
+    "title": "Chinna Chinna",
+    "artist": "Deva, Vaali, Mano, Swarnalatha",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Sendhoorapandi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_92",
+    "title": "Uyire Uyire",
+    "artist": "Deva, Hariharan, Sujatha",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Uyirile Kalanthathu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_24",
+    "title": "Vai Raja Vai",
+    "artist": "Srinivas, Pop Shalini",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Panchathanthiram"
+  },
+  {
+    "id": "song_40",
+    "title": "Vennil Kavuthae",
+    "artist": "Mano, Anuradha Sriram",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaali (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_109",
+    "title": "Manasae",
+    "artist": "Hariharan, Sadhana Sargam",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Nenjinilae (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_103",
+    "title": "Chikkimukki Kallu",
+    "artist": "Shankar Mahadevan, Sadhana Sargam, Vairamuthu",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Citizen (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_68",
+    "title": "Kanden Irukkum Idam",
+    "artist": "Sabesh",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kaadhale Nimmadhi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_35",
+    "title": "Oadhe Oadhe",
+    "artist": "Harini, Hariharan",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Minsara Kanna"
+  },
+  {
+    "id": "song_52",
+    "title": "Ooty Malai Beaut",
+    "artist": "Mano, Swarnalatha",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Once More"
+  },
+  {
+    "id": "song_58",
+    "title": "Pulveli Pulveli(Female)",
+    "artist": "K. S. Chithra, P. Unni Krishnan",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Aasai"
+  },
+  {
+    "id": "song_125",
+    "title": "Uthattora Sivappe",
+    "artist": "Hariharan, Anuradha Sriram",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Panchalankurichi"
+  },
+  {
+    "id": "song_43",
+    "title": "Eswara Eswara",
+    "artist": "Deva, Udit Narayan",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kannethirae Thondrinal (Original Background Score)"
+  },
+  {
+    "id": "song_90",
+    "title": "Karuvellangaattu",
+    "artist": "Deva, Anuradha Sriram",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Porkaalam (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_74",
+    "title": "Manisha Manish",
+    "artist": "Deva, Sabesh, Krishnaraj",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ninaithen Vanthai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_152",
+    "title": "Panju Mittai..",
+    "artist": "Malaysia Vasudevan, S. Janaki",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ettupatti Rasa"
+  },
+  {
+    "id": "song_120",
+    "title": "Vellarikka Pinju",
+    "artist": "Deva, Krishnaraj",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kadhal Kottai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_76",
+    "title": "Venguda 420 Beeda",
+    "artist": "Deva, Sabesh",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kanave Kalaiyathey (Original Background Score)"
+  },
+  {
+    "id": "song_149",
+    "title": "Azhagu Azhagu Nee Nadanthal",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra, Deva, Vairamuthu",
+    "img": "image_54cbff.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Baasha (Tamil) (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_132",
+    "title": "Raasa Ilayarasa",
+    "artist": "Gangai Amaran, S. Janaki, Kasthuri Raja",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Solaiyamma (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_9",
+    "title": "Kavalai Padathey",
+    "artist": "Deva",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kadhal Kottai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_87",
+    "title": "Oru Naalum",
+    "artist": "Unnikrishnan, Anuradha Sriram",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaanmathi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_137",
+    "title": "Adiyile Sethi Salli",
+    "artist": "K. S. Chithra",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "En Aasai Machan (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_105",
+    "title": "O Nenje Nenje",
+    "artist": "Deva, Hariharan, Swarnalatha",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Mugavari (Original Background Score)"
+  },
+  {
+    "id": "song_53",
+    "title": "Chinna Chinna",
+    "artist": "Malaysia Vasudevan, Deva, Anuradha Sriram, Krishnaraj",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Once More"
+  },
+  {
+    "id": "song_98",
+    "title": "April Mazhai",
+    "artist": "Deva, Anuradha Sriram",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "1-2-3 (One Two Three)"
+  },
+  {
+    "id": "song_23",
+    "title": "Vandheen Vandheen",
+    "artist": "Kamal Haasan, Sujatha, Nithyasree Mahadevan",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Panchathanthiram"
+  },
+  {
+    "id": "song_71",
+    "title": "Pillaiyarpatti Hera",
+    "artist": "Deva",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Vaanmathi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_28",
+    "title": "Kattipudi Kattipudida",
+    "artist": "Vasundhara Das, Shankar Mahadevan, Vairamuthu",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kushi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_108",
+    "title": "Anbe",
+    "artist": "Hariharan",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Nenjinilae (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_79",
+    "title": "Kanchipattu Chellaketti",
+    "artist": "Hariharan",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Rettai Jadai Vayasu (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_111",
+    "title": "Pooja Vaa",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Priyamudan (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_17",
+    "title": "Chanakya Chanakya",
+    "artist": "Deva, Sadhana Sargam",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Dum (Original Background Score)"
+  },
+  {
+    "id": "song_112",
+    "title": "Whitulakkenn",
+    "artist": "S. N. Surendar",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Priyamudan (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_27",
+    "title": "Paakara Paakara",
+    "artist": "Shankar Mahadevan, Vasundhara Das, Vairamuthu",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Citizen (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_16",
+    "title": "Azhagu Azhagu Nee Nadanthal",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Baasha (Tamil) (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_63",
+    "title": "Kaalamellam Kadhal",
+    "artist": "Deva, Unnikrishnan, K. S. Chithra",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kadhal Kottai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_81",
+    "title": "Pattu Vaithu Paamudikkum",
+    "artist": "Swarnalatha",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Ninaithen Vanthai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_26",
+    "title": "I Like you",
+    "artist": "Vasundhara Das, Vairamuthu",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Citizen (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_102",
+    "title": "Kannai Kasakkum Saariyena",
+    "artist": "Deva, S. P. Balasubrahmanyam",
+    "img": "image_54cc79.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Red (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_14",
+    "title": "Style-U Style-U Dhaan Idhu Super",
+    "artist": "S. P. Balasubrahmanyam, K. S. Chithra",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Baasha (Tamil) (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_61",
+    "title": "Venthalappa-Duet",
+    "artist": "Mano, K. S. Chithra",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Seethanam"
+  },
+  {
+    "id": "song_30",
+    "title": "Megam Kerukkuthu",
+    "artist": "Vairamuthu, Harini, Deva",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Kushi (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_70",
+    "title": "Oru Kaditham - Male Version",
+    "artist": "Deva, S. P. Balasubrahmanyam, Vijay",
+    "img": "image_54cf28.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Deva (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_50",
+    "title": "Manam Virumbuthey",
+    "artist": "Harini",
+    "img": "image_54cf60.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Naerukku Naer (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_25",
+    "title": "Olli Kuchi",
+    "artist": "Deva, KK, Anuradha Sriram, Vairamuthu",
+    "img": "image_54cf86.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Red (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_117",
+    "title": "Vaa Vaa En Thalaivae",
+    "artist": "Unnikrishnan, Harini, Mahadhi, Shobana",
+    "img": "image_54cc3e.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Sandhithavaelai (Original Motion Picture Soundtrack)"
+  },
+  {
+    "id": "song_18",
+    "title": "Kannamma Kannamma",
+    "artist": "Deva, Udit Narayan, Anuradha Sriram",
+    "img": "image_54cfdc.png",
+    "audioUrl": "audio_url.mp3",
+    "duration": 250,
+    "album": "Dum (Original Background Score)"
+  }
+]
     }
 ];
