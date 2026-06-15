@@ -280,7 +280,8 @@ function App() {
     if (nextSong && !nextSong.audioUrl) {
       const fetchNext = async () => {
         try {
-          const queryStr = nextSong.query || `${nextSong.title} ${nextSong.artist}`;
+          const cleanTitle = (nextSong.title || '').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim();
+          const queryStr = nextSong.query || `${cleanTitle} ${nextSong.artist}`;
           const results = await searchSongs(queryStr);
           if (results && results.length > 0) {
             const fetchedSong = results[0];
@@ -288,7 +289,11 @@ function App() {
               const newQueue = [...prev];
               // only update if it hasn't been updated already
               if (!newQueue[nextIndex].audioUrl) {
-                 newQueue[nextIndex] = { ...newQueue[nextIndex], audioUrl: fetchedSong.audioUrl };
+                 newQueue[nextIndex] = { 
+                   ...newQueue[nextIndex], 
+                   audioUrl: fetchedSong.audioUrl,
+                   duration: fetchedSong.duration || newQueue[nextIndex].duration
+                 };
               }
               return newQueue;
             });
@@ -516,10 +521,17 @@ function App() {
 
       // If the song doesn't have an audioUrl, search for it on JioSaavn
       if (!song.audioUrl) {
-        const queryStr = song.query || `${song.title} ${song.artist}`
+        // Clean up "(From "Movie")" from title for better search results
+        const cleanTitle = (song.title || '').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim()
+        const queryStr = song.query || `${cleanTitle} ${song.artist}`
         const results = await searchSongs(queryStr)
         if (results && results.length > 0) {
-          trackToPlay = results[0] // take the best match
+          // DO NOT overwrite the track; just pull the audio URL and duration!
+          trackToPlay = {
+            ...trackToPlay,
+            audioUrl: results[0].audioUrl,
+            duration: results[0].duration || trackToPlay.duration
+          }
         } else {
           triggerToast('Could not find stream for this song.')
           setIsLoadingSong(false)
@@ -603,11 +615,16 @@ function App() {
     const nextSong = list[nextIndex];
 
     if (nextSong && !nextSong.audioUrl) {
-       const queryStr = nextSong.query || `${nextSong.title} ${nextSong.artist}`;
+       const cleanTitle = (nextSong.title || '').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim();
+       const queryStr = nextSong.query || `${cleanTitle} ${nextSong.artist}`;
        const results = await searchSongs(queryStr);
        if (results && results.length > 0) {
           const updatedQueue = [...list];
-          updatedQueue[nextIndex] = { ...nextSong, ...results[0] };
+          updatedQueue[nextIndex] = { 
+            ...nextSong, 
+            audioUrl: results[0].audioUrl,
+            duration: results[0].duration || nextSong.duration
+          };
           setActivePlaybackQueue(updatedQueue);
        }
     }
