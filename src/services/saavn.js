@@ -83,8 +83,6 @@ const formatSongData = (song) => {
                     || song.downloadUrl[song.downloadUrl.length - 1];
     
     audioUrl = safeStream.url || safeStream.link || '';
-    // Many browsers prefer .m4a extension over .mp4 for audio-only streams
-    audioUrl = audioUrl.replace(/\.mp4$/i, '.m4a');
   }
 
   // Extract artists
