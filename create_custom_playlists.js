@@ -7710,17 +7710,17 @@ const customPlaylists = [
         "artist": "Sai Abhyankkar, Paal Dabba, Bhumi, Deepthi Suresh",
         "img": "image_url_2.jpg",
         "audioUrl": "audio_url_2.mp3",
-        "duration": 205,
-        "album": "Oorum Blood (From \"Dude\")"
+        "duration": 240,
+        "album": "Dude (Original Motion Picture Soundtrack)"
       },
       {
         "id": "song_3",
         "title": "Singari",
-        "artist": "Sai Abhyankkar, Pradeep Ranganathan, Sai Smriti, Semv.iii",
+        "artist": "Sai Abhyankkar, Ramajogayya Sastry",
         "img": "image_url_3.jpg",
         "audioUrl": "audio_url_3.mp3",
         "duration": 220,
-        "album": "Dude (Original Motion Picture Soundtrack)"
+        "album": "Dude (Telugu) [Original Motion Picture Soundtrack]"
       },
       {
         "id": "song_4",
@@ -7729,7 +7729,7 @@ const customPlaylists = [
         "img": "image_url_4.jpg",
         "audioUrl": "audio_url_4.mp3",
         "duration": 195,
-        "album": "Nallaru Po (From \"Dude\")"
+        "album": "Dude (Original Motion Picture Soundtrack)"
       },
       {
         "id": "song_5",
@@ -7761,11 +7761,11 @@ const customPlaylists = [
       {
         "id": "song_8",
         "title": "Sithira Puthiri - From \"Think Indie\"",
-        "artist": "Sai Abhyankkar, Vivek",
+        "artist": "Sai Abhyankkar",
         "img": "image_url_8.jpg",
         "audioUrl": "audio_url_8.mp3",
         "duration": 200,
-        "album": "Sithira Puthiri(From \"Think Indie\")"
+        "album": "Sithira Puthiri (From \"Think Indie\")"
       },
       {
         "id": "song_9",
@@ -7782,8 +7782,8 @@ const customPlaylists = [
         "artist": "Sai Abhyankkar, Sublahshini, Vinayak Sasikumar",
         "img": "image_url_10.jpg",
         "audioUrl": "audio_url_10.mp3",
-        "duration": 225,
-        "album": "Jaalakaari (From \"Balti\")"
+        "duration": 238,
+        "album": "Balti (Original Motion Picture Soundtrack)"
       },
       {
         "id": "song_11",
@@ -7810,7 +7810,7 @@ const customPlaylists = [
         "img": "image_url_13.jpg",
         "audioUrl": "audio_url_13.mp3",
         "duration": 190,
-        "album": "Soda Break (From \"Balti\")"
+        "album": "Balti (Original Motion Picture Soundtrack)"
       },
       {
         "id": "song_14",
@@ -7819,7 +7819,7 @@ const customPlaylists = [
         "img": "image_url_14.jpg",
         "audioUrl": "audio_url_14.mp3",
         "duration": 235,
-        "album": "Madharaasi(Original Motion Picture Soundtrack)"
+        "album": "Madharaasi (Original Motion Picture Soundtrack)"
       },
       {
         "id": "song_15",
@@ -7837,7 +7837,7 @@ const customPlaylists = [
         "img": "image_url_16.jpg",
         "audioUrl": "audio_url_16.mp3",
         "duration": 220,
-        "album": "Madharaasi(Original Motion Picture Soundtrack)"
+        "album": "Madharaasi (Original Motion Picture Soundtrack)"
       },
       {
         "id": "song_17",
@@ -7881,8 +7881,53 @@ const customPlaylists = [
         "artist": "Sai Abhyankkar",
         "img": "image_url_21.jpg",
         "audioUrl": "audio_url_21.mp3",
-        "duration": 160,
+        "duration": 120,
         "album": "Benz In The Universe Theme (From \"Benz\")"
+      },
+      {
+        "id": "song_22",
+        "title": "Karuppan Karuppan",
+        "artist": "D. Imman, Diwakar",
+        "img": "image_url_22.jpg",
+        "audioUrl": "audio_url_22.mp3",
+        "duration": 252,
+        "album": "Karuppan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_23",
+        "title": "Usure Usure",
+        "artist": "D. Imman, Ananya Bhat",
+        "img": "image_url_23.jpg",
+        "audioUrl": "audio_url_23.mp3",
+        "duration": 265,
+        "album": "Karuppan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_24",
+        "title": "Yachha Yachha",
+        "artist": "D. Imman, Aditya Rao, Vaikom Vijayalakshmi",
+        "img": "image_url_24.jpg",
+        "audioUrl": "audio_url_24.mp3",
+        "duration": 273,
+        "album": "Karuppan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_25",
+        "title": "Azhagazhaga",
+        "artist": "D. Imman, Pradeep Kumar",
+        "img": "image_url_25.jpg",
+        "audioUrl": "audio_url_25.mp3",
+        "duration": 281,
+        "album": "Karuppan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_26",
+        "title": "Olaga Vaayaadi",
+        "artist": "D. Imman, Benny Dayal",
+        "img": "image_url_26.jpg",
+        "audioUrl": "audio_url_26.mp3",
+        "duration": 258,
+        "album": "Karuppan (Original Motion Picture Soundtrack)"
       }
     ]
   },
