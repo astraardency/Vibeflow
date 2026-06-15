@@ -95,7 +95,7 @@ const formatSongData = (song) => {
 
   return {
     id: song.id,
-    title: decodeHTMLEntities(song.name || song.title || 'Untitled'),
+    title: decodeHTMLEntities(song.name || song.title || 'Untitled').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim(),
     artist: artistName,
     img: imgUrl,
     audioUrl: audioUrl,
