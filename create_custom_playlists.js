@@ -7886,48 +7886,84 @@ const customPlaylists = [
       },
       {
         "id": "song_22",
-        "title": "Karuppan Karuppan",
-        "artist": "D. Imman, Diwakar",
+        "title": "Verappa - From \"Karuppu\"",
+        "artist": "Sai Abhyankkar, Arivu, Arun Srinivasan",
         "img": "image_url_22.jpg",
         "audioUrl": "audio_url_22.mp3",
-        "duration": 252,
-        "album": "Karuppan (Original Motion Picture Soundtrack)"
+        "duration": 210,
+        "album": "Verappa (From \"Karuppu\")"
       },
       {
         "id": "song_23",
-        "title": "Usure Usure",
-        "artist": "D. Imman, Ananya Bhat",
+        "title": "God Mode - From \"Karuppu\"",
+        "artist": "Sai Abhyankkar, Gana Muthu, Vishnu Edavan",
         "img": "image_url_23.jpg",
         "audioUrl": "audio_url_23.mp3",
-        "duration": 265,
-        "album": "Karuppan (Original Motion Picture Soundtrack)"
+        "duration": 195,
+        "album": "God Mode (From \"Karuppu\")"
       },
       {
         "id": "song_24",
-        "title": "Yachha Yachha",
-        "artist": "D. Imman, Aditya Rao, Vaikom Vijayalakshmi",
+        "title": "Naanga Naalu Peru - From \"Karuppu\"",
+        "artist": "Sai Abhyankkar, Silambarasan TR, Asal Kolaar, Arun Srinivasan",
         "img": "image_url_24.jpg",
         "audioUrl": "audio_url_24.mp3",
-        "duration": 273,
-        "album": "Karuppan (Original Motion Picture Soundtrack)"
+        "duration": 225,
+        "album": "Naanga Naalu Peru (From \"Karuppu\")"
       },
       {
         "id": "song_25",
-        "title": "Azhagazhaga",
-        "artist": "D. Imman, Pradeep Kumar",
+        "title": "Raathu Raasan - From \"Karuppu\"",
+        "artist": "Sai Abhyankkar, V.M. Mahalingam, Paal Dabba, Vivek",
         "img": "image_url_25.jpg",
         "audioUrl": "audio_url_25.mp3",
-        "duration": 281,
-        "album": "Karuppan (Original Motion Picture Soundtrack)"
+        "duration": 240,
+        "album": "Raathu Raasan (From \"Karuppu\")"
       },
       {
         "id": "song_26",
-        "title": "Olaga Vaayaadi",
-        "artist": "D. Imman, Benny Dayal",
+        "title": "Karuppa Kooda Va - From \"Karuppu\"",
+        "artist": "Sai Abhyankkar, V.M. Mahalingam, Pa. Vijay",
         "img": "image_url_26.jpg",
         "audioUrl": "audio_url_26.mp3",
-        "duration": 258,
-        "album": "Karuppan (Original Motion Picture Soundtrack)"
+        "duration": 215,
+        "album": "Karuppa Kooda Va (From \"Karuppu\")"
+      },
+      {
+        "id": "song_27",
+        "title": "Verappa - Extended - From \"Karuppu\"",
+        "artist": "Sai Abhyankkar, Arivu, Arun Srinivasan",
+        "img": "image_url_27.jpg",
+        "audioUrl": "audio_url_27.mp3",
+        "duration": 260,
+        "album": "Verappa - Extended (From \"Karuppu\")"
+      },
+      {
+        "id": "song_28",
+        "title": "Athu Thalora - From \"Karuppu\"",
+        "artist": "Sai Abhyankkar, Ananya Chakraborty, Adesh Krishna",
+        "img": "image_url_28.jpg",
+        "audioUrl": "audio_url_28.mp3",
+        "duration": 200,
+        "album": "Athu Thalora (From \"Karuppu\")"
+      },
+      {
+        "id": "song_29",
+        "title": "Aathi Raasathi",
+        "artist": "Sai Abhyankkar, Dhass Benjamin, Pa. Vijay",
+        "img": "image_url_29.jpg",
+        "audioUrl": "audio_url_29.mp3",
+        "duration": 205,
+        "album": "Karuppu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_30",
+        "title": "God Mode Begins",
+        "artist": "Sai Abhyankkar, Gana Muthu, Vishnu Edavan",
+        "img": "image_url_30.jpg",
+        "audioUrl": "audio_url_30.mp3",
+        "duration": 180,
+        "album": "Karuppu (Original Motion Picture Soundtrack)"
       }
     ]
   },
