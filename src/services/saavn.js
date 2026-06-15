@@ -75,10 +75,16 @@ const formatSongData = (song) => {
     imgUrl = song.image;
   }
 
-  // Extract high-quality download url (usually last in array for 320kbps or 160kbps)
+  // Extract high-quality download url (avoiding 320kbps as it often 404s on JioSaavn CDN)
   let audioUrl = '';
   if (song.downloadUrl && Array.isArray(song.downloadUrl) && song.downloadUrl.length > 0) {
-    audioUrl = song.downloadUrl[song.downloadUrl.length - 1].url || song.downloadUrl[song.downloadUrl.length - 1].link || '';
+    const safeStream = song.downloadUrl.find(d => d.quality === '160kbps') 
+                    || song.downloadUrl.find(d => d.quality === '96kbps')
+                    || song.downloadUrl[song.downloadUrl.length - 1];
+    
+    audioUrl = safeStream.url || safeStream.link || '';
+    // Many browsers prefer .m4a extension over .mp4 for audio-only streams
+    audioUrl = audioUrl.replace(/\.mp4$/i, '.m4a');
   }
 
   // Extract artists

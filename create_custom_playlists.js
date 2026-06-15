@@ -7892,1257 +7892,2166 @@ const customPlaylists = [
     img: "image_4566c3.png",
     createdAt: Date.now(),
     songs: [
-  {
-    "id": "song_47",
-    "title": "Sol Pechu",
-    "artist": "Yuvan Shankar Raja, K. S. Chithra, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Thillalangadi (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_1",
-    "title": "Soodaana",
-    "artist": "Shreya Ghoshal, Devi Sri Prasad, Viveka",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Pushpa 2 The Rule [TAMIL]"
-  },
-  {
-    "id": "song_116",
-    "title": "Vaadagai Koodu",
-    "artist": "S.P. Charan",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Nalanum Nandhiniyum"
-  },
-  {
-    "id": "song_70",
-    "title": "Yetho Yetho Aasai",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Naan Thaan Siva (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_24",
-    "title": "Unnale",
-    "artist": "G. V. Prakash, Shankar Mahadevan, Shreya Ghoshal, Na.Muthukumar",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Darling (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_93",
-    "title": "Kadi Paiya",
-    "artist": "Udit Narayan, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kedi"
-  },
-  {
-    "id": "song_48",
-    "title": "Kalvare",
-    "artist": "A.R. Rahman, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Raavanan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_2",
-    "title": "Kaanaathaathai Naan Kandeney",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Teenz"
-  },
-  {
-    "id": "song_117",
-    "title": "Kadhikudhu Manasu",
-    "artist": "Karthik, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Sivapu"
-  },
-  {
-    "id": "song_71",
-    "title": "Un Pal Yaarum Illai",
-    "artist": "Sonu Nigam, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Krrish"
-  },
-  {
-    "id": "song_25",
-    "title": "Pookkalae Sattru Oyivedungal",
-    "artist": "A.R. Rahman, Haricharan, Shreya Ghoshal, Madhan Karky",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "I (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_94",
-    "title": "Kattikka Rappa Rappa",
-    "artist": "Kunal Ganjawala, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Thimiru"
-  },
-  {
-    "id": "song_49",
-    "title": "Unn Perai Sollum",
-    "artist": "G. V. Prakash, Naresh Iyer, Shreya Ghoshal, Haricharan",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Angadi Theru (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_3",
-    "title": "Ratchasa Maamaney",
-    "artist": "Shreya Ghoshal, Palakad Sreeram, Mahesh Vinayakram",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Ponniyin Selvan Part-1 (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_118",
-    "title": "Gaana Gaana",
-    "artist": "D. Imman, Shreya Ghoshal, Anand Aravindakshan, Madhan Karky",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "10 Endrathukulla (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_72",
-    "title": "Enakku Piditha Paadal",
-    "artist": "Ilaiyaraaja, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Julie Ganapathi (Original Background Score)"
-  },
-  {
-    "id": "song_26",
-    "title": "Koodha Kaathu",
-    "artist": "D. Imman, Haricharan, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Vellakkara Durai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_95",
-    "title": "Kanji Kanji",
-    "artist": "Karthik",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Maya Kannadi (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_50",
-    "title": "Mannipaaya",
-    "artist": "A.R. Rahman, Shreya Ghoshal, Thamarai",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Vinnaithaandi Varuvaayaa (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_4",
-    "title": "Munbe Vaa",
-    "artist": "Naresh Iyer, Shreya Ghoshal, Vaali",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Sillunu Oru Kadhal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_119",
-    "title": "Minnaadhi Minnal",
-    "artist": "Sanjay Leela Bhansali, Shreya Ghoshal, Neeti Mohan, Deepti Rege, Archana Gore, Pragati Joshi, Madhan Karky",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Bajirao Mastani (Original Motion Picture Soundtrack) [Tamil Version]"
-  },
-  {
-    "id": "song_73",
-    "title": "Onnappola Oruthana",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Vetrivel (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_27",
-    "title": "Yen Aala Paakkaporaen",
-    "artist": "D. Imman, Shreya Ghoshal, Ranjith Govind",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kayal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_96",
-    "title": "Kuyil Paadum Paattu",
-    "artist": "Shreya Ghoshal, M.Nandini",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kanna (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_51",
-    "title": "Oru Vetkam Varudhe",
-    "artist": "James Vasanthan, Naresh Iyer, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Pasanga (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_5",
-    "title": "Unna Nenachadhum",
-    "artist": "A.R. Rahman, Shreya Ghoshal, Sarthak Kalyani",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Vendhu Thanindhathu Kaadu (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_120",
-    "title": "Pudikkum",
-    "artist": "Shankar Mahadevan, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Saahasam (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_74",
-    "title": "Thamirabarani Rani",
-    "artist": "Bharadwaj, KK, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Ayya"
-  },
-  {
-    "id": "song_28",
-    "title": "Sundari Pennae",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Oru Oorula Rendu Raja (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_97",
-    "title": "Uyir Vazhvadhey",
-    "artist": "Abhishek Ray, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Thoondil (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_52",
-    "title": "Thaen Thaen",
-    "artist": "Udit Narayan, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kuruvi"
-  },
-  {
-    "id": "song_6",
-    "title": "Mayava Thooyava (From \"Iravin Nizhal\")",
-    "artist": "A.R. Rahman, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Iravin Nizhal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_121",
-    "title": "Kangalilae",
-    "artist": "G. V. Prakash, Shreya Ghoshal, Javed Ali",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Pencil (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_75",
-    "title": "Nenjathilae",
-    "artist": "Vidyasagar, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Pirivom Santhipom (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_29",
-    "title": "Pidikkudhae",
-    "artist": "D. Imman, Jithin Raj, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Sigaram Thodu (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_98",
-    "title": "Aavaram Poovukkum",
-    "artist": "Vidyasagar, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Arai Enn 305 Il Kadavul (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_53",
-    "title": "Iyyayo",
-    "artist": "Manikka Vinayagam, Krishnaraj, Yuvan Shankar Raja, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Paruthiveeran"
-  },
-  {
-    "id": "song_7",
-    "title": "Ival Dhaana",
-    "artist": "Sagar, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Veeram (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_122",
-    "title": "Kanna Kaattu Podhum",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Rekka (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_76",
-    "title": "AASAYA AASAYA",
-    "artist": "Sathyan, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "PETTIKADAI (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_30",
-    "title": "Neelangarayil",
-    "artist": "Karthik, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Pulivaal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_99",
-    "title": "Chaaral",
-    "artist": "Shreya Ghoshal, Kids, G. V. Prakash, Kiruthiya",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kuselan"
-  },
-  {
-    "id": "song_54",
-    "title": "Nannare",
-    "artist": "A.R. Rahman, Shreya Ghoshal, Uday Mazumdar",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Guru (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_8",
-    "title": "Hey Puyale",
-    "artist": "Arrol Corelli, Shreya Ghoshal, Sathyaprakash",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kalaga Thalaivan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_123",
-    "title": "Rang Rang Rangoli",
-    "artist": "Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Devi (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_77",
-    "title": "Namma Ooru Nallarukku",
-    "artist": "G. V. Prakash, Anuradha Sriram, Shreya Ghoshal, Tippu",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Seval (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_31",
-    "title": "Kandaangi Kandaangi",
-    "artist": "Vijay, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Jilla (Original Music Picture Soundtrack)"
-  },
-  {
-    "id": "song_100",
-    "title": "Naangu Kangal",
-    "artist": "D. Imman, Javed Ali, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Naan Avan Illai, 2 (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_55",
-    "title": "Aedhivasu Naane",
-    "artist": "Ranjit, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kedi"
-  },
-  {
-    "id": "song_9",
-    "title": "Kyla",
-    "artist": "D. Imman, Shreya Ghoshal, Yazin Nizar, Madhan Karky",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Captain (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_124",
-    "title": "Adada Adada",
-    "artist": "D. Imman, Sriram Parthasarathy, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Veera Sivaji (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_78",
-    "title": "Yeenadi",
-    "artist": "D. Imman, Karthik, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Adhagappattathu Magajanangalay (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_32",
-    "title": "Ennai Saaithaalae",
-    "artist": "Harris Jayaraj, Hariharan, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Endrendrum Punnagai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_101",
-    "title": "Kadhal Oru Kaatru",
-    "artist": "Nihal, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Naan Aval Adhu (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_56",
-    "title": "Pani Thulli",
-    "artist": "KK, Shreya Ghoshal, Thanvi, Thamarai",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kanda Naal Mudhal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_10",
-    "title": "Thumbi Thullal",
-    "artist": "A.R. Rahman, Nakul Abhyankar, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Cobra (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_125",
-    "title": "Yaanada - Reprise Version",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Adhagappattathu Magajanangalay (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_79",
-    "title": "Yengirindhu Vandhaayo",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kayal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_33",
-    "title": "Para Para (New)",
-    "artist": "N.R. Raghunanthan, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Neerparavai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_102",
-    "title": "Unnai Ninaithen",
-    "artist": "Vijay Antony, Prasanna, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Mariyadhai"
-  },
-  {
-    "id": "song_11",
-    "title": "Unnaale",
-    "artist": "Anurag Kulkarni, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Radhe Shyam"
-  },
-  {
-    "id": "song_126",
-    "title": "Aahaa Aahaa",
-    "artist": "D. Imman, Haricharan, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Gemini Ganeshanum Suruli Raajanum (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_80",
-    "title": "Uthira Uthira",
-    "artist": "D. Imman, Sreekanth Hariharan, Shreya Ghoshal, Maria Roe Vincent, Madhan Karky",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Pon Manickavel (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_34",
-    "title": "Sahaayane",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Saattai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_103",
-    "title": "Kandaen Kanmaniyae",
-    "artist": "Ganesh Raghavendra, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Renigunta (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_57",
-    "title": "Thavani Pootta",
-    "artist": "Vijay Yesudas, Srerayakoshi, Yugabharathi, Yuvan Shankar Raja",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Sandakozhi (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_12",
-    "title": "Chakka Chakelathi",
-    "artist": "A.R. Rahman, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Galatta Kalyanam"
-  },
-  {
-    "id": "song_127",
-    "title": "Unkoode Pesathaane",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Rubaai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_81",
-    "title": "Rail Aaraaroo",
-    "artist": "Pradeep Kumar, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Nenjil Thunivirunthal"
-  },
-  {
-    "id": "song_35",
-    "title": "Rakkai Mulaiththen",
-    "artist": "G. V. Prakash, Shreya Ghoshal, Madhan Karky",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Sundarapandiyan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_104",
-    "title": "Yaaradi",
-    "artist": "Dharan Kumar, Hariharan, Shreya Ghoshal, Subhiksha Rangarajan",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Thambikku Indha Ooru (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_58",
-    "title": "Saamikittey",
-    "artist": "Yuvan Shankar Raja, Hariharan, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Daas"
-  },
-  {
-    "id": "song_13",
-    "title": "Saara Kaattrae",
-    "artist": "Shreya Ghoshal, Sid Sriram",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Annaatthe (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_128",
-    "title": "Marhaba Aavane",
-    "artist": "D. Imman, Shreya Ghoshal, Aditya Gadhvi",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Saravanan Irukka Bayamaen (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_82",
-    "title": "Nee Uravaaga",
-    "artist": "Shreya Ghoshal, Haricharan",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Paambhu Sattai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_36",
-    "title": "Sollitaley Ava Kaadhala",
-    "artist": "D. Imman, Ranjith Govind, Shreya Ghoshal, Yugabharathi",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kumki (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_105",
-    "title": "Munpani",
-    "artist": "Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Seedan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_59",
-    "title": "Andangkaka",
-    "artist": "Harris Jayaraj, Jassie Gift, KK, Shreya Ghoshal, Saindhavi",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Anniyan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_14",
-    "title": "Kanava Urave",
-    "artist": "Yuvan Shankar Raja, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Plan Panni Pannanum (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_129",
-    "title": "Ippadai Vellum Nichayama (From \"Ippadai Vellum\")",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Ippadai Vellum (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_83",
-    "title": "Jeebaambe",
-    "artist": "Mani Sharma, Karthik, Shreya Ghoshal, Kalpana Patowary",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Alaudin (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_37",
-    "title": "Naani Koni",
-    "artist": "Harris Jayaraj, Vijay Prakash, Karthik, Shreya Ghoshal, Shekhinah Shawn Jazeel, Viveka",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Maattrraan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_106",
-    "title": "Poovakkelu",
-    "artist": "Ilaiyaraaja, Karthik, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Azhagarsamiyin Kuthirai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_60",
-    "title": "Ninaithu Ninaithu",
-    "artist": "Yuvan Shankar Raja, Shreya Ghoshal, Na.Muthukumar",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "7/G Rainbow Colony (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_15",
-    "title": "Kadai Kannaaley",
-    "artist": "D. Imman, Shreya Ghoshal, Varun Parandhaman",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Bhoomi (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_130",
-    "title": "Iravil Varukira (Female)",
-    "artist": "Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "En Aaloda Seruppa Kaanom (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_84",
-    "title": "Enge Aval",
-    "artist": "Maragadhamani, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Unnai Paartha Naal Mudhal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_38",
-    "title": "Yennada Yennada",
-    "artist": "D. Imman, Shreya Ghoshal, Sooraj Santhosh",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Varuthapadatha Vaalibar Sangam (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_107",
-    "title": "Chinna Kannilay",
-    "artist": "Ilaiyaraaja, Shreya Ghoshal, Naresh Iyer",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Dhoni (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_61",
-    "title": "Elangathu - Duet",
-    "artist": "Shreya Ghoshal, Palani Barathi, Sriram Parthasarathy",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Pithamagan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_16",
-    "title": "Aagaaya Neelangalil",
-    "artist": "A.R. Rahman, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "99 Songs (Tamil) [Original Motion Picture Soundtrack]"
-  },
-  {
-    "id": "song_131",
-    "title": "Amma I Love You",
-    "artist": "Amrish, Shreya Ghoshal, Baby Sreya",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Bhaskar Oru Rascal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_85",
-    "title": "Nijama Nijama",
-    "artist": "KK, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Bose (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_39",
-    "title": "Ammadi Ammadi",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Desingu Raja (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_108",
-    "title": "Vilayaattaa Padagotty",
-    "artist": "Ilaiyaraaja, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Dhoni (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_62",
-    "title": "Unna Vida",
-    "artist": "Kamal Haasan, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Virumandi"
-  },
-  {
-    "id": "song_17",
-    "title": "Mailaanji",
-    "artist": "Pradeep Kumar, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Namma Veettu Pillai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_132",
-    "title": "Mannaa Kaetkudhaa",
-    "artist": "Ajay-Atul, Shreya Ghoshal, Sunidhi Chauhan, Divya Kumar, Amitabh Bhattacharya",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Thugs of Hindostan - Tamil"
-  },
-  {
-    "id": "song_86",
-    "title": "Aye Pennae",
-    "artist": "Shreya Ghoshal, Tamarai",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Thendral (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_40",
-    "title": "Appappa (From \"Komban\")",
-    "artist": "G. V. Prakash, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Komban (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_109",
-    "title": "Oru Thuli Vishamai",
-    "artist": "Shreya Ghoshal, Sharib Sabri",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Aadhi Bhagavan"
-  },
-  {
-    "id": "song_63",
-    "title": "Sandiyare",
-    "artist": "Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Virumandi"
-  },
-  {
-    "id": "song_18",
-    "title": "Anbae Peranbae",
-    "artist": "Yuvan Shankar Raja, Sid Sriram, Shreya Ghoshal, Uma Devi",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "NGK (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_133",
-    "title": "Nadiga Nadigaa",
-    "artist": "Sonu Nigam, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Sei (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_87",
-    "title": "Khajiraho Kanavil",
-    "artist": "Ilaiyaraaja, Hariharan, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Oru Naal Oru Kanavu"
-  },
-  {
-    "id": "song_41",
-    "title": "Velicha Poove",
-    "artist": "Anirudh Ravichander, Shreya Ghoshal, Mohit Chauhan, Vaali",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Ethir Neechal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_110",
-    "title": "Yamma Yamma",
-    "artist": "Thaman S, Sooraj Santhosh, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "All in All Azhagu Raja (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_64",
-    "title": "Azhaginne Azhagi",
-    "artist": "A.R. Rahman, Shreya Ghoshal, Karjo Bhattacharya, Pa. Vijay",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Enakku 20 Unakku 18 (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_19",
-    "title": "Onnavitta Yaarum Yenakilla - Version 1",
-    "artist": "D. Imman, Sean Roldan, Shreya Ghoshal",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Seemaraja (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_134",
-    "title": "Sudalamada Saamikitta",
-    "artist": "Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "PETTIKADAI (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_88",
-    "title": "Katril Varum Geethame",
-    "artist": "Ilaiyaraaja, Hariharan, Shreya Ghoshal, Bhavadharani, Sadhana Sargam",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Oru Naal Oru Kanavu"
-  },
-  {
-    "id": "song_42",
-    "title": "Thirandhen Thirandhen",
-    "artist": "Thaman S, Aalaap Raju, Shreya Ghoshal, Madhan Karky",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Vandhaan Vendraan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_111",
-    "title": "Valiarae Kiliyae",
-    "artist": "Vijay Prakash Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Kollaikkaaran"
-  },
-  {
-    "id": "song_65",
-    "title": "Paathukkulla",
-    "artist": "Bharadwaj, KK, Shreya Ghoshal, Vairamuthu",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Vasool Raja Mbbs (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_21",
-    "title": "Neethanae",
-    "artist": "A.R. Rahman, Shreya Ghoshal, Vivek",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Mersal (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_135",
-    "title": "Orey Santham",
-    "artist": "Shreya Ghoshal, Jubin Nautiyal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Dabangg 3"
-  },
-  {
-    "id": "song_89",
-    "title": "Vaarai Vaarai",
-    "artist": "D. Imman, Shankar Mahadevan, Shreya Ghoshal, Madhan Karky",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Bogan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_43",
-    "title": "Oru Kili Oru Kili",
-    "artist": "Satish Chakravarthy, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Leelai (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_112",
-    "title": "Aanazhagu",
-    "artist": "D. Imman, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Tenali Raman (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_66",
-    "title": "Andha Naal - Version 1",
-    "artist": "Vijay Yesudas, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Athu Oru Kanaa Kaalam (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_22",
-    "title": "Mazhaikkul",
-    "artist": "Sam C.S., Haricharan, Shreya Ghoshal, Madhan Karky",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Puriyaatha Puthir (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_136",
-    "title": "Anney Yaaranney",
-    "artist": "D. Imman, Shreya Ghoshal, Yugabharathi",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Udanpirappe (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_90",
-    "title": "Konjam Thira",
-    "artist": "Ilaiyaraaja, Sonu Nigam, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Oru Naal Oru Kanavu"
-  },
-  {
-    "id": "song_44",
-    "title": "Kadhal Anukkal",
-    "artist": "Vijay Prakash, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Enthiran (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_113",
-    "title": "Megathilae",
-    "artist": "Mani Sharma, Madhan Karky, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Vetriselvan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_67",
-    "title": "Entha Kuthirayil",
-    "artist": "Yuvan Shankar Raja, Shreya Ghoshal, Rahul Nambiar, Na.Muthukumar",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Satham Podathey (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_23",
-    "title": "Mirutha Mirutha",
-    "artist": "D. Imman, Shreya Ghoshal, Vijay Yesudas, Madhan Karky",
-    "img": "image_4569e7.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Miruthan (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_137",
-    "title": "Kanji Kanji",
-    "artist": "Harris Jayaraj, KK, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "The Legend (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_91",
-    "title": "Ayyayo Anandha",
-    "artist": "Bharadwaj, Shreya Ghoshal",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Febraury-14 (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_45",
-    "title": "Poovinai",
-    "artist": "G. V. Prakash, Srinivas, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Anandha Thaandavam (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_114",
-    "title": "Oh Oh Nadhigal Oda",
-    "artist": "Siddharth Vipin, Naresh Iyer, Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Vallavanukku Pullum Aayudham (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_68",
-    "title": "Pona Usuru Vanthurichu",
-    "artist": "Haricharan, Shreya Ghoshal",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Thodari"
-  },
-  {
-    "id": "song_138",
-    "title": "Paartha Nyabhagam",
-    "artist": "Girishh G, Viswananthan - Ramamoorthy, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Paartha Nyabhagam (From \"Kolai\")"
-  },
-  {
-    "id": "song_92",
-    "title": "Thazhuvudu",
-    "artist": "S. P. Balasubrahmanyam, Shreya Ghosla",
-    "img": "image_456680.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Anbe Aaruyire (Original Motion Picture Soundtrack)"
-  },
-  {
-    "id": "song_46",
-    "title": "Neeyum Naanum",
-    "artist": "Bonny Dayal, Shreya Ghoshal",
-    "img": "image_4569a8.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Mynaa"
-  },
-  {
-    "id": "song_115",
-    "title": "Neeyaa Neeyaa",
-    "artist": "Shreya Ghoshal",
-    "img": "image_4562de.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Arima Nambi"
-  },
-  {
-    "id": "song_69",
-    "title": "Oorellam Kekkude",
-    "artist": "Shreya Ghoshal, Maria Roe",
-    "img": "image_4566c3.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Thodari"
-  },
-  {
-    "id": "song_139",
-    "title": "Engirunthu",
-    "artist": "Hariharan, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Therodum Veedhiyile"
-  },
-  {
-    "id": "song_140",
-    "title": "Sye Raa",
-    "artist": "Sunidhi Chauhan, Shreya Ghoshal",
-    "img": "image_456288.png",
-    "audioUrl": "",
-    "duration": 250,
-    "album": "Syeraa Narasimha Reddy"
-  }
+      {
+        "id": "song_47",
+        "title": "Sol Pechu",
+        "artist": "Yuvan Shankar Raja, K. S. Chithra, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Thillalangadi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_1",
+        "title": "Soodaana",
+        "artist": "Shreya Ghoshal, Devi Sri Prasad, Viveka",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Pushpa 2 The Rule [TAMIL]"
+      },
+      {
+        "id": "song_116",
+        "title": "Vaadagai Koodu",
+        "artist": "S.P. Charan",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Nalanum Nandhiniyum"
+      },
+      {
+        "id": "song_70",
+        "title": "Yetho Yetho Aasai",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Naan Thaan Siva (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_24",
+        "title": "Unnale",
+        "artist": "G. V. Prakash, Shankar Mahadevan, Shreya Ghoshal, Na.Muthukumar",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Darling (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_93",
+        "title": "Kadi Paiya",
+        "artist": "Udit Narayan, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kedi"
+      },
+      {
+        "id": "song_48",
+        "title": "Kalvare",
+        "artist": "A.R. Rahman, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Raavanan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_2",
+        "title": "Kaanaathaathai Naan Kandeney",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Teenz"
+      },
+      {
+        "id": "song_117",
+        "title": "Kadhikudhu Manasu",
+        "artist": "Karthik, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Sivapu"
+      },
+      {
+        "id": "song_71",
+        "title": "Un Pal Yaarum Illai",
+        "artist": "Sonu Nigam, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Krrish"
+      },
+      {
+        "id": "song_25",
+        "title": "Pookkalae Sattru Oyivedungal",
+        "artist": "A.R. Rahman, Haricharan, Shreya Ghoshal, Madhan Karky",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "I (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_94",
+        "title": "Kattikka Rappa Rappa",
+        "artist": "Kunal Ganjawala, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Thimiru"
+      },
+      {
+        "id": "song_49",
+        "title": "Unn Perai Sollum",
+        "artist": "G. V. Prakash, Naresh Iyer, Shreya Ghoshal, Haricharan",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Angadi Theru (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_3",
+        "title": "Ratchasa Maamaney",
+        "artist": "Shreya Ghoshal, Palakad Sreeram, Mahesh Vinayakram",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Ponniyin Selvan Part-1 (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_118",
+        "title": "Gaana Gaana",
+        "artist": "D. Imman, Shreya Ghoshal, Anand Aravindakshan, Madhan Karky",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "10 Endrathukulla (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_72",
+        "title": "Enakku Piditha Paadal",
+        "artist": "Ilaiyaraaja, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Julie Ganapathi (Original Background Score)"
+      },
+      {
+        "id": "song_26",
+        "title": "Koodha Kaathu",
+        "artist": "D. Imman, Haricharan, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Vellakkara Durai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_95",
+        "title": "Kanji Kanji",
+        "artist": "Karthik",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Maya Kannadi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_50",
+        "title": "Mannipaaya",
+        "artist": "A.R. Rahman, Shreya Ghoshal, Thamarai",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Vinnaithaandi Varuvaayaa (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_4",
+        "title": "Munbe Vaa",
+        "artist": "Naresh Iyer, Shreya Ghoshal, Vaali",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Sillunu Oru Kadhal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_119",
+        "title": "Minnaadhi Minnal",
+        "artist": "Sanjay Leela Bhansali, Shreya Ghoshal, Neeti Mohan, Deepti Rege, Archana Gore, Pragati Joshi, Madhan Karky",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Bajirao Mastani (Original Motion Picture Soundtrack) [Tamil Version]"
+      },
+      {
+        "id": "song_73",
+        "title": "Onnappola Oruthana",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Vetrivel (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_27",
+        "title": "Yen Aala Paakkaporaen",
+        "artist": "D. Imman, Shreya Ghoshal, Ranjith Govind",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kayal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_96",
+        "title": "Kuyil Paadum Paattu",
+        "artist": "Shreya Ghoshal, M.Nandini",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kanna (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_51",
+        "title": "Oru Vetkam Varudhe",
+        "artist": "James Vasanthan, Naresh Iyer, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Pasanga (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_5",
+        "title": "Unna Nenachadhum",
+        "artist": "A.R. Rahman, Shreya Ghoshal, Sarthak Kalyani",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Vendhu Thanindhathu Kaadu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_120",
+        "title": "Pudikkum",
+        "artist": "Shankar Mahadevan, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Saahasam (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_74",
+        "title": "Thamirabarani Rani",
+        "artist": "Bharadwaj, KK, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Ayya"
+      },
+      {
+        "id": "song_28",
+        "title": "Sundari Pennae",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Oru Oorula Rendu Raja (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_97",
+        "title": "Uyir Vazhvadhey",
+        "artist": "Abhishek Ray, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Thoondil (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_52",
+        "title": "Thaen Thaen",
+        "artist": "Udit Narayan, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kuruvi"
+      },
+      {
+        "id": "song_6",
+        "title": "Mayava Thooyava (From \"Iravin Nizhal\")",
+        "artist": "A.R. Rahman, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Iravin Nizhal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_121",
+        "title": "Kangalilae",
+        "artist": "G. V. Prakash, Shreya Ghoshal, Javed Ali",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Pencil (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_75",
+        "title": "Nenjathilae",
+        "artist": "Vidyasagar, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Pirivom Santhipom (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_29",
+        "title": "Pidikkudhae",
+        "artist": "D. Imman, Jithin Raj, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Sigaram Thodu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_98",
+        "title": "Aavaram Poovukkum",
+        "artist": "Vidyasagar, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Arai Enn 305 Il Kadavul (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_53",
+        "title": "Iyyayo",
+        "artist": "Manikka Vinayagam, Krishnaraj, Yuvan Shankar Raja, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Paruthiveeran"
+      },
+      {
+        "id": "song_7",
+        "title": "Ival Dhaana",
+        "artist": "Sagar, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Veeram (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_122",
+        "title": "Kanna Kaattu Podhum",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Rekka (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_76",
+        "title": "AASAYA AASAYA",
+        "artist": "Sathyan, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "PETTIKADAI (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_30",
+        "title": "Neelangarayil",
+        "artist": "Karthik, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Pulivaal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_99",
+        "title": "Chaaral",
+        "artist": "Shreya Ghoshal, Kids, G. V. Prakash, Kiruthiya",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kuselan"
+      },
+      {
+        "id": "song_54",
+        "title": "Nannare",
+        "artist": "A.R. Rahman, Shreya Ghoshal, Uday Mazumdar",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Guru (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_8",
+        "title": "Hey Puyale",
+        "artist": "Arrol Corelli, Shreya Ghoshal, Sathyaprakash",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kalaga Thalaivan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_123",
+        "title": "Rang Rang Rangoli",
+        "artist": "Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Devi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_77",
+        "title": "Namma Ooru Nallarukku",
+        "artist": "G. V. Prakash, Anuradha Sriram, Shreya Ghoshal, Tippu",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Seval (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_31",
+        "title": "Kandaangi Kandaangi",
+        "artist": "Vijay, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Jilla (Original Music Picture Soundtrack)"
+      },
+      {
+        "id": "song_100",
+        "title": "Naangu Kangal",
+        "artist": "D. Imman, Javed Ali, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Naan Avan Illai, 2 (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_55",
+        "title": "Aedhivasu Naane",
+        "artist": "Ranjit, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kedi"
+      },
+      {
+        "id": "song_9",
+        "title": "Kyla",
+        "artist": "D. Imman, Shreya Ghoshal, Yazin Nizar, Madhan Karky",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Captain (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_124",
+        "title": "Adada Adada",
+        "artist": "D. Imman, Sriram Parthasarathy, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Veera Sivaji (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_78",
+        "title": "Yeenadi",
+        "artist": "D. Imman, Karthik, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Adhagappattathu Magajanangalay (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_32",
+        "title": "Ennai Saaithaalae",
+        "artist": "Harris Jayaraj, Hariharan, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Endrendrum Punnagai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_101",
+        "title": "Kadhal Oru Kaatru",
+        "artist": "Nihal, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Naan Aval Adhu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_56",
+        "title": "Pani Thulli",
+        "artist": "KK, Shreya Ghoshal, Thanvi, Thamarai",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kanda Naal Mudhal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_10",
+        "title": "Thumbi Thullal",
+        "artist": "A.R. Rahman, Nakul Abhyankar, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Cobra (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_125",
+        "title": "Yaanada - Reprise Version",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Adhagappattathu Magajanangalay (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_79",
+        "title": "Yengirindhu Vandhaayo",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kayal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_33",
+        "title": "Para Para (New)",
+        "artist": "N.R. Raghunanthan, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Neerparavai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_102",
+        "title": "Unnai Ninaithen",
+        "artist": "Vijay Antony, Prasanna, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Mariyadhai"
+      },
+      {
+        "id": "song_11",
+        "title": "Unnaale",
+        "artist": "Anurag Kulkarni, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Radhe Shyam"
+      },
+      {
+        "id": "song_126",
+        "title": "Aahaa Aahaa",
+        "artist": "D. Imman, Haricharan, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Gemini Ganeshanum Suruli Raajanum (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_80",
+        "title": "Uthira Uthira",
+        "artist": "D. Imman, Sreekanth Hariharan, Shreya Ghoshal, Maria Roe Vincent, Madhan Karky",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Pon Manickavel (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_34",
+        "title": "Sahaayane",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Saattai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_103",
+        "title": "Kandaen Kanmaniyae",
+        "artist": "Ganesh Raghavendra, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Renigunta (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_57",
+        "title": "Thavani Pootta",
+        "artist": "Vijay Yesudas, Srerayakoshi, Yugabharathi, Yuvan Shankar Raja",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Sandakozhi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_12",
+        "title": "Chakka Chakelathi",
+        "artist": "A.R. Rahman, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Galatta Kalyanam"
+      },
+      {
+        "id": "song_127",
+        "title": "Unkoode Pesathaane",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Rubaai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_81",
+        "title": "Rail Aaraaroo",
+        "artist": "Pradeep Kumar, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Nenjil Thunivirunthal"
+      },
+      {
+        "id": "song_35",
+        "title": "Rakkai Mulaiththen",
+        "artist": "G. V. Prakash, Shreya Ghoshal, Madhan Karky",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Sundarapandiyan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_104",
+        "title": "Yaaradi",
+        "artist": "Dharan Kumar, Hariharan, Shreya Ghoshal, Subhiksha Rangarajan",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Thambikku Indha Ooru (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_58",
+        "title": "Saamikittey",
+        "artist": "Yuvan Shankar Raja, Hariharan, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Daas"
+      },
+      {
+        "id": "song_13",
+        "title": "Saara Kaattrae",
+        "artist": "Shreya Ghoshal, Sid Sriram",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Annaatthe (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_128",
+        "title": "Marhaba Aavane",
+        "artist": "D. Imman, Shreya Ghoshal, Aditya Gadhvi",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Saravanan Irukka Bayamaen (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_82",
+        "title": "Nee Uravaaga",
+        "artist": "Shreya Ghoshal, Haricharan",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Paambhu Sattai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_36",
+        "title": "Sollitaley Ava Kaadhala",
+        "artist": "D. Imman, Ranjith Govind, Shreya Ghoshal, Yugabharathi",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kumki (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_105",
+        "title": "Munpani",
+        "artist": "Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Seedan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_59",
+        "title": "Andangkaka",
+        "artist": "Harris Jayaraj, Jassie Gift, KK, Shreya Ghoshal, Saindhavi",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Anniyan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_14",
+        "title": "Kanava Urave",
+        "artist": "Yuvan Shankar Raja, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Plan Panni Pannanum (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_129",
+        "title": "Ippadai Vellum Nichayama (From \"Ippadai Vellum\")",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Ippadai Vellum (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_83",
+        "title": "Jeebaambe",
+        "artist": "Mani Sharma, Karthik, Shreya Ghoshal, Kalpana Patowary",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Alaudin (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_37",
+        "title": "Naani Koni",
+        "artist": "Harris Jayaraj, Vijay Prakash, Karthik, Shreya Ghoshal, Shekhinah Shawn Jazeel, Viveka",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Maattrraan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_106",
+        "title": "Poovakkelu",
+        "artist": "Ilaiyaraaja, Karthik, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Azhagarsamiyin Kuthirai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_60",
+        "title": "Ninaithu Ninaithu",
+        "artist": "Yuvan Shankar Raja, Shreya Ghoshal, Na.Muthukumar",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "7/G Rainbow Colony (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_15",
+        "title": "Kadai Kannaaley",
+        "artist": "D. Imman, Shreya Ghoshal, Varun Parandhaman",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Bhoomi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_130",
+        "title": "Iravil Varukira (Female)",
+        "artist": "Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "En Aaloda Seruppa Kaanom (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_84",
+        "title": "Enge Aval",
+        "artist": "Maragadhamani, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Unnai Paartha Naal Mudhal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_38",
+        "title": "Yennada Yennada",
+        "artist": "D. Imman, Shreya Ghoshal, Sooraj Santhosh",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Varuthapadatha Vaalibar Sangam (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_107",
+        "title": "Chinna Kannilay",
+        "artist": "Ilaiyaraaja, Shreya Ghoshal, Naresh Iyer",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Dhoni (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_61",
+        "title": "Elangathu - Duet",
+        "artist": "Shreya Ghoshal, Palani Barathi, Sriram Parthasarathy",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Pithamagan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_16",
+        "title": "Aagaaya Neelangalil",
+        "artist": "A.R. Rahman, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "99 Songs (Tamil) [Original Motion Picture Soundtrack]"
+      },
+      {
+        "id": "song_131",
+        "title": "Amma I Love You",
+        "artist": "Amrish, Shreya Ghoshal, Baby Sreya",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Bhaskar Oru Rascal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_85",
+        "title": "Nijama Nijama",
+        "artist": "KK, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Bose (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_39",
+        "title": "Ammadi Ammadi",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Desingu Raja (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_108",
+        "title": "Vilayaattaa Padagotty",
+        "artist": "Ilaiyaraaja, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Dhoni (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_62",
+        "title": "Unna Vida",
+        "artist": "Kamal Haasan, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Virumandi"
+      },
+      {
+        "id": "song_17",
+        "title": "Mailaanji",
+        "artist": "Pradeep Kumar, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Namma Veettu Pillai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_132",
+        "title": "Mannaa Kaetkudhaa",
+        "artist": "Ajay-Atul, Shreya Ghoshal, Sunidhi Chauhan, Divya Kumar, Amitabh Bhattacharya",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Thugs of Hindostan - Tamil"
+      },
+      {
+        "id": "song_86",
+        "title": "Aye Pennae",
+        "artist": "Shreya Ghoshal, Tamarai",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Thendral (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_40",
+        "title": "Appappa (From \"Komban\")",
+        "artist": "G. V. Prakash, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Komban (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_109",
+        "title": "Oru Thuli Vishamai",
+        "artist": "Shreya Ghoshal, Sharib Sabri",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Aadhi Bhagavan"
+      },
+      {
+        "id": "song_63",
+        "title": "Sandiyare",
+        "artist": "Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Virumandi"
+      },
+      {
+        "id": "song_18",
+        "title": "Anbae Peranbae",
+        "artist": "Yuvan Shankar Raja, Sid Sriram, Shreya Ghoshal, Uma Devi",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "NGK (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_133",
+        "title": "Nadiga Nadigaa",
+        "artist": "Sonu Nigam, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Sei (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_87",
+        "title": "Khajiraho Kanavil",
+        "artist": "Ilaiyaraaja, Hariharan, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Oru Naal Oru Kanavu"
+      },
+      {
+        "id": "song_41",
+        "title": "Velicha Poove",
+        "artist": "Anirudh Ravichander, Shreya Ghoshal, Mohit Chauhan, Vaali",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Ethir Neechal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_110",
+        "title": "Yamma Yamma",
+        "artist": "Thaman S, Sooraj Santhosh, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "All in All Azhagu Raja (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_64",
+        "title": "Azhaginne Azhagi",
+        "artist": "A.R. Rahman, Shreya Ghoshal, Karjo Bhattacharya, Pa. Vijay",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Enakku 20 Unakku 18 (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_19",
+        "title": "Onnavitta Yaarum Yenakilla - Version 1",
+        "artist": "D. Imman, Sean Roldan, Shreya Ghoshal",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Seemaraja (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_134",
+        "title": "Sudalamada Saamikitta",
+        "artist": "Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "PETTIKADAI (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_88",
+        "title": "Katril Varum Geethame",
+        "artist": "Ilaiyaraaja, Hariharan, Shreya Ghoshal, Bhavadharani, Sadhana Sargam",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Oru Naal Oru Kanavu"
+      },
+      {
+        "id": "song_42",
+        "title": "Thirandhen Thirandhen",
+        "artist": "Thaman S, Aalaap Raju, Shreya Ghoshal, Madhan Karky",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Vandhaan Vendraan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_111",
+        "title": "Valiarae Kiliyae",
+        "artist": "Vijay Prakash Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Kollaikkaaran"
+      },
+      {
+        "id": "song_65",
+        "title": "Paathukkulla",
+        "artist": "Bharadwaj, KK, Shreya Ghoshal, Vairamuthu",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Vasool Raja Mbbs (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_21",
+        "title": "Neethanae",
+        "artist": "A.R. Rahman, Shreya Ghoshal, Vivek",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Mersal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_135",
+        "title": "Orey Santham",
+        "artist": "Shreya Ghoshal, Jubin Nautiyal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Dabangg 3"
+      },
+      {
+        "id": "song_89",
+        "title": "Vaarai Vaarai",
+        "artist": "D. Imman, Shankar Mahadevan, Shreya Ghoshal, Madhan Karky",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Bogan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_43",
+        "title": "Oru Kili Oru Kili",
+        "artist": "Satish Chakravarthy, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Leelai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_112",
+        "title": "Aanazhagu",
+        "artist": "D. Imman, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Tenali Raman (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_66",
+        "title": "Andha Naal - Version 1",
+        "artist": "Vijay Yesudas, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Athu Oru Kanaa Kaalam (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_22",
+        "title": "Mazhaikkul",
+        "artist": "Sam C.S., Haricharan, Shreya Ghoshal, Madhan Karky",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Puriyaatha Puthir (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_136",
+        "title": "Anney Yaaranney",
+        "artist": "D. Imman, Shreya Ghoshal, Yugabharathi",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Udanpirappe (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_90",
+        "title": "Konjam Thira",
+        "artist": "Ilaiyaraaja, Sonu Nigam, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Oru Naal Oru Kanavu"
+      },
+      {
+        "id": "song_44",
+        "title": "Kadhal Anukkal",
+        "artist": "Vijay Prakash, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Enthiran (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_113",
+        "title": "Megathilae",
+        "artist": "Mani Sharma, Madhan Karky, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Vetriselvan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_67",
+        "title": "Entha Kuthirayil",
+        "artist": "Yuvan Shankar Raja, Shreya Ghoshal, Rahul Nambiar, Na.Muthukumar",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Satham Podathey (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_23",
+        "title": "Mirutha Mirutha",
+        "artist": "D. Imman, Shreya Ghoshal, Vijay Yesudas, Madhan Karky",
+        "img": "image_4569e7.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Miruthan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_137",
+        "title": "Kanji Kanji",
+        "artist": "Harris Jayaraj, KK, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "The Legend (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_91",
+        "title": "Ayyayo Anandha",
+        "artist": "Bharadwaj, Shreya Ghoshal",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Febraury-14 (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_45",
+        "title": "Poovinai",
+        "artist": "G. V. Prakash, Srinivas, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Anandha Thaandavam (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_114",
+        "title": "Oh Oh Nadhigal Oda",
+        "artist": "Siddharth Vipin, Naresh Iyer, Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Vallavanukku Pullum Aayudham (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_68",
+        "title": "Pona Usuru Vanthurichu",
+        "artist": "Haricharan, Shreya Ghoshal",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Thodari"
+      },
+      {
+        "id": "song_138",
+        "title": "Paartha Nyabhagam",
+        "artist": "Girishh G, Viswananthan - Ramamoorthy, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Paartha Nyabhagam (From \"Kolai\")"
+      },
+      {
+        "id": "song_92",
+        "title": "Thazhuvudu",
+        "artist": "S. P. Balasubrahmanyam, Shreya Ghosla",
+        "img": "image_456680.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Anbe Aaruyire (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_46",
+        "title": "Neeyum Naanum",
+        "artist": "Bonny Dayal, Shreya Ghoshal",
+        "img": "image_4569a8.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Mynaa"
+      },
+      {
+        "id": "song_115",
+        "title": "Neeyaa Neeyaa",
+        "artist": "Shreya Ghoshal",
+        "img": "image_4562de.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Arima Nambi"
+      },
+      {
+        "id": "song_69",
+        "title": "Oorellam Kekkude",
+        "artist": "Shreya Ghoshal, Maria Roe",
+        "img": "image_4566c3.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Thodari"
+      },
+      {
+        "id": "song_139",
+        "title": "Engirunthu",
+        "artist": "Hariharan, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Therodum Veedhiyile"
+      },
+      {
+        "id": "song_140",
+        "title": "Sye Raa",
+        "artist": "Sunidhi Chauhan, Shreya Ghoshal",
+        "img": "image_456288.png",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Syeraa Narasimha Reddy"
+      }
+    ]
+  },
+  {
+    id: 'custom-mano',
+    name: 'Mano Hits',
+    creator: 'Vibeflow Official',
+    img: 'https://i.pinimg.com/736x/46/2c/f3/462cf3c05551400733901d24799955a3.jpg',
+    createdAt: Date.now(),
+    songs: [
+      {
+        "id": "song_28",
+        "title": "Mukkabla",
+        "artist": "A.R. Rahman, Mano, Swarnalatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 320,
+        "album": "Kadhalan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_51",
+        "title": "Ada Uchcham Thala",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Chinna Thambi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_11",
+        "title": "Veerapandi Kotayyile",
+        "artist": "A.R. Rahman, Unni Menon, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 340,
+        "album": "Thiruda Thiruda (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_74",
+        "title": "Alli Alli",
+        "artist": "Deva, Swarnalatha, Mano, Vairamuthu",
+        "img": "",
+        "audioUrl": "",
+        "duration": 305,
+        "album": "Arunachalam (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_2",
+        "title": "Azhagiya Lail",
+        "artist": "Sirpy, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Ullathai Alli Thaa"
+      },
+      {
+        "id": "song_83",
+        "title": "Arechu Arechu (From \"Maharasan\")",
+        "artist": "Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Golden Hits of S. Janaki-Mano"
+      },
+      {
+        "id": "song_96",
+        "title": "Vennilave Vennila",
+        "artist": "Vidyasagar, Vaali, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 295,
+        "album": "Sengottai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_41",
+        "title": "Aadi Pattam",
+        "artist": "Ilaiyaraaja, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Ponnumani (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_16",
+        "title": "Raasathi Manasula",
+        "artist": "P. Susheela, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 265,
+        "album": "Rasave Unnai Nambi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_66",
+        "title": "Oru Maina",
+        "artist": "Ilaiyaraaja, Vaali, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Uzhaippali (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_57",
+        "title": "Chinne Chinne Munthiri (From Nattpukkaga)",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 275,
+        "album": "Mano Hits at Deva Music"
+      },
+      {
+        "id": "song_35",
+        "title": "Natchathira Jannalil",
+        "artist": "Mano, Sunandha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 310,
+        "album": "Suryavamsam (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_89",
+        "title": "Pandiyana Kokka Kokka",
+        "artist": "Ilaiyaraaja, Vaali, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 260,
+        "album": "Pandian (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_4",
+        "title": "Kudagu Malai",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Karakattakkaran (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_78",
+        "title": "Computer Graphic",
+        "artist": "Sirpy, Pazhani Bharathi, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Poochudava (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_13",
+        "title": "Malai Kovil Vaasalil",
+        "artist": "Ilaiyaraaja, Swarnalatha, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 315,
+        "album": "Veera (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_99",
+        "title": "Oaty Malai Beauty",
+        "artist": "Deva, Palani Bharathi, Mano, Swarnalatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Once More (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_61",
+        "title": "Velvetta Velvetta",
+        "artist": "Mano, K. S. Chithra, Sirpy",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Mettukudi"
+      },
+      {
+        "id": "song_21",
+        "title": "Azegiye Laila (From \"Ullathai Alli Thaa\")",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Sangeetha Utsavam - Mano Isai Mazhai"
+      },
+      {
+        "id": "song_46",
+        "title": "Adi Raani Sultana",
+        "artist": "Mano, DEVI",
+        "img": "",
+        "audioUrl": "",
+        "duration": 255,
+        "album": "Thayin Manikodi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_70",
+        "title": "Kothamalli Vaasam",
+        "artist": "Deva, Mano, Minmini",
+        "img": "",
+        "audioUrl": "",
+        "duration": 275,
+        "album": "Indhu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_32",
+        "title": "En Thalaivaa En Thalaivaa (From \"Kadhali-2\")",
+        "artist": "Mano, Sujatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Super Singer Sujatha Special"
+      },
+      {
+        "id": "song_86",
+        "title": "Vettukili Vetti Vantha",
+        "artist": "Ilaiyaraaja, Pulamaipithan, Mano, Swarnalatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 305,
+        "album": "Priyanka (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_10",
+        "title": "Dhavadhai Pal",
+        "artist": "Deepan Chakravarthy, Mano, Malaysia Vasudevan, SN Surendar",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Gopura Vasalile (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_53",
+        "title": "Indha",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 240,
+        "album": "Senthamizh Paattu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_65",
+        "title": "Sattham Varamal Muttham",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "My Dear Marthandan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_17",
+        "title": "Vaa Vaa Manjal Malare",
+        "artist": "Mano, S. P. Sailaja",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Rajathi Raja (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_95",
+        "title": "Loyala College Laila",
+        "artist": "Deva, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 315,
+        "album": "Kalloori Vaasal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_38",
+        "title": "Maama Nee Maama",
+        "artist": "Sirpy, Mano, Geetha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 260,
+        "album": "Ullathai Alli Thaa"
+      },
+      {
+        "id": "song_59",
+        "title": "Meena Ponnu",
+        "artist": "Sirpy, Mano, Sujatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Nattamai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_3",
+        "title": "Oru Maina",
+        "artist": "Ilaiyaraaja, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Uzhaippali (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_81",
+        "title": "Chinna Raasave (From \"Walter Vetrivel\")",
+        "artist": "Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 300,
+        "album": "Golden Hits of S. Janaki-Mano"
+      },
+      {
+        "id": "song_44",
+        "title": "Kaadhal Then Kodukka",
+        "artist": "Ilaiyaraaja, Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 275,
+        "album": "Chinna Kannamma (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_20",
+        "title": "Dillu Baru Jaane",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Kalaignan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_69",
+        "title": "Dillu Baru Jaane (From \"Kalaignan\")",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Mano & Chithra Tamil Hits Vol-1"
+      },
+      {
+        "id": "song_73",
+        "title": "Oru Maina Kunju",
+        "artist": "Ilaiyaraaja, Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Oru Oorla Oru Rajakumari (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_94",
+        "title": "Aajare Meri",
+        "artist": "Deva, Vaali, Mano, Swarnalatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 310,
+        "album": "Vishnu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_12",
+        "title": "Madura Marikkazhunthu",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Enga Ooru Pattukaran (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_8",
+        "title": "Shenbagame Shenbagame - Duet Version",
+        "artist": "Mano, Ilaiyaraaja",
+        "img": "",
+        "audioUrl": "",
+        "duration": 300,
+        "album": "Enga Ooru Pattukaran (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_62",
+        "title": "Adi Yaaradhu",
+        "artist": "Mano, K. S. Chithra, Sirpy",
+        "img": "",
+        "audioUrl": "",
+        "duration": 265,
+        "album": "Mettukudi"
+      },
+      {
+        "id": "song_7",
+        "title": "Nee Oru Kadhal Sangeetham",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 275,
+        "album": "Nayagan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_39",
+        "title": "Anargali",
+        "artist": "Sirpy, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Ullathai Alli Thaa"
+      },
+      {
+        "id": "song_84",
+        "title": "Adi Paanguyilee",
+        "artist": "Mano, Minmini",
+        "img": "",
+        "audioUrl": "",
+        "duration": 295,
+        "album": "Aranmanai Kili"
+      },
+      {
+        "id": "song_52",
+        "title": "Thaaliyile Ada Vantha",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Chinna Thambi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_47",
+        "title": "Madura Marikkazhunthu",
+        "artist": "Ilaiyaraaja, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Enga Ooru Pattukaran (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_22",
+        "title": "Oru Maina (From \"Uzhaippali\")",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Evergreen Songs of Mano-K. S. Chithra"
+      },
+      {
+        "id": "song_77",
+        "title": "Pachai Kallu Mukutthi",
+        "artist": "Deva, Mano, Swarnalatha, K. Subash",
+        "img": "",
+        "audioUrl": "",
+        "duration": 310,
+        "album": "Eazhaiyin Sirippil (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_1",
+        "title": "Thaaliyile Ada Vantha - Male Version",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Chinna Thambi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_97",
+        "title": "Vinnum Mannum",
+        "artist": "Vidyasagar, Vaali, Mano, Swarnalatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Sengottai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_25",
+        "title": "Dillu Baru Jaane - From \"Kalaignan\"",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Mano & Chithra - Tamil Hits, Vol 1"
+      },
+      {
+        "id": "song_50",
+        "title": "Shenbagame Shenbagame - Male",
+        "artist": "Ilaiyaraaja, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 300,
+        "album": "Enga Ooru Pattukaran (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_72",
+        "title": "Thendrale",
+        "artist": "A.R. Rahman, Vaali, Mano, Unnikrishnan, Dominique Cerejo",
+        "img": "",
+        "audioUrl": "",
+        "duration": 330,
+        "album": "Kadhal Desam (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_88",
+        "title": "Anbe Nee Enna",
+        "artist": "Ilaiyaraaja, Vaali, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Pandian (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_33",
+        "title": "Meena Ponnu",
+        "artist": "Sirpy, Mano, Sujatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Nattamai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_91",
+        "title": "Salemiya",
+        "artist": "Mano, Suba",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Love Today (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_15",
+        "title": "Jingidi Jingidi",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 260,
+        "album": "Guru Sishyan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_43",
+        "title": "Enthan Vazhkaiyin",
+        "artist": "Ilaiyaraaja, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Chinna Kannamma (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_68",
+        "title": "Vaadi Vethalai (From \"Veera\")",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 310,
+        "album": "Mano & Chithra Tamil Hits Vol-1"
+      },
+      {
+        "id": "song_48",
+        "title": "Malaiyala Karaiyoram",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Rajathi Raja (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_85",
+        "title": "Jille Mulukke",
+        "artist": "Ilaiyaraaja, Mano, K. S. Chithra, Vaali",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Priyanka (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_18",
+        "title": "Nooru Varusham - Male Version",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Panakkaran (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_100",
+        "title": "Aathengarei Maramee Adhil (Original Motion Picture Soundtrack)",
+        "artist": "Mano, Sujatha Mohan",
+        "img": "",
+        "audioUrl": "",
+        "duration": 315,
+        "album": "Kizhakku Cheemayile (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_29",
+        "title": "Azhageana Manjappura",
+        "artist": "Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Ellame En Rasathan"
+      },
+      {
+        "id": "song_55",
+        "title": "Siva Rathiri",
+        "artist": "K. S. Chithra, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 305,
+        "album": "Michael Madana Kama Rajan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_5",
+        "title": "Meenamma Meenamma",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 295,
+        "album": "Rajathi Raja (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_34",
+        "title": "Utta Lakkadi",
+        "artist": "Deva, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 265,
+        "album": "Indhu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_92",
+        "title": "Andhiyile Vaanam",
+        "artist": "Ilaiyaraaja, Gangai Amaran, Swarnalatha, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 300,
+        "album": "Chinnavar (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_71",
+        "title": "Utta Lakkadi",
+        "artist": "Deva, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 265,
+        "album": "Indhu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_14",
+        "title": "Ape Aala",
+        "artist": "Deva, Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Surieyan"
+      },
+      {
+        "id": "song_64",
+        "title": "Alai Alai Alai",
+        "artist": "Sirpy, Mano, Sujatha, Palani Bharathi",
+        "img": "",
+        "audioUrl": "",
+        "duration": 295,
+        "album": "Kathirunda Kaadal (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_90",
+        "title": "Pendiyanin Rajiyathil",
+        "artist": "Karthik Raja, Vaali, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Pandian (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_36",
+        "title": "Kothamalli Thottathule (From Ellamee En Pontettithen)",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Mano Hits at Deva Music"
+      },
+      {
+        "id": "song_80",
+        "title": "Nila Keyum (From \"Chemberuthi\")",
+        "artist": "Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 295,
+        "album": "Golden Hits of S. Janaki-Mano"
+      },
+      {
+        "id": "song_45",
+        "title": "Mutham Thara",
+        "artist": "Vidyasagar, Mano, Sindhu",
+        "img": "",
+        "audioUrl": "",
+        "duration": 275,
+        "album": "Jaihind (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_23",
+        "title": "Oru Maina Maina",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Uzhaippali"
+      },
+      {
+        "id": "song_76",
+        "title": "Rajappaa Maleiyiley",
+        "artist": "S.A. Rajkumar, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 310,
+        "album": "Vaanathai Pola (Original Background Score)"
+      },
+      {
+        "id": "song_101",
+        "title": "Adi Yaaradhu Yaaradhu",
+        "artist": "Sirpy, K. S. Chithra, Mano, Palani Bharathi",
+        "img": "",
+        "audioUrl": "",
+        "duration": 265,
+        "album": "Mettukudi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_60",
+        "title": "Naan Uravukkaaran",
+        "artist": "Sirpy, Mohammed Aslam, Sujatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Nattamai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_37",
+        "title": "Nee Pattu Vacha",
+        "artist": "Malaysia Vasudevan, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Ponmana Selvan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_63",
+        "title": "Anbulla Mannavane",
+        "artist": "Mano, Swarnalatha, Sirpy",
+        "img": "",
+        "audioUrl": "",
+        "duration": 310,
+        "album": "Mettukudi"
+      },
+      {
+        "id": "song_79",
+        "title": "Thendral Kaatree",
+        "artist": "Ilaiyaraaja, Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Kumbakarai Thangayya (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_87",
+        "title": "Adi Jumba",
+        "artist": "Ilaiyaraaja, Vaali, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Pandian (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_42",
+        "title": "Priyasakhi",
+        "artist": "Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 300,
+        "album": "Gopura Vasalile (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_56",
+        "title": "Aadi Pattam Thedi",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 275,
+        "album": "Michael Madana Kama Rajan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_9",
+        "title": "Ennavale Ennavale",
+        "artist": "Mano, Anuradha Sriram",
+        "img": "",
+        "audioUrl": "",
+        "duration": 310,
+        "album": "Ninaithen Vandhai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_30",
+        "title": "Chinna Pannuthan",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Vaikasi Porandhachu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_67",
+        "title": "Uzhaippali Illatha",
+        "artist": "Ilaiyaraaja, Vaali, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 250,
+        "album": "Uzhaippali (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_54",
+        "title": "Kuttukaru",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 260,
+        "album": "Senthamizh Paattu (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_98",
+        "title": "Madhuraina Madhuraithen",
+        "artist": "Deva, Kamakodiyan, K. S. Chithra, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Mappillai Gounder (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_26",
+        "title": "Thandharavu Pennathinge - From \"Parantha Veedu Puguntha Veedu\"",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 300,
+        "album": "Mano & Chithra - Tamil Hits, Vol 1"
+      },
+      {
+        "id": "song_6",
+        "title": "Untitled Track 6",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 240,
+        "album": "Unknown Album"
+      },
+      {
+        "id": "song_75",
+        "title": "Paatu Ellam",
+        "artist": "Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 280,
+        "album": "Raasaiyya (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_58",
+        "title": "Kotta Paakkum",
+        "artist": "Sirpy, S. Janaki, Mano",
+        "img": "",
+        "audioUrl": "",
+        "duration": 270,
+        "album": "Nattamai (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_82",
+        "title": "Maane Margatheme (From \"EngeThembi\")",
+        "artist": "Mano, S. Janaki",
+        "img": "",
+        "audioUrl": "",
+        "duration": 305,
+        "album": "Golden Hits of S. Janaki-Mano"
+      },
+      {
+        "id": "song_24",
+        "title": "Vaadi Vethalai - From \"Veera\"",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 310,
+        "album": "Mano & Chithra - Tamil Hits, Vol 1"
+      },
+      {
+        "id": "song_40",
+        "title": "Chittu Kuruvi",
+        "artist": "Sirpy, Mano, Sujatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 285,
+        "album": "Ullathai Alli Thaa"
+      },
+      {
+        "id": "song_49",
+        "title": "Va Va Va Kanna",
+        "artist": "Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 290,
+        "album": "Velaikkaran (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_31",
+        "title": "Alai Alai Alai (From \"Kathirunda Kaadal\")",
+        "artist": "Mano, Sujatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 295,
+        "album": "Super Singer Sujatha Special"
+      },
+      {
+        "id": "song_27",
+        "title": "Muqabala Muqabala",
+        "artist": "Mano, Swarnalatha",
+        "img": "",
+        "audioUrl": "",
+        "duration": 320,
+        "album": "Hum Se Hai Muqabala - Kadalan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_19",
+        "title": "I Love You",
+        "artist": "Sirpy, Mano, K. S. Chithra",
+        "img": "",
+        "audioUrl": "",
+        "duration": 275,
+        "album": "Ullathai Alli Thaa"
+      }
     ]
   }
 ];
