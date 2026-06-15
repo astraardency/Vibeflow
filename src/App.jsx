@@ -65,6 +65,15 @@ function App() {
           parsed.push(dp);
         }
       });
+      // Dynamically clean song titles to remove "(From ...)" or "- From ..." suffixes
+      parsed.forEach(pl => {
+        if (pl.songs && Array.isArray(pl.songs)) {
+          pl.songs = pl.songs.map(song => ({
+            ...song,
+            title: (song.title || '').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim()
+          }));
+        }
+      });
       return parsed;
     } catch (e) {
       return [...defaultPlaylists]
@@ -78,10 +87,19 @@ function App() {
     const setupSnapshot = () => {
       if (unsubscribeSnapshot) unsubscribeSnapshot();
       unsubscribeSnapshot = onSnapshot(collection(db, 'playlists'), (snapshot) => {
-        const playlistsData = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
+        const playlistsData = snapshot.docs.map(doc => {
+          const data = doc.data();
+          if (data.songs && Array.isArray(data.songs)) {
+            data.songs = data.songs.map(song => ({
+              ...song,
+              title: (song.title || '').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim()
+            }));
+          }
+          return {
+            id: doc.id,
+            ...data
+          };
+        })
         setPlaylists(prev => {
           // Merge local and remote, preferring remote
           const merged = [...playlistsData]
