@@ -7895,7 +7895,7 @@ const customPlaylists = [
       },
       {
         "id": "song_23",
-        "title": "God Mode - From \"Karuppu\"",
+        "title": "God Mode",
         "artist": "Sai Abhyankkar, Gana Muthu, Vishnu Edavan",
         "img": "image_url_23.jpg",
         "audioUrl": "audio_url_23.mp3",
