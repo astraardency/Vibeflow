@@ -2607,6 +2607,7 @@ export const defaultPlaylists = [
         "duration": 250,
         "album": "Dum (Original Background Score)"
       }
+    ]
   },
   {
     id: 'custom-shreya-ghoshal',
@@ -3865,6 +3866,51 @@ export const defaultPlaylists = [
         "audioUrl": "audio_url.mp3",
         "duration": 250,
         "album": "Syeraa Narasimha Reddy"
+      }
+    ]
+  },
+  {
+    id: 'custom-mano',
+    name: 'Mano Hits',
+    creator: 'Vibeflow Official',
+    img: 'https://i.pinimg.com/736x/3a/19/fb/3a19fbe15c75b21d03d57a8fe2b8484c.jpg',
+    createdAt: Date.now(),
+    songs: [
+      {
+        "id": "song_28",
+        "title": "Mukkabla",
+        "artist": "A.R. Rahman, Mano, Swarnalatha",
+        "img": "placeholder_url.jpg",
+        "audioUrl": "placeholder_url.mp3",
+        "duration": 320,
+        "album": "Kadhalan (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_51",
+        "title": "Ada Uchcham Thala",
+        "artist": "Mano",
+        "img": "placeholder_url.jpg",
+        "audioUrl": "placeholder_url.mp3",
+        "duration": 280,
+        "album": "Chinna Thambi (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_11",
+        "title": "Veerapandi Kotayyile",
+        "artist": "A.R. Rahman, Unni Menon, Mano, K. S. Chithra",
+        "img": "placeholder_url.jpg",
+        "audioUrl": "placeholder_url.mp3",
+        "duration": 340,
+        "album": "Thiruda Thiruda (Original Motion Picture Soundtrack)"
+      },
+      {
+        "id": "song_74",
+        "title": "Alli Alli",
+        "artist": "Deva, Swarnalatha, Mano, Vairamuthu",
+        "img": "placeholder_url.jpg",
+        "audioUrl": "placeholder_url.mp3",
+        "duration": 305,
+        "album": "Arunachalam (Original Motion Picture Soundtrack)"
       }
     ]
   }
