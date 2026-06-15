@@ -277,7 +277,7 @@ function App() {
     }
     
     const nextSong = activePlaybackQueue[nextIndex];
-    if (nextSong && !nextSong.audioUrl) {
+    if (nextSong && (!nextSong.audioUrl || nextSong.audioUrl.includes('audio_url_') || nextSong.audioUrl.includes('placeholder_url'))) {
       const fetchNext = async () => {
         try {
           const cleanTitle = (nextSong.title || '').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim();
@@ -519,8 +519,8 @@ function App() {
 
       let trackToPlay = { ...song }
 
-      // If the song doesn't have an audioUrl, search for it on JioSaavn
-      if (!song.audioUrl) {
+      // If the song doesn't have an audioUrl (or has a dummy generator URL), search for it on JioSaavn
+      if (!song.audioUrl || song.audioUrl.includes('audio_url_') || song.audioUrl.includes('placeholder_url')) {
         // Clean up "(From "Movie")" from title for better search results
         const cleanTitle = (song.title || '').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim()
         const queryStr = song.query || `${cleanTitle} ${song.artist}`
@@ -614,7 +614,7 @@ function App() {
     const nextIndex = getNextSongIndex(list, currentIndex);
     const nextSong = list[nextIndex];
 
-    if (nextSong && !nextSong.audioUrl) {
+    if (nextSong && (!nextSong.audioUrl || nextSong.audioUrl.includes('audio_url_') || nextSong.audioUrl.includes('placeholder_url'))) {
        const cleanTitle = (nextSong.title || '').replace(/\s*\(from [^)]+\)\s*/ig, '').replace(/\s*- From .*/ig, '').trim();
        const queryStr = nextSong.query || `${cleanTitle} ${nextSong.artist}`;
        const results = await searchSongs(queryStr);
